@@ -6,5 +6,5 @@ import sopra.ShareYourFood.model.Lot;
 
 public interface ILotRepositoryCustom {
 
-	List<Lot> advanceSearch(String recherche,String codePostal, String ville );
+//	List<Lot> advanceSearch(String recherche,String codePostal, String ville );
 }

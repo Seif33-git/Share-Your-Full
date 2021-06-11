@@ -1,5 +1,7 @@
 package sopra.ShareYourFood.repository;
 
+
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -48,4 +50,7 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
 			+ " and d.entite.id = :id")
 	List<Lot> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
+	
+	
+	
 }

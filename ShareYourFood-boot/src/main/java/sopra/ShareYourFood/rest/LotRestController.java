@@ -107,11 +107,11 @@ public class LotRestController {
 		lotRepo.deleteById(id);
 	}
 	
-	@GetMapping("/advanceSearch")
-	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
-		
-		List<Lot> lots = lotRepo.advanceSearch(recherche, codePostal,ville);
-		
-		return lots;
-	}
+//	@GetMapping("/advanceSearch")
+//	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
+//		
+//		List<Lot> lots = lotRepo.advanceSearch(recherche, codePostal,ville);
+//		
+//		return lots;
+//	}
 }
