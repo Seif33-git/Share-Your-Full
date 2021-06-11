@@ -4,6 +4,8 @@ public class Views {
 	
 	public static class ViewCommon {}
 	
+	public interface ViewCompteur {}
+	
 	public static class ViewProduit extends ViewCommon{}
 	
 	public static class ViewUtilisateur extends ViewCommon{}

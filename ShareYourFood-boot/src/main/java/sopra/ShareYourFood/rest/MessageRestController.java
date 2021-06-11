@@ -39,10 +39,8 @@ public class MessageRestController {
 	@JsonView(Views.ViewMessage.class)
 	public List<Message> findListMessagerieIfBenefeciaire(@PathVariable Long idDemande) {
 		
-		return messageRepo.findAllPourUneDemande(idDemande);
-		
+		return messageRepo.findAllPourUneDemande(idDemande);		
 	}
-	
 	
 	
 	@GetMapping("/{id}")
