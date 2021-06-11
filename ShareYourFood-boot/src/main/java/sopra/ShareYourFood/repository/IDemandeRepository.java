@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 
-import sopra.ShareYourFood.model.Demande;;
+import sopra.ShareYourFood.model.Demande;
+import sopra.ShareYourFood.model.Message;;
 
 
 public interface IDemandeRepository extends JpaRepository<Demande, Long> {
@@ -20,6 +21,10 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 //	@Query("select distinct d from Demande d left join fetch d.message where d.id = :id")
 //	Optional<Demande> findDemandeByIdWithMessage(@Param("id") Long id);
 	
+//	@Query("select d from Demande d where d.message.id = :idMessage")
+//	List<Demande> findAllDemandeWithMessage(@Param("idMessage") Long idMessage);
+//	
+//	
 	
 	@Query("select d from Demande d where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER and "
 			+ "d.entite.id = :idEntite") //, d.lot.don.entite.nom une seule sortie ? 
