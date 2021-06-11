@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import sopra.ShareYourFood.model.Lot;
 
-public interface ILotRepository extends JpaRepository<Lot, Long> {
+public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepositoryCustom {
 	
 	@Query("select l from Lot l where l.statut <> sopra.ShareYourFood.model.Statut.DONNE and l.don.entite.id = :idEntite")
 	List<Lot> findAllNonDonneByEntiteById(@Param("idEntite") Long idEntite);
