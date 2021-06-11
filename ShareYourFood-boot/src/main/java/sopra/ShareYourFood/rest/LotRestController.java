@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,12 +52,14 @@ public class LotRestController {
 	
 	@GetMapping("/non-donne-by-entite/{id}")
 	@JsonView(Views.ViewLot.class)
+	@PreAuthorize("hasRole('DONNEUR')")
 	public List<Lot> findNonDonneByEntite(@PathVariable Long id) {
 		return lotRepo.findAllNonDonneByEntiteById(id);
 	}
 	
 	@GetMapping("/donne-by-entite/{id}")
 	@JsonView(Views.ViewLot.class)
+	@PreAuthorize("hasRole('DONNEUR')")
 	public List<Lot> findDonneByEntite(@PathVariable Long id) {
 		return lotRepo.findAllDonneByEntiteById(id);
 	}

@@ -1,18 +1,22 @@
 package sopra.ShareYourFood.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Table(name = "utilisateur")
@@ -37,10 +41,10 @@ public class Utilisateur {
 	@Column(name = "messagerie_activation")
 	@JsonView(Views.ViewCommon.class)
 	private Boolean messagerieActivation;
-	@Enumerated(EnumType.STRING)
-	@Column(name = "role")
-	@JsonView(Views.ViewCommon.class)
-	private Role role;
+	private boolean enable;
+	@Column(name = "roles")
+	@OneToMany(mappedBy = "user")
+	private Set<UtilisateurRole> roles;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "entite_id")
@@ -97,13 +101,22 @@ public class Utilisateur {
 	public void setMessagerieActivation(Boolean messagerieActivation) {
 		this.messagerieActivation = messagerieActivation;
 	}
+	
+	public boolean isEnable() {
+		return enable;
+	}
+	
 
-	public Role getRole() {
-		return role;
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public Set<UtilisateurRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<UtilisateurRole> roles) {
+		this.roles = roles;
 	}
 
 	public Entite getEntite() {
@@ -120,6 +133,16 @@ public class Utilisateur {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+	public List<String> getStringRoles() {
+		List<String> stringRoles = new ArrayList<>();
+
+		for (UtilisateurRole role : roles) {
+			stringRoles.add("ROLE_" + role.getRole().name());
+		}
+
+		return stringRoles;
 	}
 
 }
