@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,34 +49,45 @@ public class DemandeRestController {
 		}
 	}
 	
-//	//Requetes Aubeline
-//	
-//	@GetMapping("/message-accepte-by-entite/{id}/beneficiaire")
-//	@JsonView(Views.ViewLot.class)
-//	@PreAuthorize("hasRole('BENEFICIAIRE')")
-//	public List<Demande>  findListMessageAccepteAcceuil2Beneficiaire(@PathVariable Long id) {
-//		return demandeRepo.findAllWithMessageAndStatutAccepteByEntiteByIdIfBeneficiaire(id);
-//	}
-//	@GetMapping("/message-accepte-by-entite/{id}/donneur")
-//	@JsonView(Views.ViewLot.class)
-//	@PreAuthorize("hasRole('DONNEUR')")
-//	public List<Demande>  findListMessageAccepteAcceuil2Donneur(@PathVariable Long id) {
-//		return demandeRepo.findAllWithMessageAndStatutAccepteByEntiteByIdIfDonneur(id);
-//	}
-//	@GetMapping("/message-attente-by-entite/{id}/beneficiaire")
-//	@JsonView(Views.ViewLot.class)
-//	@PreAuthorize("hasRole('BENEFICIAIRE')")
-//	public List<Demande>  findListMessageEnAttenteAcceuil2Beneficiaire(@PathVariable Long id) {
-//		return demandeRepo.findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfBeneficiaire(id);
-//	}
-//	@GetMapping("/message-attente-by-entite/{id}/donneur")
-//	@JsonView(Views.ViewLot.class)
-//	@PreAuthorize("hasRole('DONNEUR')")
-//	public List<Demande>  findListMessageEnAttenteAcceuil2Donneur(@PathVariable Long id) {
-//		return demandeRepo.findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfDonneur(id);
-//	}
-//	
-//	//Fin Aube
+	//Requetes Aubeline
+	
+	@GetMapping("/message-accepte-by-entite/{id}/beneficiaire")
+	@JsonView(Views.ViewDemande.class)
+	public List<Demande> findListMessageAccepteAcceuil2Beneficiaire(@PathVariable Long id) {
+		return demandeRepo.findAllWithMessageAndStatutAccepteByEntiteByIdIfBeneficiaire(id);
+	}
+	
+	@GetMapping("/message-accepte-by-entite/{id}/donneur")
+	@JsonView(Views.ViewDemande.class)
+	public List<Demande> findListMessageAccepteAcceuil2Donneur(@PathVariable Long id) {
+		return demandeRepo.findAllWithMessageAndStatutAccepteByEntiteByIdIfDonneur(id);
+	}
+	
+	@GetMapping("/message-attente-by-entite/{id}/beneficiaire")
+	@JsonView(Views.ViewDemande.class)
+	public Object[] findListMessageEnAttenteAcceuil2Beneficiaire(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfBeneficiaire(id);
+	}
+	
+	@GetMapping("/message-attente-by-entite/{id}/donneur")
+	@JsonView(Views.ViewDemande.class)
+	public Object[] findListMessageEnAttenteAcceuil2Donneur(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfDonneur(id);
+	}
+	
+	@GetMapping("/message-attente-contenu-by-entite/{id}/donneur")
+	@JsonView(Views.ViewDemande.class)
+	public Object[]  findListMessageEnAttenteContenuAcceuil2Donneur(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtDateDemandeEtMessageByEntiteByIdIfDonneur(id);
+	}
+	
+	@GetMapping("/message-attente-contenu-by-entite/{id}/beneficiaire")
+	@JsonView(Views.ViewDemande.class)
+	public Object[]  findListMessageEnAttenteContenuAcceuil2Beneficiaire(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtDateDemandeEtMessageByEntiteByIdIfBeneficiaire(id);
+	}
+	
+	//Fin Aube
 
 	@GetMapping("/messagerie/list/{id}/beneficiaire")
 	@JsonView(Views.ViewDemande.class)
