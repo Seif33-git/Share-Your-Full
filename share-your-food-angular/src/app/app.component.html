@@ -1,0 +1,94 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div
+      class="collapse navbar-collapse collapse justify-content-between"
+      id="navbarNavAltMarkup">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/']">Accueil</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/information']">Informations</a>
+        </li>
+      </ul>
+
+      <div class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/inscription']">Inscription</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/connexion']">Connexion</a>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div
+      class="collapse navbar-collapse collapse justify-content-between"
+      id="navbarNavAltMarkup">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/']">Accueil</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/information']">Informations</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/donner']">Donner</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/recevoir']">Reçevoir</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/tableauDeBord']">Tableau de bord</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/messagerie']">Messagerie</a>
+        </li>
+      </ul>
+
+      <div class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/deconnexion']">Déconnexion</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-item nav-link" [routerLink]="['/profil']">Mon profil</a>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+
+</header>
+
+
+<div class="container-fluid">
+
+  <router-outlet></router-outlet>
+
+</div>
+
+<footer class="bg-light text-center text-lg-start mt-3">
+  <a [routerLink]="['/mentionsLegales']">Voir les mentions légales</a>
+</footer>

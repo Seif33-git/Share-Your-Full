@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.authorizeRequests().antMatchers("/data-rest").permitAll().antMatchers("/**").authenticated().and()
 //				.httpBasic();
 		
-		http.authorizeRequests().antMatchers("/**").permitAll();
+		http.authorizeRequests().antMatchers("/**").permitAll();	// A enlever pour remettre la sécurité
 	}
 
 	@Bean(name = "passwordEncoder")
