@@ -107,6 +107,10 @@ public class LotRestController {
 		lotRepo.deleteById(id);
 	}
 	
+//	public DashboardGiverDTO dashboard() {
+//
+//	}
+	
 //	@GetMapping("/advanceSearch")
 //	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
 //		
