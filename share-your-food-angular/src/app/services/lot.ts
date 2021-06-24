@@ -22,18 +22,14 @@ export class LotHttpService {
   }
 
   create(lot: Lot) {
-    if(lot.evaluation && !lot.evaluation.id) {
-      lot.evaluation = null;
-    }
+
     this.http.post<Lot>("http://localhost:8080/rest/lot", lot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(lot: Lot): Observable<Lot> {
-    if(lot.evaluation && !lot.evaluation.id) {
-      lot.evaluation = null;
-    }
+
     return this.http.put<Lot>("http://localhost:8080/rest/lot/" + lot.id, lot);
 
   }

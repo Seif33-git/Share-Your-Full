@@ -22,18 +22,14 @@ export class ParticulierHttpService {
   }
 
   create(particulier: Particulier) {
-    if(particulier.evaluation && !particulier.evaluation.id) {
-      particulier.evaluation = null;
-    }
+
     this.http.post<Particulier>("http://localhost:8080/rest/particulier", particulier).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(particulier: Particulier): Observable<Particulier> {
-    if(particulier.evaluation && !particulier.evaluation.id) {
-      particulier.evaluation = null;
-    }
+
     return this.http.put<Particulier>("http://localhost:8080/rest/particulier/" + particulier.id, particulier);
 
   }

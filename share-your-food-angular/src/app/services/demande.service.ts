@@ -22,18 +22,14 @@ export class DemandeHttpService {
   }
 
   create(demande: Demande) {
-    if(demande.evaluation && !demande.evaluation.id) {
-      demande.evaluation = null;
-    }
+
     this.http.post<Demande>("http://localhost:8080/rest/demande", demande).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(demande: Demande): Observable<Demande> {
-    if(demande.evaluation && !demande.evaluation.id) {
-      demande.evaluation = null;
-    }
+
     return this.http.put<Demande>("http://localhost:8080/rest/demande/" + demande.id, demande);
 
   }

@@ -22,18 +22,14 @@ export class UtilisateurHttpService {
   }
 
   create(utilisateur: Utilisateur) {
-    if(utilisateur.evaluation && !utilisateur.evaluation.id) {
-      utilisateur.evaluation = null;
-    }
+
     this.http.post<Utilisateur>("http://localhost:8080/rest/utilisateur", utilisateur).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(utilisateur: Utilisateur): Observable<Utilisateur> {
-    if(utilisateur.evaluation && !utilisateur.evaluation.id) {
-      utilisateur.evaluation = null;
-    }
+
     return this.http.put<Utilisateur>("http://localhost:8080/rest/utilisateur/" + utilisateur.id, utilisateur);
 
   }

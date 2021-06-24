@@ -22,18 +22,14 @@ export class DonHttpService {
   }
 
   create(don: Don) {
-    if(don.evaluation && !don.evaluation.id) {
-      don.evaluation = null;
-    }
+
     this.http.post<Don>("http://localhost:8080/rest/don", don).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(don: Don): Observable<Don> {
-    if(don.evaluation && !don.evaluation.id) {
-      don.evaluation = null;
-    }
+
     return this.http.put<Don>("http://localhost:8080/rest/don/" + don.id, don);
 
   }

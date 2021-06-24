@@ -22,18 +22,14 @@ export class ProduitHttpService {
   }
 
   create(produit: Produit) {
-    if(produit.evaluation && !produit.evaluation.id) {
-      produit.evaluation = null;
-    }
+
     this.http.post<Produit>("http://localhost:8080/rest/produit", produit).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(produit: Produit): Observable<Produit> {
-    if(produit.evaluation && !produit.evaluation.id) {
-      produit.evaluation = null;
-    }
+
     return this.http.put<Produit>("http://localhost:8080/rest/produit/" + produit.id, produit);
 
   }

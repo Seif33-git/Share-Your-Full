@@ -22,18 +22,14 @@ export class EntiteHttpService {
   }
 
   create(entite: Entite) {
-    if(entite.evaluation && !entite.evaluation.id) {
-      entite.evaluation = null;
-    }
+
     this.http.post<Entite>("http://localhost:8080/rest/entite", entite).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(entite: Entite): Observable<Entite> {
-    if(entite.evaluation && !entite.evaluation.id) {
-      entite.evaluation = null;
-    }
+
     return this.http.put<Entite>("http://localhost:8080/rest/entite/" + entite.id, entite);
 
   }

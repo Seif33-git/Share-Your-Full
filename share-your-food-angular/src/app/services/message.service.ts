@@ -22,18 +22,14 @@ export class MessageHttpService {
   }
 
   create(message: Message) {
-    if(message.evaluation && !message.evaluation.id) {
-      message.evaluation = null;
-    }
+
     this.http.post<Message>("http://localhost:8080/rest/message", message).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(message: Message): Observable<Message> {
-    if(message.evaluation && !message.evaluation.id) {
-      message.evaluation = null;
-    }
+
     return this.http.put<Message>("http://localhost:8080/rest/message/" + message.id, message);
 
   }

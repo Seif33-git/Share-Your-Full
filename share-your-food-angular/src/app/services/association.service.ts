@@ -22,18 +22,14 @@ export class AssociationHttpService {
   }
 
   create(association: Association) {
-    if(association.evaluation && !association.evaluation.id) {
-      association.evaluation = null;
-    }
+
     this.http.post<Association>("http://localhost:8080/rest/association", association).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(association: Association): Observable<Association> {
-    if(association.evaluation && !association.evaluation.id) {
-      association.evaluation = null;
-    }
+
     return this.http.put<Association>("http://localhost:8080/rest/association/" + association.id, association);
 
   }

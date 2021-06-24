@@ -22,18 +22,14 @@ export class EntrepriseHttpService {
   }
 
   create(entreprise: Entreprise) {
-    if(entreprise.evaluation && !entreprise.evaluation.id) {
-      entreprise.evaluation = null;
-    }
+
     this.http.post<Entreprise>("http://localhost:8080/rest/entreprise", entreprise).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(entreprise: Entreprise): Observable<Entreprise> {
-    if(entreprise.evaluation && !entreprise.evaluation.id) {
-      entreprise.evaluation = null;
-    }
+
     return this.http.put<Entreprise>("http://localhost:8080/rest/entreprise/" + entreprise.id, entreprise);
 
   }
