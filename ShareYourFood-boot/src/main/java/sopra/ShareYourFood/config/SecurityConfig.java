@@ -17,7 +17,7 @@ import sopra.ShareYourFood.service.CustomUserDetailService;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -35,8 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous();
 		http.headers().frameOptions().disable();// à vérifier
 
-		http.authorizeRequests().antMatchers("/data-rest").permitAll().antMatchers("/**").authenticated().and()
-				.httpBasic();
+//		http.authorizeRequests().antMatchers("/data-rest").permitAll().antMatchers("/**").authenticated().and()
+//				.httpBasic();
+		
+		http.authorizeRequests().antMatchers("/**").permitAll();
 	}
 
 	@Bean(name = "passwordEncoder")
