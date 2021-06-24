@@ -22,7 +22,7 @@ public class ILotRepositoryCustomlImpl implements ILotRepositoryCustom {
 //		
 //		//TODO initialisation query 
 //		var jpql = new StringBuilder();
-//        jpql.append("from Lot");
+//        jpql.append("select l from Lot l");
 //        var parameters = new HashMap<String, Object>();
 //		
 //		if (!recherche.isEmpty()){
