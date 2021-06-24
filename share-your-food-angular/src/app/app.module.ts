@@ -12,7 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     PageNotFoundComponent,
-    Accueil1Component
+    Accueil1Component,
     AppComponent,
     CreationDonComponent
   ],
@@ -20,7 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
