@@ -49,18 +49,45 @@ public class DemandeRestController {
 		}
 	}
 	
-//	@GetMapping("/{id}")
-//	@JsonView(Views.ViewDemande.class)
-//	public Demande findDemandeByIdWithMessage(@PathVariable Long id) {
-//
-//		Optional<Demande> optDemande = demandeRepo.findDemandeByIdWithMessage(id);
-//
-//		if (optDemande.isPresent()) {
-//			return optDemande.get();
-//		} else {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
-//		}
-//	}
+	//Requetes Aubeline
+	
+	@GetMapping("/message-accepte-by-entite/{id}/beneficiaire")
+	@JsonView(Views.ViewDemande.class)
+	public List<Demande> findListMessageAccepteAcceuil2Beneficiaire(@PathVariable Long id) {
+		return demandeRepo.findAllWithMessageAndStatutAccepteByEntiteByIdIfBeneficiaire(id);
+	}
+	
+	@GetMapping("/message-accepte-by-entite/{id}/donneur")
+	@JsonView(Views.ViewDemande.class)
+	public List<Demande> findListMessageAccepteAcceuil2Donneur(@PathVariable Long id) {
+		return demandeRepo.findAllWithMessageAndStatutAccepteByEntiteByIdIfDonneur(id);
+	}
+	
+	@GetMapping("/message-attente-by-entite/{id}/beneficiaire")
+	@JsonView(Views.ViewDemande.class)
+	public Object[] findListMessageEnAttenteAcceuil2Beneficiaire(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfBeneficiaire(id);
+	}
+	
+	@GetMapping("/message-attente-by-entite/{id}/donneur")
+	@JsonView(Views.ViewDemande.class)
+	public Object[] findListMessageEnAttenteAcceuil2Donneur(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfDonneur(id);
+	}
+	
+	@GetMapping("/message-attente-contenu-by-entite/{id}/donneur")
+	@JsonView(Views.ViewDemande.class)
+	public Object[]  findListMessageEnAttenteContenuAcceuil2Donneur(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtDateDemandeEtMessageByEntiteByIdIfDonneur(id);
+	}
+	
+	@GetMapping("/message-attente-contenu-by-entite/{id}/beneficiaire")
+	@JsonView(Views.ViewDemande.class)
+	public Object[]  findListMessageEnAttenteContenuAcceuil2Beneficiaire(@PathVariable Long id) {
+		return demandeRepo.findAllEnAttenteEtNomLotEtDateDemandeEtMessageByEntiteByIdIfBeneficiaire(id);
+	}
+	
+	//Fin Aube
 
 	@GetMapping("/messagerie/list/{id}/beneficiaire")
 	@JsonView(Views.ViewDemande.class)
