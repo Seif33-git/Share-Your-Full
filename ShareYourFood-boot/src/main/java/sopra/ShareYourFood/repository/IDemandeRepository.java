@@ -1,25 +1,17 @@
 package sopra.ShareYourFood.repository;
 
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 
-import sopra.ShareYourFood.model.Demande;;
+import sopra.ShareYourFood.model.Demande;
+
 
 
 public interface IDemandeRepository extends JpaRepository<Demande, Long> {
-
-	// Afficher toutes les demandes ayant des messages et le statut ACCEPTER
-	// findAlldAndStatutAccepte
-
-//	@Query("select distinct d from Demande d left join fetch d.message.id where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER and demande.entite.id = :idEntite")
-//	Optional<Demande> findAllDemandeWithMessagesEtQuiOntLeStatutAccepteByEntiteById(@Param("idEntite") Long idEntite);
-
-//	@Query("select distinct d from Demande d left join fetch d.message where d.id = :id")
-//	Optional<Demande> findDemandeByIdWithMessage(@Param("id") Long id);
-	
 	
 	@Query("select d from Demande d where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER and "
 			+ "d.entite.id = :idEntite") //, d.lot.don.entite.nom une seule sortie ? 
@@ -36,4 +28,43 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 	@Query("select d from Demande d where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER and "
 			+ "d.lot.don.entite.id = :idEntite ")
 	List<Demande> findAllArchiverEtNomCorrespondantByEntiteByIdIfDonneur(@Param("idEntite") Long idEntite);
+	
+	
+	//Requetes Aubeline
+	
+	//Afficher toutes les demandes ayant des messages et le statut ACCEPTER pour l’entite courante
+	@Query("select distinct d from Message m join m.demande d where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER "
+			+ " and d.entite.id = :idEntite")
+	List<Demande> findAllWithMessageAndStatutAccepteByEntiteByIdIfBeneficiaire(@Param("idEntite") Long idEntite);
+	
+	@Query("select distinct d from Message m join m.demande d where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER "
+			+ " and d.lot.don.entite.id = :idEntite")
+	List<Demande> findAllWithMessageAndStatutAccepteByEntiteByIdIfDonneur(@Param("idEntite") Long idEntite);
+	
+	
+	//Afficher le nom du lot, nom  demandeur et date demande de toutes les demandes en cours avec le statut EN_ATTENTE
+	@Query("select distinct l.nom, d.dtDemande, e.nom, e.prenom from Demande d join d.lot l join d.entite e where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE and "
+			+ "d.entite.id = :idEntite")
+	Object[] findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfBeneficiaire(@Param("idEntite") Long idEntite);
+	
+	@Query("select distinct l.nom, d.dtDemande, e.nom, e.prenom from Demande d join d.lot l join d.entite e where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE and "
+			+ "d.lot.don.entite.id = :idEntite")
+	Object[] findAllEnAttenteEtNomLotEtNomDemandeurEtDateDemandeByEntiteByIdIfDonneur(@Param("idEntite") Long idEntite);
+	
+	//avec contenu message en plus
+	
+	@Query("select distinct l.nom, d.dtDemande, m.contenu from Demande d join d.lot l join d.message m where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE and "
+			+ "d.lot.don.entite.id = :idEntite")
+	Object[] findAllEnAttenteEtNomLotEtDateDemandeEtMessageByEntiteByIdIfDonneur(@Param("idEntite") Long idEntite);
+	
+	@Query("select distinct l.nom, d.dtDemande, m.contenu from Demande d join d.lot l join d.message m where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE and "
+			+ "d.entite.id = :idEntite")
+	Object[] findAllEnAttenteEtNomLotEtDateDemandeEtMessageByEntiteByIdIfBeneficiaire(@Param("idEntite") Long idEntite);
+	
+	//Fin Aube
+
+	
+	
+	
+	
 }
