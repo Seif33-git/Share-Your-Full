@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { CreationDonComponent } from './creation-don/creation-don.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreationDonComponent
   ],
   imports: [
     BrowserModule,
