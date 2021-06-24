@@ -19,35 +19,26 @@ public class ILotRepositoryCustomlImpl implements ILotRepositoryCustom {
 	@Override
 	public List<Lot> advanceSearch(String recherche, String codePostal, String ville) {
 		
-		
-		//TODO initialisation query 
 		var jpql = new StringBuilder();
         jpql.append("from Lot");
         var parameters = new HashMap<String, Object>();
 		
 		if (!recherche.isEmpty()){
-			jpql.append("left join fetch ProduitLot pl left join fetch Produit p");
-	
-		}
-		
-		
+			jpql.append("left join fetch ProduitLot pl left join fetch Produit p");}
 		
 		jpql.append("where 1=1");
 		
 		if (!recherche.isEmpty()){
 			jpql.append("and p.name = :name");
-			 parameters.put("name", recherche);
-		}
+			 parameters.put("name", recherche);}
+		
 		if(!codePostal.isEmpty()) {
 			jpql.append("and l.don.adresse.codepostal = :codepostal");
-			parameters.put("codepostal", codePostal);
-		}
+			parameters.put("codepostal", codePostal);}
 		
 		if(!ville.isEmpty()) {
 			jpql.append("and l.don.adresse.ville = :ville");
-			parameters.put("ville", ville);
-		}
-		
+			parameters.put("ville", ville);}
 		
 		TypedQuery<Lot> query = em.createQuery(jpql.toString(), Lot.class);
 		parameters.forEach((key, value) -> query.setParameter(key, value));
