@@ -26,6 +26,10 @@ export class CreationLotComponent implements OnInit {
     return this.lotService.findAll();
   }
 
+  list(): Array<ProduitLot> {
+    return this.produitLotService.findAll();
+  }
+
   listStatut(): Array<string> {
     return this.lotService.statuts;
   }

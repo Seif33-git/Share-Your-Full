@@ -41,7 +41,8 @@
       </table>
       </thead>
       <tbody>
-      <div class="form-group">
+
+      <div class="form-group" *ngFor="let prodLot of list()">
         <div class="row">
           <div class="col-md-3">
             <select class="form-control" id="produit" [(ngModel)]="lotForm.produit">
@@ -53,11 +54,12 @@
             <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLotForm.quantite">
           </div>
           <div class="col-md-3">
-            <input type="number" class="form-control" id="peremption" [(ngModel)]="produitLotForm.dtPeremption">
+            <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLotForm.dtPeremption">
           </div>
           <div class="col-md-3">
             <button type="button" class="btn btn-success btn-md"
-                    onclick="add();">Ajouter</button>
+                    onclick="add();">Ajouter
+              <a class="btn btn-danger" (click)="delete(prodLot.id)"><i class="fa fa-trash"></i></a>
           </div>
         </div>
       </div>
