@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Lot} from "../model/lot";
 import {Produit} from "../model/produit";
 import {ProduitHttpService} from "../services/produit.service";
-import {LotHttpService} from "../services/lot";
+import {LotHttpService} from "../services/lot.service";
+import {ProduitLot} from "../model/produitLot";
 
 @Component({
   selector: 'app-creation-lot',
@@ -12,6 +13,8 @@ import {LotHttpService} from "../services/lot";
 export class CreationLotComponent implements OnInit {
 
   lotForm: Lot = null;
+  produitForm: Produit = null;
+  produitLotForm: ProduitLot = null;
 
   constructor(private lotService: LotHttpService, private produitService: ProduitHttpService ) {
   }
@@ -19,12 +22,16 @@ export class CreationLotComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  list(): Array<Lot> {
+  listLot(): Array<Lot> {
     return this.lotService.findAll();
   }
 
-  listCategorie(): Array<string> {
-    return this.lotService.categories;
+  listStatut(): Array<string> {
+    return this.lotService.statuts;
+  }
+
+  listType(): Array<string> {
+    return this.produitService.types;
   }
 
   listProduit(): Array<Produit> {
@@ -33,6 +40,10 @@ export class CreationLotComponent implements OnInit {
 
   add() {
     this.lotForm = new Lot();
+  }
+
+  addProduit(){
+    this.produitForm = new Produit();
   }
 
   edit(id: number) {
