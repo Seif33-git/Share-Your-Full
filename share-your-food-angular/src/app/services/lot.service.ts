@@ -8,9 +8,19 @@ import {Lot} from "../model/lot";
 export class LotHttpService {
 
   lots: Array<Lot>;
-
+  grosLots: Array<Lot>;
   constructor(private http: HttpClient) {
-    this.load()
+    this.load();
+    this.loadGrosLot();
+  }
+
+  compteurLot(): Observable<number> {
+    return this.http.get<number>("http://localhost:8080/lot/count-lots");
+  }
+
+  findGrosLot(): Array<Lot>{
+
+    return this.grosLots;
   }
 
   findAll(): Array<Lot> {
@@ -18,31 +28,36 @@ export class LotHttpService {
   }
 
   findById(id: number): Observable<Lot> {
-    return this.http.get<Lot>("http://localhost:8080/rest/lot/" + id);
+    return this.http.get<Lot>("http://localhost:8080/lot/" + id);
   }
 
   create(lot: Lot) {
 
-    this.http.post<Lot>("http://localhost:8080/rest/lot", lot).subscribe(resp => {
+    this.http.post<Lot>("http://localhost:8080/lot", lot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(lot: Lot): Observable<Lot> {
 
-    return this.http.put<Lot>("http://localhost:8080/rest/lot/" + lot.id, lot);
+    return this.http.put<Lot>("http://localhost:8080/lot/" + lot.id, lot);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("http://localhost:8080/rest/lot/" + id).subscribe(resp => {
+    this.http.delete("http://localhost:8080/lot/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Lot>>("http://localhost:8080/rest/lot").subscribe(resp => {
+    this.http.get<Array<Lot>>("http://localhost:8080/lot").subscribe(resp => {
       this.lots = resp;
+    }, error => console.log(error))
+  }
+  loadGrosLot(){
+    this.http.get<Array<Lot>>("http://localhost:8080/lot/tri-par-volume").subscribe(resp => {
+      this.grosLots = resp;
     }, error => console.log(error))
   }
 }
