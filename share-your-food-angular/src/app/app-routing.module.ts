@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'donner', component: PageDonneurComponent},
   {path: '', redirectTo: 'accueil1', pathMatch: 'full'},
   {path: 'don', component: CreationDonComponent},
-  {path:'lot', component: CreationLotComponent},
+  {path: 'lot', component: CreationLotComponent},
   {path: '**', component: PageNotFoundComponent}
 
 ];
