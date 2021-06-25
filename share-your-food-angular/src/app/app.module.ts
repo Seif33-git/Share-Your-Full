@@ -8,17 +8,19 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CreationDonComponent } from './creation-don/creation-don.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {CreationDonHttpService} from "./creation-don/creation-don-http.service";
 import { CreationLotComponent } from './creation-lot/creation-lot.component';
+import { PageDonneurComponent } from './page-donneur/page-donneur.component';
 import {LotHttpService} from "./services/lot";
+import {DonHttpService} from "./services/don.service";
 
 @NgModule({
   declarations: [
     PageNotFoundComponent,
     Accueil1Component,
     AppComponent,
+    CreationLotComponent,
     CreationDonComponent,
-    CreationLotComponent
+    PageDonneurComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,7 @@ import {LotHttpService} from "./services/lot";
     FormsModule,
     HttpClientModule
   ],
-  providers: [CreationDonHttpService, LotHttpService],
+  providers: [DonHttpService, LotHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

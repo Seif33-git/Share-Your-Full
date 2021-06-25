@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Don} from "../model/don";
-import {CreationDonHttpService} from "./creation-don-http.service";
+import {DonHttpService} from "../services/don.service";
 
 @Component({
   selector: 'app-creation-don',
@@ -11,7 +11,7 @@ export class CreationDonComponent implements OnInit {
 
   donForm: Don = null;
 
-  constructor(private donService: CreationDonHttpService) {
+  constructor(private donService: DonHttpService) {
   }
 
   ngOnInit(): void {

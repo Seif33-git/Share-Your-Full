@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Message} from "../model/message";
+import {AppConfigService} from "../app-config.service";
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +10,7 @@ export class MessageHttpService {
 
   messages: Array<Message>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private appConfig: AppConfigService) {
     this.load()
   }
 
@@ -18,30 +19,30 @@ export class MessageHttpService {
   }
 
   findById(id: number): Observable<Message> {
-    return this.http.get<Message>("http://localhost:8080/rest/message/" + id);
+    return this.http.get<Message>("message/" + id);
   }
 
   create(message: Message) {
 
-    this.http.post<Message>("http://localhost:8080/rest/message", message).subscribe(resp => {
+    this.http.post<Message>("message", message).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(message: Message): Observable<Message> {
 
-    return this.http.put<Message>("http://localhost:8080/rest/message/" + message.id, message);
+    return this.http.put<Message>("message/" + message.id, message);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("http://localhost:8080/rest/message/" + id).subscribe(resp => {
+    this.http.delete("message/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Message>>("http://localhost:8080/rest/message").subscribe(resp => {
+    this.http.get<Array<Message>>("message").subscribe(resp => {
       this.messages = resp;
     }, error => console.log(error))
   }
