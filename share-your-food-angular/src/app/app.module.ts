@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {CreationDonHttpService} from "./creation-don/creation-don-http.service";
 import { CreationLotComponent } from './creation-lot/creation-lot.component';
 import { PageDonneurComponent } from './page-donneur/page-donneur.component';
+import {LotHttpService} from "./services/lot";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { PageDonneurComponent } from './page-donneur/page-donneur.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [CreationDonHttpService],
+  providers: [CreationDonHttpService, LotHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
