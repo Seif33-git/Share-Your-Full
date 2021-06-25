@@ -20,30 +20,30 @@ export class DonHttpService {
   }
 
   findById(id: number): Observable<Don> {
-    return this.http.get<Don>("don/" + id);
+    return this.http.get<Don>(this.appConfig.backEndUrl + "don/" + id);
   }
 
   create(don: Don) {
 
-    this.http.post<Don>("don", don).subscribe(resp => {
+    this.http.post<Don>(this.appConfig.backEndUrl + "don", don).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(don: Don): Observable<Don> {
 
-    return this.http.put<Don>("don/" + don.id, don);
+    return this.http.put<Don>(this.appConfig.backEndUrl + "don/" + don.id, don);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("don/" + id).subscribe(resp => {
+    this.http.delete(this.appConfig.backEndUrl + "don/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Don>>("don").subscribe(resp => {
+    this.http.get<Array<Don>>(this.appConfig.backEndUrl + "don").subscribe(resp => {
       this.dons = resp;
     }, error => console.log(error))
   }

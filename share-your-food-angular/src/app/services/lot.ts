@@ -20,12 +20,12 @@ export class LotHttpService {
   }
 
   findById(id: number): Observable<Lot> {
-    return this.http.get<Lot>("http://localhost:8080/rest/lot/" + id);
+    return this.http.get<Lot>(this.appConfig.backEndUrl + "lot/" + id);
   }
 
   create(lot: Lot) {
 
-    this.http.post<Lot>("http://localhost:8080/rest/lot", lot).subscribe(resp => {
+    this.http.post<Lot>(this.appConfig.backEndUrl + "lot", lot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
