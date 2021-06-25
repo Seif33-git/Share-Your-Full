@@ -12,6 +12,7 @@ import {LotHttpService} from "../services/lot";
 export class CreationLotComponent implements OnInit {
 
   lotForm: Lot = null;
+  produitForm: Produit = null;
 
   constructor(private lotService: LotHttpService, private produitService: ProduitHttpService ) {
   }
@@ -23,13 +24,19 @@ export class CreationLotComponent implements OnInit {
     return this.lotService.findAll();
   }
 
-  listCategorie(): Array<string> {
-    return this.lotService.categories;
+  listStatut(): Array<string> {
+    return this.lotService.statuts;
+  }
+
+  listType(): Array<string> {
+    return this.produitService.types;
   }
 
   listProduit(): Array<Produit> {
     return this.produitService.findAll();
   }
+
+
 
   add() {
     this.lotForm = new Lot();

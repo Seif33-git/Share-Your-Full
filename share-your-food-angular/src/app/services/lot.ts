@@ -9,7 +9,7 @@ import {AppConfigService} from "../app-config.service";
 export class LotHttpService {
 
   lots: Array<Lot>;
-  categories: Array<string>
+  statuts: Array<string>
 
   constructor(private http: HttpClient,private appConfig: AppConfigService) {
     this.load()
@@ -20,12 +20,12 @@ export class LotHttpService {
   }
 
   findById(id: number): Observable<Lot> {
-    return this.http.get<Lot>("http://localhost:8080/rest/lot/" + id);
+    return this.http.get<Lot>(this.appConfig.backEndUrl + "lot/" + id);
   }
 
   create(lot: Lot) {
 
-    this.http.post<Lot>("http://localhost:8080/rest/lot", lot).subscribe(resp => {
+    this.http.post<Lot>(this.appConfig.backEndUrl + "lot", lot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
@@ -46,8 +46,8 @@ export class LotHttpService {
     this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot").subscribe(resp => {
       this.lots = resp;
     }, error => console.log(error))
-    this.appConfig.findAllCategorie().subscribe(resp => {
-      this.categories = resp;
+    this.appConfig.findAllStatut().subscribe(resp => {
+      this.statuts = resp;
     }, error => console.log(error));
   }
 }

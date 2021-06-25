@@ -1,4 +1,4 @@
-
+import {Produit} from "./produit";
 
 export class Lot {
   id: number;
@@ -7,7 +7,8 @@ export class Lot {
   dtPeremptionLot: string;
   photo: string;
   statut: string;
-  categorie : string;
+  produit: Array<Produit> = new Array<Produit>();
+
 
   constructor(id?: number, nom?: string, volume?: number, dtPeremptionLot?: string, photo?: string, statut?: string) {
     this.id=id!;
