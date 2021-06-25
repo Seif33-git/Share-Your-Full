@@ -1,0 +1,72 @@
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.fondEcran {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.fondEcran2 {
+  width: 80%;
+  min-height: 70vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100px;
+  opacity: 90%;
+}
+
+.texteAccueil {
+  font-size: 100px;
+  font-family: Impact;
+  text-align: center;
+  font-family: "Impact";
+}
+
+.texteAccueil2 {
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 20px;
+  font-family: "Champagne & Limousines";
+}
+
+img {
+  height: 150px;
+  width: auto;
+}
+
+.champagne {
+  font-family: "Champagne & Limousines";
+}
+
+.impact {
+  font-family: Impact;
+  font-size: 25px;
+}
+
+
+
+

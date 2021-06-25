@@ -19,30 +19,30 @@ export class MessageHttpService {
   }
 
   findById(id: number): Observable<Message> {
-    return this.http.get<Message>("message/" + id);
+    return this.http.get<Message>(this.appConfig.backEndUrl + "message/" + id);
   }
 
   create(message: Message) {
 
-    this.http.post<Message>("message", message).subscribe(resp => {
+    this.http.post<Message>(this.appConfig.backEndUrl + "message", message).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(message: Message): Observable<Message> {
 
-    return this.http.put<Message>("message/" + message.id, message);
+    return this.http.put<Message>(this.appConfig.backEndUrl + "message/" + message.id, message);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("message/" + id).subscribe(resp => {
+    this.http.delete(this.appConfig.backEndUrl + "message/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Message>>("message").subscribe(resp => {
+    this.http.get<Array<Message>>(this.appConfig.backEndUrl + "message").subscribe(resp => {
       this.messages = resp;
     }, error => console.log(error))
   }

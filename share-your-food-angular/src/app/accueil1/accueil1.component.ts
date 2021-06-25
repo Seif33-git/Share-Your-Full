@@ -10,6 +10,7 @@ import {LotHttpService} from "../services/lot.service";
 export class Accueil1Component implements OnInit {
   compteurlot:number;
   constructor(private lotService: LotHttpService) {
+    this.nbrLotDonne();
   }
 
   ngOnInit(): void {

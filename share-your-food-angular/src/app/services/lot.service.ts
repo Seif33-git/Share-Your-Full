@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Lot} from "../model/lot";
 import {AppConfigService} from "../app-config.service";
+import {Demande} from "../model/demande";
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,9 @@ export class LotHttpService {
   constructor(private http: HttpClient,  private appConfig: AppConfigService) {
     this.load();
     this.loadGrosLot();
+  }
+  listLotAccByEntite(idEntite: number): Observable<Array<Demande>>{
+   return this.http.get<Array<Demande>>(this.appConfig.backEndUrl + "demande/list-lot-demande/"+idEntite)
   }
 
   compteurLot(): Observable<number> {
@@ -31,19 +35,19 @@ export class LotHttpService {
   }
 
   findById(id: number): Observable<Lot> {
-    return this.http.get<Lot>(this.appConfig.backEndUrl + "lot/"+ id);
+    return this.http.get<Lot>(this.appConfig.backEndUrl + "lot/" + id);
   }
 
   create(lot: Lot) {
 
-    this.http.post<Lot>(this.appConfig.backEndUrl + "lot/", lot).subscribe(resp => {
+    this.http.post<Lot>(this.appConfig.backEndUrl + "lot", lot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(lot: Lot): Observable<Lot> {
 
-    return this.http.put<Lot>(this.appConfig.backEndUrl + "lot/"+ lot.id, lot);
+    return this.http.put<Lot>(this.appConfig.backEndUrl + "lot/" + lot.id, lot);
 
   }
 
@@ -62,7 +66,7 @@ export class LotHttpService {
     }, error => console.log(error));
   }
   loadGrosLot(){
-    this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "tri-par-volume").subscribe(resp => {
+    this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/tri-par-volume").subscribe(resp => {
       this.grosLots = resp;
     }, error => console.log(error))
   }

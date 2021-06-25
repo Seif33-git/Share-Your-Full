@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import sopra.ShareYourFood.model.Demande;
+import sopra.ShareYourFood.model.Lot;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.IDemandeRepository;
 
@@ -47,6 +48,11 @@ public class DemandeRestController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
+	}
+	@GetMapping("/list-lot-demande/{idEntite}")
+	@JsonView(Views.ViewLot.class)
+	public List<Demande> findAllAccByEntite(@PathVariable Long idEntite){
+		return demandeRepo.findAllNonDonneEtDemandeAccOuPasRepByEntiteById(idEntite);
 	}
 	
 	//Requetes Aubeline

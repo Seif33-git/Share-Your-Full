@@ -1,27 +1,31 @@
-<div class="container">
-  <div class="card-header bg-info text-white text-center">
-    <h2>Bienvenue !!</h2>
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col">
+      <button type="button" class="btn btn-lg btn-info impact">Nouveau membre</button>
+    </div>
+    <div class="col">
+      <img class="mx-auto d-block" src="assets/faireUnDon.jpg"/>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-lg btn-warning impact">Connexion</button>
+    </div>
   </div>
-<!--  <img-->
-<!--    src="C:\Users\sarah\Desktop\Formation Java EE\projet\GraphismeShareYourFood1\shareYourFood.jpg"-->
-<!--    style="width: 150px; height: 100px; float: left" /> <img-->
-<!--  src="C:\Users\sarah\Desktop\Formation Java EE\projet\GraphismeShareYourFood1\shareYourFood.jpg"-->
-<!--  style="width: 150px; height: 100px; float: right" /> -->
-  <span style="float: center">Tu souhaites partager tes invendus ou
-			tes aliments que tu ne vas pas cuisiner ? Tu souhaites être mis en
-			relation avec les personnes donatrice ? Cette plateforme est faites
-			pour toi ! Tu n'as plus qu'à te créer un compte ou te connecter.</span>
 
-</div>
-<div class="container">
-  <div class="card-header text-left">
-    <h3>Dons en cours :</h3>
+  <div class="champagne blockOrange">
+    <p>Tu souhaites faire un don alimentaire ou partager tes invendus ?</p>
+    <p>Tu souhaites être mis(e) en relation avec des donateurs(trices) ?</p>
+
+    <p>Alors cette plateforme solidaire est faite pour toi !</p>
+    <p>Inscris-toi ou connecte toi et rejoins la</p> <p><b class="surbrillance">SHARE YOUR F<span class="orangeColor">OO</span>D FAMILY</b> !</p></div>
   </div>
-  <br>
 
-  <div
-    style="overflow: scroll; border:#000000 1px solid; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
 
+
+  <div class="container" style="overflow: scroll; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+
+  </div>
+    <p>DONS EN COURS</p>
+  <div class="bg-info mt-5 arrondi texteAccueil2">
     <div *ngFor="let lot of listGrosLot()">
       Lot : <br>
       <img style="width: 150px; height: 100px;"
@@ -31,9 +35,19 @@
     </div>
 
   </div>
+
+
+<div class="bg-warning mt-5 arrondi texteAccueil2">
+  <p>QUELQUES CHIFFRES</p>
 </div>
 
-<div class="container">
-  <span> Nombre total de dons réalisés : </span><span> 5000</span><br>
-  <span > Nombre de visiteurs : </span><span> 25200</span>
+<div class="champagne">
+  <p>Nombre total de dons réalisés</p>
+  <p><i class="far fa-heart"></i> 5000</p>
 </div>
+
+<div class="champagne">
+  <p>Nombre de visiteurs</p>
+  <p><i class="far fa-user"></i> 25200</p>
+</div>
+

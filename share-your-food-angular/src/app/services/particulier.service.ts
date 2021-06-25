@@ -19,30 +19,30 @@ export class ParticulierHttpService {
   }
 
   findById(id: number): Observable<Particulier> {
-    return this.http.get<Particulier>("particulier/" + id);
+    return this.http.get<Particulier>(this.appConfig.backEndUrl + "particulier/" + id);
   }
 
   create(particulier: Particulier) {
 
-    this.http.post<Particulier>("particulier", particulier).subscribe(resp => {
+    this.http.post<Particulier>(this.appConfig.backEndUrl + "particulier", particulier).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(particulier: Particulier): Observable<Particulier> {
 
-    return this.http.put<Particulier>("particulier/" + particulier.id, particulier);
+    return this.http.put<Particulier>(this.appConfig.backEndUrl + "particulier/" + particulier.id, particulier);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("particulier/" + id).subscribe(resp => {
+    this.http.delete(this.appConfig.backEndUrl + "particulier/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Particulier>>("particulier").subscribe(resp => {
+    this.http.get<Array<Particulier>>(this.appConfig.backEndUrl + "particulier").subscribe(resp => {
       this.particuliers = resp;
     }, error => console.log(error))
   }

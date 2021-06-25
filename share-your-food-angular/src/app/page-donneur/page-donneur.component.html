@@ -3,11 +3,6 @@
     <div class="card-header bg-info text-white text-center">
       <h2>Mes Dons en Cours</h2>
     </div>
-    <div class="btn-group">
-      <a href="PageDonneur.html" class="btn btn-primary btn-m">Donneur</a>
-      <a href="PageBeneficiaire.html"
-         class="btn btn-outline-secondary btn-m">Bénéficiaire</a>
-    </div>
 
     <p>En cours:</p>
 
@@ -26,41 +21,13 @@
         <td>{{lot.nom}}</td>
         <td>{{lot.volume}}</td>
         <td></td>
-        <td><a class="btn btn-secondary btn-m" (click)="edit(lot.id)">Modifier</a></td>
+        <td><a class="btn btn-secondary btn-m" routerLinkActive="active" [routerLink]="['/lot']">Modifier</a></td>
         <td><a class="btn btn-danger btn-m" (click)="delete(lot.id)">Supprimer</a></td>
       </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="card mt-3" *ngIf="lotForm">
-    <div class="card-header bg-info text-white">
-      <h3>Modification lot</h3>
-    </div>
-
-    <div class="card-body">
-      <div class="form-group">
-        <label for="nom">Nom:</label>
-        <input type="number" class="form-control" id="nom" [(ngModel)]="lotForm.nom">
-      </div>
-      <div class="form-group">
-        <label for="volume">Quantité :</label>
-        <input type="number" class="form-control" id="volume" [(ngModel)]="lotForm.volume">
-      </div>
-    </div>
-
-    <div class="card-footer">
-      <div class="btn-group btn-group-lg float-right">
-        <a class="btn btn-success" (click)="save()">
-          <i class="fa fa-check"></i>
-        </a>
-        <a class="btn btn-warning" (click)="cancel()">
-          <i class="fa fa-undo"></i>
-        </a>
-      </div>
-    </div>
-
-  </div>
 
 
   <div class="card-footer">
@@ -68,7 +35,7 @@
       <div class="col text-center">
         <div class="btn-group btn-group-lg float-middle ml-auto mr-auto">
           <button type="button"
-                  class="btn btn-success btn-lg ml-auto mr-auto" onclick="window.location.href = 'CreationDon.html'">+ NOUVEAU DON</button>
+                  class="btn btn-success btn-lg ml-auto mr-auto" routerLinkActive="active" [routerLink]="['/don']">+ NOUVEAU DON</button>
         </div>
       </div>
     </div>
