@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Lot} from "../model/lot";
+import {AppConfigService} from "../app-config.service";
+import {Demande} from "../model/demande";
 @Injectable({
   providedIn: 'root'
 })
@@ -9,9 +11,12 @@ export class LotHttpService {
 
   lots: Array<Lot>;
   grosLots: Array<Lot>;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private appConfig: AppConfigService) {
     this.load();
     this.loadGrosLot();
+  }
+  listLotAccByEntite(idEntite: number): Observable<Array<Demande>>{
+   return this.http.get<Array<Demande>>(this.appConfig.backEndUrl + "demande/list-lot-demande/"+idEntite)
   }
 
   compteurLot(): Observable<number> {

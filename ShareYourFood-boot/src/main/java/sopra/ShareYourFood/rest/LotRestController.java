@@ -51,6 +51,8 @@ public class LotRestController {
 		}
 	}
 	
+
+	
 	@GetMapping("/tri-par-volume")
 	@JsonView(Views.ViewLot.class)
 	public List<Lot> findLotGrosVolume() {
@@ -78,14 +80,7 @@ public class LotRestController {
 	}
 
 	
-	@GetMapping("/TableauDeBordBeneficiaire/{idEntite}/")
-	@JsonView(Views.ViewLot.class)
-	public List<Lot> findTBB(@PathVariable Long idEntite) {
-		List<Lot> lots =lotRepo.findAllNonDonneEtDemandeAccOuPasRepByEntiteById(idEntite);
-		
-		return lots;
-		
-	}
+
 	
 	@GetMapping("/TableauDeBordBeneficiaire/historique/{idEntite}/")
 	@JsonView(Views.ViewLot.class)
