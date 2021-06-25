@@ -19,30 +19,30 @@ export class EntiteHttpService {
   }
 
   findById(id: number): Observable<Entite> {
-    return this.http.get<Entite>("entite/" + id);
+    return this.http.get<Entite>(this.appConfig.backEndUrl + "entite/" + id);
   }
 
   create(entite: Entite) {
 
-    this.http.post<Entite>("entite", entite).subscribe(resp => {
+    this.http.post<Entite>(this.appConfig.backEndUrl + "entite", entite).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(entite: Entite): Observable<Entite> {
 
-    return this.http.put<Entite>("entite/" + entite.id, entite);
+    return this.http.put<Entite>(this.appConfig.backEndUrl + "entite/" + entite.id, entite);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("entite/" + id).subscribe(resp => {
+    this.http.delete(this.appConfig.backEndUrl + "entite/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Entite>>("entite").subscribe(resp => {
+    this.http.get<Array<Entite>>(this.appConfig.backEndUrl + "entite").subscribe(resp => {
       this.entites = resp;
     }, error => console.log(error))
   }

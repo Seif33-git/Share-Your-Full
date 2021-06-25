@@ -19,30 +19,30 @@ export class EntrepriseHttpService {
   }
 
   findById(id: number): Observable<Entreprise> {
-    return this.http.get<Entreprise>("entreprise/" + id);
+    return this.http.get<Entreprise>(this.appConfig.backEndUrl + "entreprise/" + id);
   }
 
   create(entreprise: Entreprise) {
 
-    this.http.post<Entreprise>("entreprise", entreprise).subscribe(resp => {
+    this.http.post<Entreprise>(this.appConfig.backEndUrl + "entreprise", entreprise).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(entreprise: Entreprise): Observable<Entreprise> {
 
-    return this.http.put<Entreprise>("entreprise/" + entreprise.id, entreprise);
+    return this.http.put<Entreprise>(this.appConfig.backEndUrl + "entreprise/" + entreprise.id, entreprise);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("entreprise/" + id).subscribe(resp => {
+    this.http.delete(this.appConfig.backEndUrl + "entreprise/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Entreprise>>("entreprise").subscribe(resp => {
+    this.http.get<Array<Entreprise>>(this.appConfig.backEndUrl + "entreprise").subscribe(resp => {
       this.entreprises = resp;
     }, error => console.log(error))
   }

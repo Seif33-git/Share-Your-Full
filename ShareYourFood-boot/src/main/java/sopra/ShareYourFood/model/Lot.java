@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -24,6 +26,9 @@ public class Lot {
 	@GeneratedValue
 	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
 	@Column(name = "nom")
 	@JsonView(Views.ViewCommon.class)
 	private String nom;
@@ -31,7 +36,7 @@ public class Lot {
 	@JsonView(Views.ViewCommon.class)
 	private Long volume;
 	@Column(name = "dt_peremption_lot")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewCommon.class)	
 	private Date dtPeremptionLot;
 	@Column(name = "photo")
 	@JsonView(Views.ViewCommon.class)
@@ -46,7 +51,7 @@ public class Lot {
 	private Don don;
 	@OneToMany(mappedBy = "lot")
 	private List<Demande> demandes = new ArrayList<Demande>();
-	@OneToMany(mappedBy = "lot")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "lot")
 	private List<ProduitLot> produitLots = new ArrayList<ProduitLot>();
 
 	public Lot() {

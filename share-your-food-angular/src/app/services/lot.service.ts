@@ -11,7 +11,9 @@ export class LotHttpService {
 
   lots: Array<Lot>;
   grosLots: Array<Lot>;
-  constructor(private http: HttpClient,private appConfig: AppConfigService) {
+  statuts: Array<string>
+
+  constructor(private http: HttpClient,  private appConfig: AppConfigService) {
     this.load();
     this.loadGrosLot();
   }
@@ -20,7 +22,7 @@ export class LotHttpService {
   }
 
   compteurLot(): Observable<number> {
-    return this.http.get<number>("http://localhost:8080/lot/count-lots");
+    return this.http.get<number>(this.appConfig.backEndUrl + "lot/count-lots");
   }
 
   findGrosLot(): Array<Lot>{
@@ -33,35 +35,38 @@ export class LotHttpService {
   }
 
   findById(id: number): Observable<Lot> {
-    return this.http.get<Lot>("http://localhost:8080/lot/" + id);
+    return this.http.get<Lot>(this.appConfig.backEndUrl + "lot/" + id);
   }
 
   create(lot: Lot) {
 
-    this.http.post<Lot>("http://localhost:8080/lot", lot).subscribe(resp => {
+    this.http.post<Lot>(this.appConfig.backEndUrl + "lot", lot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   modify(lot: Lot): Observable<Lot> {
 
-    return this.http.put<Lot>("http://localhost:8080/lot/" + lot.id, lot);
+    return this.http.put<Lot>(this.appConfig.backEndUrl + "lot/" + lot.id, lot);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("http://localhost:8080/lot/" + id).subscribe(resp => {
+    this.http.delete(this.appConfig.backEndUrl + "lot/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Lot>>("http://localhost:8080/lot").subscribe(resp => {
+    this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot").subscribe(resp => {
       this.lots = resp;
     }, error => console.log(error))
+    this.appConfig.findAllStatut().subscribe(resp => {
+      this.statuts = resp;
+    }, error => console.log(error));
   }
   loadGrosLot(){
-    this.http.get<Array<Lot>>("http://localhost:8080/lot/tri-par-volume").subscribe(resp => {
+    this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/tri-par-volume").subscribe(resp => {
       this.grosLots = resp;
     }, error => console.log(error))
   }
