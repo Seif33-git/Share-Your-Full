@@ -51,6 +51,18 @@ public class LotRestController {
 		}
 	}
 	
+	@GetMapping("/tri-par-volume")
+	@JsonView(Views.ViewLot.class)
+	public List<Lot> findLotGrosVolume() {
+		return lotRepo.findAllLotsDonneTrieParVolume(); // .subList(0, 6)
+	}
+	
+	@GetMapping("/count-lots")
+	@JsonView(Views.ViewLot.class)
+	public int compteurLot() {
+		return lotRepo.findAllLotsDonne();
+	}
+	
 	@GetMapping("/non-donne-by-entite/{id}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
