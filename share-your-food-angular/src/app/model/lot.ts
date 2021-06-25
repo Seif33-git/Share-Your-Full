@@ -7,6 +7,7 @@ export class Lot {
   dtPeremptionLot: string;
   photo: string;
   statut: string;
+  categorie : string;
 
   constructor(id?: number, nom?: string, volume?: number, dtPeremptionLot?: string, photo?: string, statut?: string) {
     this.id=id!;
