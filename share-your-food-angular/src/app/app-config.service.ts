@@ -12,8 +12,5 @@ export class AppConfigService {
   constructor(private http: HttpClient) {
 
   }
-
-  findAllCivilites(): Observable<Array<string>> {
-    return this.http.get<Array<string>>(this.backEndUrl + "civilites");
-  }
+  
 }
