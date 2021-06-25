@@ -51,6 +51,20 @@ public class LotRestController {
 		}
 	}
 	
+
+	
+	@GetMapping("/tri-par-volume")
+	@JsonView(Views.ViewLot.class)
+	public List<Lot> findLotGrosVolume() {
+		return lotRepo.findAllLotsDonneTrieParVolume(); // .subList(0, 6)
+	}
+	
+	@GetMapping("/count-lots")
+	@JsonView(Views.ViewLot.class)
+	public int compteurLot() {
+		return lotRepo.findAllLotsDonne();
+	}
+	
 	@GetMapping("/non-donne-by-entite/{id}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
@@ -66,14 +80,7 @@ public class LotRestController {
 	}
 
 	
-	@GetMapping("/TableauDeBordBeneficiaire/{idEntite}/")
-	@JsonView(Views.ViewLot.class)
-	public List<Lot> findTBB(@PathVariable Long idEntite) {
-		List<Lot> lots =lotRepo.findAllNonDonneEtDemandeAccOuPasRepByEntiteById(idEntite);
-		
-		return lots;
-		
-	}
+
 	
 	@GetMapping("/TableauDeBordBeneficiaire/historique/{idEntite}/")
 	@JsonView(Views.ViewLot.class)
@@ -104,6 +111,7 @@ public class LotRestController {
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
+		lotRepo.setLotOfDemandeNull(id);
 		lotRepo.deleteById(id);
 	}
 	

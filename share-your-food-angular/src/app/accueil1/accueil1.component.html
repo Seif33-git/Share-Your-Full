@@ -20,23 +20,18 @@
   </div>
 
 
-  <div class="bg-info mt-5 arrondi texteAccueil2">
-    <p>DONS EN COURS</p>
-  </div>
 
   <div class="container" style="overflow: scroll; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
 
-    <div class="btn-group">
-
-      <img src="assets/panier1.jpg" class="imgDonencours"/>
-      <img src="assets/panier2.jpg" class="imgDonencours"/>
-      <img src="assets/panier3.jpg" class="imgDonencours"/>
-      <img src="assets/panier4.jpg" class="imgDonencours"/>
-      <img src="assets/panier1.jpg" class="imgDonencours"/>
-      <img src="assets/panier2.jpg" class="imgDonencours"/>
-      <img src="assets/panier3.jpg" class="imgDonencours"/>
-      <img src="assets/panier4.jpg" class="imgDonencours"/>
-      <img src="assets/panier1.jpg" class="imgDonencours"/>
+  </div>
+    <p>DONS EN COURS</p>
+  <div class="bg-info mt-5 arrondi texteAccueil2">
+    <div *ngFor="let lot of listGrosLot()">
+      Lot : <br>
+      <img style="width: 150px; height: 100px;"
+                      src="{{lot.photo}}">
+      <br> {{lot.nom}}
+     <br> Volume : {{lot.volume}}
     </div>
 
   </div>

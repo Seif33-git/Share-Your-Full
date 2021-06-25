@@ -62,6 +62,11 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 	Object[] findAllEnAttenteEtNomLotEtDateDemandeEtMessageByEntiteByIdIfBeneficiaire(@Param("idEntite") Long idEntite);
 	
 	//Fin Aube
+	
+	@Query("select distinct d from Demande d where d.lot.statut <> sopra.ShareYourFood.model.Statut.DONNE "
+			+ "and (d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER or d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE)"
+			+ " and d.entite.id = :id")
+	List<Demande> findAllNonDonneEtDemandeAccOuPasRepByEntiteById(@Param("id") Long id);
 
 	
 	

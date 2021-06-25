@@ -1,0 +1,64 @@
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="card-header bg-info text-white text-center"><h2>Tableau de bord</h2></div>
+
+    <div class="card-body">
+
+      <span>Mes notifications:</span>
+
+      <div class="pt-3">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Numéro:</th>
+            <th>Nom lot:</th>
+            <th>Quantité:</th>
+            <th>Statut:</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let lot of lotAccByEntite">
+            <td>{{lot.id}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+
+      <span>Historique:</span>
+
+      <div class="pt-3">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Numéro:</th>
+            <th>Nom lot:</th>
+            <th>Quantité:</th>
+            <th></th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>

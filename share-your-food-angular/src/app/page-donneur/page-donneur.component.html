@@ -1,0 +1,67 @@
+<div class="container">
+  <div id="creaLotForm" class="card mt-3" style="display: yes;">
+    <div class="card-header bg-info text-white text-center">
+      <h2>Mes Dons en Cours</h2>
+    </div>
+
+    <p>En cours:</p>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Nom lot:</th>
+        <th>Quantité:</th>
+        <th>Message du bénéficiaire:</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let lot of listLot()">
+        <td>{{lot.nom}}</td>
+        <td>{{lot.volume}}</td>
+        <td></td>
+        <td><a class="btn btn-secondary btn-m" routerLinkActive="active" [routerLink]="['/lot']">Modifier</a></td>
+        <td><a class="btn btn-danger btn-m" (click)="delete(lot.id)">Supprimer</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col text-center">
+        <div class="btn-group btn-group-lg float-middle ml-auto mr-auto">
+          <button type="button"
+                  class="btn btn-success btn-lg ml-auto mr-auto" routerLinkActive="active" [routerLink]="['/don']">+ NOUVEAU DON</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+
+    <p>Historique:</p>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Nom lot:</th>
+        <th>Quantité:</th>
+        <th></th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
