@@ -116,6 +116,7 @@ public class LotRestController {
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
+		lotRepo.setLotOfDemandeNull(id);
 		lotRepo.deleteById(id);
 	}
 	

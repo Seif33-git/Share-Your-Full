@@ -4,7 +4,10 @@ package sopra.ShareYourFood.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -50,6 +53,12 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
 			+ " and d.entite.id = :id")
 	List<Lot> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
+	
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Demande d SET d.lot = NULL WHERE lot.id = :id")
+	void setLotOfDemandeNull(@Param("id") Long id);
 	
 	
 	
