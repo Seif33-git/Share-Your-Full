@@ -1,94 +1,135 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-    <div
-      class="collapse navbar-collapse collapse justify-content-between"
-      id="navbarNavAltMarkup2">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="collapse navbar-collapse collapse justify-content-between">
       <ul class="navbar-nav">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/']">Accueil</a>
+          <a class="nav-item nav-link impact text-warning" [routerLink]="['/']">Accueil</a>
         </li>
 
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
+          <a class="nav-item nav-link impact text-info" [routerLink]="['/contact']">Contact</a>
         </li>
 
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/information']">Informations</a>
+          <a class="nav-item nav-link impact text-info" [routerLink]="['/information']">Informations</a>
         </li>
       </ul>
 
       <div class="navbar-nav">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/inscription']">Inscription</a>
+          <a class="nav-item nav-link impact text-info" [routerLink]="['/inscription']">Inscription</a>
         </li>
 
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/connexion']">Connexion</a>
+          <a class="nav-item nav-link impact text-info" [routerLink]="['/connexion']">Connexion</a>
         </li>
       </div>
     </div>
   </nav>
-
 </header>
 
+<!--Menu 2 après connexion -->
 
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-    <div
-      class="collapse navbar-collapse collapse justify-content-between"
-      id="navbarNavAltMarkup">
-      <ul class="navbar-nav">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/']">Accueil</a>
-        </li>
+<!--<header>-->
+<!--  <nav class="navbar navbar-expand-lg bg-light">-->
+<!--    <div class="collapse navbar-collapse collapse justify-content-between">-->
+<!--      <ul class="navbar-nav">-->
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-warning" [routerLink]="['/']">Accueil</a>-->
+<!--        </li>-->
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
-        </li>
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/contact']">Contact</a>-->
+<!--        </li>-->
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/information']">Informations</a>
-        </li>
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/information']">Informations</a>-->
+<!--        </li>-->
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/donner']">Donner</a>
-        </li>
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/information']">Faire un don</a>-->
+<!--        </li>-->
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/recevoir']">Reçevoir</a>
-        </li>
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/information']">Choisir un lot</a>-->
+<!--        </li>-->
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/tableauDeBord']">Tableau de bord</a>
-        </li>
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/information']">Tableau de bord</a>-->
+<!--        </li>-->
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/messagerie']">Messagerie</a>
-        </li>
-      </ul>
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/information']">Messagerie</a>-->
+<!--        </li>-->
+<!--      </ul>-->
 
-      <div class="navbar-nav">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/deconnexion']">Déconnexion</a>
-        </li>
+<!--      <div class="navbar-nav">-->
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/inscription']">Mon profil</a>-->
+<!--        </li>-->
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-item nav-link" [routerLink]="['/profil']">Mon profil</a>
-        </li>
-      </div>
-    </div>
-  </nav>
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-item nav-link impact text-info" [routerLink]="['/connexion']">Déconnexion</a>-->
+<!--        </li>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </nav>-->
+<!--</header>-->
 
-
-</header>
-
+<div class="texteAccueil mt-10 text-warning">SHARE Y<img src="assets/clementine4.jpg"/>UR FOOD</div>
+<div class="texteAccueil2 mt-0 champagne">PLATEFORME DE PARTAGE ET D'ENTRAIDE</div>
 
 <div class="container-fluid">
+  <div class="fondEcran" style="background-image: url('assets/2195890.jpg');">
+    <div class="fondEcran2" style="background-image: url('assets/1200px-Fond_blanc.svg.png');">
 
-  <router-outlet></router-outlet>
+  <div>
+          <router-outlet></router-outlet>
+  </div>
 
+
+    </div>
+  </div>
 </div>
 
-<footer class="bg-light text-center text-lg-start mt-3">
-  <a [routerLink]="['/mentionsLegales']">Voir les mentions légales</a>
+<footer class="page-footer font-large special-color-dark pt-4 bg-light">
+
+  <div class="container">
+
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item">
+        <a class="btn-floating btn-fb btn-lg mx-1 btn-info">
+          <i class="fab fa-facebook-f"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-tw btn-lg  mx-1 btn-info">
+          <i class="fab fa-twitter"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-gplus btn-lg  mx-1 btn-info">
+          <i class="fab fa-google-plus-g"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-li btn-lg  mx-1 btn-info">
+          <i class="fab fa-linkedin-in"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-dribbble btn-lg  mx-1 btn-info">
+          <i class="fab fa-dribbble"> </i>
+        </a>
+      </li>
+    </ul>
+
+
+  </div>
+
+  <div class="footer-copyright text-center py-3">
+    <a class="text-info impact nav-link" [routerLink]="['/mentionsLegales']">MENTIONS LEGALES</a>
+  </div>
+
+
 </footer>
