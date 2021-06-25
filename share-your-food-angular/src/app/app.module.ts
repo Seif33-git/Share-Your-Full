@@ -12,6 +12,7 @@ import { CreationLotComponent } from './creation-lot/creation-lot.component';
 import { PageDonneurComponent } from './page-donneur/page-donneur.component';
 import {LotHttpService} from "./services/lot";
 import {DonHttpService} from "./services/don.service";
+import { TableauDeBordBeneficiaireComponent } from './tableau-de-bord-beneficiaire/tableau-de-bord-beneficiaire.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,15 @@ import {DonHttpService} from "./services/don.service";
     AppComponent,
     CreationLotComponent,
     CreationDonComponent,
-    PageDonneurComponent
+    PageDonneurComponent,
+    TableauDeBordBeneficiaireComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [DonHttpService, LotHttpService],
   bootstrap: [AppComponent]
