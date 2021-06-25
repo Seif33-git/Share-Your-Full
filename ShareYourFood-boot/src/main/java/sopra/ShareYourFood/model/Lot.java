@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -24,6 +25,9 @@ public class Lot {
 	@GeneratedValue
 	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
 	@Column(name = "nom")
 	@JsonView(Views.ViewCommon.class)
 	private String nom;
@@ -31,7 +35,7 @@ public class Lot {
 	@JsonView(Views.ViewCommon.class)
 	private Long volume;
 	@Column(name = "dt_peremption_lot")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewCommon.class)	
 	private Date dtPeremptionLot;
 	@Column(name = "photo")
 	@JsonView(Views.ViewCommon.class)

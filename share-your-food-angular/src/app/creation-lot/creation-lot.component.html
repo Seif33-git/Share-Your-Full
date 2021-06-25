@@ -12,21 +12,30 @@
       </div>
       <div class="form-group">
         <label for="categorie">Choix de la catégorie (Une catégorie à la fois) :</label>
-        <select class="form-control" id="categorie" [(ngModel)]="lotForm.categorie">
-          <option value="">Choisir une categorie</option>
-          <option *ngFor="let cat of listCategorie()" value="{{cat}}">{{cat}}</option>
+        <select class="form-control" id="type" >
+          <option value="">Choisir un type</option>
+          <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="imageLot">Insérer une image (Format jpeg, png)
           :</label> <input type="image" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
       </div>
+      <table id="lotSpe" class="table">
+        <tr class="row">
+          <th class="col-md-3">Date de Péremption Lot:</th>
+          <th class="col-md-2"><label id="dtPeremption"> -----   </label></th>
+          <th class="col-md-3">Volume Lot :  </th>
+          <th class="col-md-2"> <label id="volume"> ----- </label> </th>
+        </tr>
+      </table>
 
       <thead>
       <table id="lotTable" class="table">
         <tr class="row">
-          <th class="col-md-6">Nom:</th>
+          <th class="col-md-6">Nom du produit:</th>
           <th class="col-md-4">>Quantité :</th>
+          <th class="col-md-6">Date de péremption:</th>
           <th class="col-md-2"> </th>
         </tr>
       </table>
@@ -35,13 +44,16 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
-            <select class="form-control" id="produit" [(ngModel)]="lotForm.produit.nom">
+            <select class="form-control" id="produit" [(ngModel)]="lotForm.produit">
               <option value="">Choisir un Produit :</option>
               <option *ngFor="let produit of listProduit()" [value]="produit.nom">{{produit.nom}}</option>
             </select>
           </div>
           <div class="col-md-4">
-            <input type="number" class="form-control" id="quantite">
+            <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLotForm.quantite">
+          </div>
+          <div class="col-md-4">
+            <input type="number" class="form-control" id="peremption" [(ngModel)]="produitLotForm.dtPeremption">
           </div>
           <div class="col-md-2">
             <button type="button" class="btn btn-success btn-md"
