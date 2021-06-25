@@ -1,0 +1,173 @@
+<div class="container champagne">
+  <div class="mt-5 texteAccueil2"><b>INSCRIPTION</b></div>
+  <div class="center">________________________</div>
+
+<div class="texteAccueil2 mt-3">
+    <button type="button" class="btn btn-lg btn-warning impact mr-3" onclick=""><i class="fas fa-child"></i> Particulier</button>
+    <button type="button" class="btn btn-lg btn-info impact mr-3" onclick=""><i class="fas fa-briefcase"></i> Entreprise</button>
+    <button type="button" class="btn btn-lg btn-danger impact mr-3" onclick=""> <i class="fas fa-hands-helping"></i> Association</button>
+</div>
+
+<!--IF ON CLICK SUR PARTICULIER-->
+
+    <div class="pt-5">
+    <label for="nom">Nom:*</label>
+    <input type="text" class="form-control" id="nom"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="prenom">Prénom:</label>
+    <input type="text" class="form-control" id="prenom"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" class="form-control" id="pseudo"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="email">Email:*</label>
+    <input type="email" class="form-control" id="email"/>
+  </div>
+
+  <div class="pt-3"><label for="motdepasse">Mot de passe:*</label>
+    <input type="text" class="form-control" id="motdepasse"/>
+  </div>
+
+  <div class="pt-3"><label for="adresse">Adresse:*</label>
+    <input type="text" class="form-control" id="adresse"/>
+  </div>
+
+  <span>Les champs * sont obligatoires</span>
+
+
+  <div class="mt-5">
+    <button type="button" class="btn btn-lg btn-warning impact mr-3"><i class="fas fa-undo-alt"></i> Retour</button>
+    <button type="button" class="btn btn-lg btn-info impact"><i class="fas fa-check"></i> Valider</button>
+  </div>
+
+  ______________________________________________________
+  <!--IF ON CLICK SUR ENTREPRISE-->
+
+  <div class="pt-3">
+    <span>Nom de l'entreprise:*</span>
+    <button type="button" class="btn float-right btn-sm btn-info impact"><i class="fas fa-plus-square"></i> Nouvelle entreprise</button>
+  </div>
+
+  <div class="pt-3">
+    <input class="form-control" list="browsers" name="browser"
+           id="browser" placeholder="Rechercher une entreprise">
+    <datalist id="browsers">
+      <option value="leclerc">Leclerc</option>
+      <option value="auchan">Auchan</option>
+      <option value="carrefour">Carrefour</option>
+    </datalist>
+  </div>
+
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Nom de l'entreprise</th>
+      <th>SIRET</th>
+      <th>Adresse</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td><i class="fas fa-check"></i></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <span>Données personnelles:</span>
+
+  <div class="pt-3">
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" class="form-control" name="pseudo"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="email">Email:*</label>
+    <input type="email" class="form-control" name="email"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="motdepasse">Mot de passe:*</label>
+    <input type="text" class="form-control" name="motdepasse"/>
+  </div>
+
+  <span>Les champs * sont obligatoires</span>
+
+  <div class="mt-5">
+    <button type="button" class="btn btn-lg btn-warning impact mr-3"><i class="fas fa-undo-alt"></i> Retour</button>
+    <button type="button" class="btn btn-lg btn-info impact"><i class="fas fa-check"></i> Valider</button>
+  </div>
+
+  ______________________________________________________
+  <!--IF ON CLICK SUR ASSOCIATION-->
+
+  <div class="pt-3">
+    <span>Nom de l'association:*</span>
+    <button type="button" class="btn float-right btn-sm btn-danger impact"><i class="fas fa-plus-square"></i> Nouvelle association</button>
+  </div>
+
+  <div class="pt-3">
+    <input class="form-control" list="browsers" name="browser"
+           id="browser2" placeholder="Rechercher une association">
+    <datalist id="browsers2">
+      <option value="croixRouge">La Croix Rouge</option>
+      <option value="donPourTous">Don pour tous</option>
+      <option value="ensemble">Ensemble</option>
+    </datalist>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Nom de l'association</th>
+      <th>Numéro associatif</th>
+      <th>Adresse</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td><i class="fas fa-check"></i></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <span>Données personnelles:</span>
+
+  <div class="pt-3">
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" class="form-control" name="pseudo" />
+  </div>
+
+  <div class="pt-3">
+    <label for="email">Email:*</label>
+    <input type="email" class="form-control" name="email" />
+  </div>
+
+  <div class="pt-3">
+    <label for="motdepasse">Mot de passe:*</label>
+    <input type="text" class="form-control" name="motdepasse" />
+  </div>
+
+  <span>Les champs * sont obligatoires</span>
+
+  <div class="mt-5">
+    <button type="button" class="btn btn-lg btn-warning impact mr-3"><i class="fas fa-undo-alt"></i> Retour</button>
+    <button type="button" class="btn btn-lg btn-info impact"><i class="fas fa-check"></i> Valider</button>
+  </div>
+
+</div>
+
