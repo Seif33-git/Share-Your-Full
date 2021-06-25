@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Don} from "../model/don";
+import {CreationDonHttpService} from "./creation-don-http.service";
 
 @Component({
   selector: 'app-creation-don',
@@ -7,9 +9,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreationDonComponent implements OnInit {
 
-  constructor() { }
+  donForm: Don = null;
+
+  constructor(private donService: CreationDonHttpService) {
+  }
 
   ngOnInit(): void {
   }
 
+  list(): Array<Don> {
+    return this.donService.findAll();
+  }
+
+  add() {
+    this.donForm = new Don();
+  }
+
+  edit(id: number) {
+    this.donService.findById(id).subscribe(resp=> {
+      this.donForm = resp;
+    }, err => console.log(err));
+  }
+
+  save() {
+    if (!this.donForm.id) {
+      this.donService.create(this.donForm);
+    } else {
+      this.donService.modify(this.donForm).subscribe(resp => {
+        this.donService.load();
+      }, error => console.log(error));
+    }
+    this.donForm = null;
+  }
+
+  cancel() {
+    this.donForm = null;
+  }
+
+  delete(id: number) {
+    this.donService.deleteById(id);
+  }
 }
+
