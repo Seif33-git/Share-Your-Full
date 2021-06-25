@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CreationDonHttpService} from "./creation-don/creation-don-http.service";
 import { CreationLotComponent } from './creation-lot/creation-lot.component';
+import { PageDonneurComponent } from './page-donneur/page-donneur.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { CreationLotComponent } from './creation-lot/creation-lot.component';
     AppComponent,
     CreationDonComponent,
     CreationLotComponent
+    CreationDonComponent,
+    PageDonneurComponent
   ],
   imports: [
     BrowserModule,
