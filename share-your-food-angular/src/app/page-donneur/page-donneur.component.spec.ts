@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreationDonComponent } from './creation-don.component';
+import { PageDonneurComponent } from './page-donneur.component';
 
-describe('CreationDonComponent', () => {
-  let component: CreationDonComponent;
-  let fixture: ComponentFixture<CreationDonComponent>;
+describe('PageDonneurComponent', () => {
+  let component: PageDonneurComponent;
+  let fixture: ComponentFixture<PageDonneurComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreationDonComponent ]
+      declarations: [ PageDonneurComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreationDonComponent);
+    fixture = TestBed.createComponent(PageDonneurComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
