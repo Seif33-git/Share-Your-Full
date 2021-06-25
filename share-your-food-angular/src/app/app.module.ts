@@ -18,7 +18,7 @@ import { PageDonneurComponent } from './page-donneur/page-donneur.component';
     Accueil1Component,
     AppComponent,
     CreationDonComponent,
-    CreationLotComponent
+    CreationLotComponent,
     CreationDonComponent,
     PageDonneurComponent
   ],

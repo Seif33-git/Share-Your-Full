@@ -12,5 +12,5 @@ export class AppConfigService {
   constructor(private http: HttpClient) {
 
   }
-  
+
 }
