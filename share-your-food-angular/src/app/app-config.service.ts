@@ -13,7 +13,7 @@ export class AppConfigService {
 
   }
 
-  findAllCivilites(): Observable<Array<string>> {
-    return this.http.get<Array<string>>(this.backEndUrl + "civilites");
+  findAllCategorie(): Observable<Array<string>> {
+    return this.http.get<Array<string>>(this.backEndUrl + "categories");
   }
 }

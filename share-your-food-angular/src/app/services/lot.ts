@@ -2,14 +2,16 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Lot} from "../model/lot";
+import {AppConfigService} from "../app-config.service";
 @Injectable({
   providedIn: 'root'
 })
 export class LotHttpService {
 
   lots: Array<Lot>;
+  categories: Array<string>
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private appConfig: AppConfigService) {
     this.load()
   }
 
@@ -30,19 +32,22 @@ export class LotHttpService {
 
   modify(lot: Lot): Observable<Lot> {
 
-    return this.http.put<Lot>("http://localhost:8080/rest/lot/" + lot.id, lot);
+    return this.http.put<Lot>(this.appConfig.backEndUrl + "lot/" + lot.id, lot);
 
   }
 
   deleteById(id: number) {
-    this.http.delete("http://localhost:8080/rest/lot/" + id).subscribe(resp => {
+    this.http.delete(this.appConfig.backEndUrl + "lot/" + id).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
 
   load() {
-    this.http.get<Array<Lot>>("http://localhost:8080/rest/lot").subscribe(resp => {
+    this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot").subscribe(resp => {
       this.lots = resp;
     }, error => console.log(error))
+    this.appConfig.findAllCategorie().subscribe(resp => {
+      this.categories = resp;
+    }, error => console.log(error));
   }
 }

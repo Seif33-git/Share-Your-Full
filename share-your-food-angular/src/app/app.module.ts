@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CreationDonHttpService} from "./creation-don/creation-don-http.service";
 import { CreationLotComponent } from './creation-lot/creation-lot.component';
+import {LotHttpService} from "./services/lot";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { CreationLotComponent } from './creation-lot/creation-lot.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [CreationDonHttpService],
+  providers: [CreationDonHttpService, LotHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
