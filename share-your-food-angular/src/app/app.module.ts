@@ -8,13 +8,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CreationDonComponent } from './creation-don/creation-don.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { PageDonneurComponent } from './page-donneur/page-donneur.component';
 
 @NgModule({
   declarations: [
     PageNotFoundComponent,
     Accueil1Component,
     AppComponent,
-    CreationDonComponent
+    CreationDonComponent,
+    PageDonneurComponent
   ],
   imports: [
     BrowserModule,
