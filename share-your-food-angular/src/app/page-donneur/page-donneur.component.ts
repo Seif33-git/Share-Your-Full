@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LotHttpService} from "../services/lot";
 import {Lot} from "../model/lot";
 import {Don} from "../model/don";
+import {LotHttpService} from "../services/lot.service";
 
 @Component({
   selector: 'app-page-donneur',
