@@ -11,7 +11,9 @@ export class LotHttpService {
 
   lots: Array<Lot>;
   grosLots: Array<Lot>;
-  constructor(private http: HttpClient, private appConfig: AppConfigService) {
+  statuts: Array<string>
+
+  constructor(private http: HttpClient,  private appConfig: AppConfigService) {
     this.load();
     this.loadGrosLot();
   }
@@ -59,6 +61,9 @@ export class LotHttpService {
     this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot").subscribe(resp => {
       this.lots = resp;
     }, error => console.log(error))
+    this.appConfig.findAllStatut().subscribe(resp => {
+      this.statuts = resp;
+    }, error => console.log(error));
   }
   loadGrosLot(){
     this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/tri-par-volume").subscribe(resp => {

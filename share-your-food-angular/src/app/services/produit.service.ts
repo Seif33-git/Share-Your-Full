@@ -3,12 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Produit} from "../model/produit";
 import {AppConfigService} from "../app-config.service";
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitHttpService {
 
   produits: Array<Produit>;
+  types: Array<string>
 
   constructor(private http: HttpClient, private appConfig: AppConfigService) {
     this.load()
@@ -18,8 +20,8 @@ export class ProduitHttpService {
     return this.produits;
   }
 
-  findById(id: number): Observable<Produit> {
-    return this.http.get<Produit>(this.appConfig.backEndUrl + "produit/" + id);
+  findById(nom: string): Observable<Produit> {
+    return this.http.get<Produit>(this.appConfig.backEndUrl + "produit/" + nom);
   }
 
   create(produit: Produit) {
@@ -31,12 +33,12 @@ export class ProduitHttpService {
 
   modify(produit: Produit): Observable<Produit> {
 
-    return this.http.put<Produit>(this.appConfig.backEndUrl + "produit/" + produit.id, produit);
+    return this.http.put<Produit>(this.appConfig.backEndUrl + "produit/" + produit.nom, produit);
 
   }
 
-  deleteById(id: number) {
-    this.http.delete(this.appConfig.backEndUrl + "produit/" + id).subscribe(resp => {
+  deleteById(nom: string) {
+    this.http.delete(this.appConfig.backEndUrl +  "produit/" + nom).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
@@ -45,5 +47,8 @@ export class ProduitHttpService {
     this.http.get<Array<Produit>>(this.appConfig.backEndUrl + "produit").subscribe(resp => {
       this.produits = resp;
     }, error => console.log(error))
+    this.appConfig.findAllType().subscribe(resp => {
+      this.types = resp;
+    }, error => console.log(error));
   }
 }

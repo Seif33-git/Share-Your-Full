@@ -16,4 +16,12 @@ export class AppConfigService {
   findAllCategorie(): Observable<Array<string>> {
     return this.http.get<Array<string>>(this.backEndUrl + "categories");
   }
+
+  findAllType(): Observable<Array<string>> {
+    return this.http.get<Array<string>>(this.backEndUrl + "types");
+  }
+
+  findAllStatut(): Observable<Array<string>> {
+    return this.http.get<Array<string>>(this.backEndUrl + "statuts");
+  }
 }

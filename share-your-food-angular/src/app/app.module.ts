@@ -10,7 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { CreationLotComponent } from './creation-lot/creation-lot.component';
 import { PageDonneurComponent } from './page-donneur/page-donneur.component';
-import {LotHttpService} from "./services/lot";
+import {LotHttpService} from "./services/lot.service";
 import {DonHttpService} from "./services/don.service";
 import { TableauDeBordBeneficiaireComponent } from './tableau-de-bord-beneficiaire/tableau-de-bord-beneficiaire.component';
 
