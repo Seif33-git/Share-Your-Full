@@ -4,3 +4,86 @@
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
+
+//*******POLICES*******
+
+.policeChampagneCenter {
+  font-size: 30px;
+  text-align: center;
+  font-family: "Champagne & Limousines";
+}
+
+.policeChampagne {
+  font-size: 30px;
+  font-family: "Champagne & Limousines";
+}
+
+.policeChampagne25 {
+  font-size: 25px;
+  font-family: "Champagne & Limousines";
+}
+
+.policeChampagneEspaceCenter {
+  font-size: 30px;
+  letter-spacing: 20px;
+  text-align: center;
+  font-family: "Champagne & Limousines";
+}
+
+.policeImpact {
+  font-family: Impact;
+  font-size: 20px;
+}
+
+.policeImpactCenter {
+  font-family: Impact;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btnImpact {
+  font-family: Impact;
+  font-size: 25px;
+  color: white;
+}
+
+.btnImpact:hover {
+  font-family: Impact;
+  font-size: 25px;
+  color: white;
+}
+
+.aBouton {
+
+}
+
+.lien {
+  font-size: 25px;
+  font-family: "Champagne & Limousines";
+  color:#20c997;
+  text-decoration: none;
+}
+
+.lien:hover {
+  font-size: 25px;
+  font-family: "Champagne & Limousines";
+  color:#fba919;
+  text-decoration: none;
+}
+
+.conteneurTexteGris {
+  background: #f8f9fa;
+  border-radius: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.conteneurArrondi {
+  border-radius: 100px;
+}
+
+.center {
+  text-align: center;
+}
