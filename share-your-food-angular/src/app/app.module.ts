@@ -13,6 +13,8 @@ import { PageDonneurComponent } from './page-donneur/page-donneur.component';
 import {LotHttpService} from "./services/lot.service";
 import {DonHttpService} from "./services/don.service";
 import { TableauDeBordBeneficiaireComponent } from './tableau-de-bord-beneficiaire/tableau-de-bord-beneficiaire.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { TableauDeBordBeneficiaireComponent } from './tableau-de-bord-beneficiai
     CreationDonComponent,
     PageDonneurComponent,
     TableauDeBordBeneficiaireComponent,
+    ConnexionComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,
