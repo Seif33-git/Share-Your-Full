@@ -1,6 +1,7 @@
 package sopra.ShareYourFood.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -38,17 +39,18 @@ public class AssociationRestController {
 		return entiteRepo.findAllAssociation();
 	}
 
-//	@GetMapping("/{id}")
-//	@JsonView(Views.ViewAssociationDetail.class)
-//	public Association find(@PathVariable Long id) {
-//		Optional<Association> optAssociation = entiteRepo.findById(id);
-//
-//		if (optAssociation.isPresent()) {
-//			return optAssociation.get();
-//		} else {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
-//		}
-//	}
+	@GetMapping("/{id}")
+	@JsonView(Views.ViewAssociation.class)
+	public Association find(@PathVariable Long id) {
+
+		Optional<Association> optAssociation = entiteRepo.findAssociationById(id);
+
+		if (optAssociation.isPresent()) {
+			return optAssociation.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewAssociationDetail.class)

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @NamedQuery(name = "Entreprise.findAllEntreprise", query = "select e from Entreprise e")
 public class Entreprise extends Entite {
 
-	@Column(name = "prenom", length = 45)
+	@Column(name = "siret", length = 45)
 	@JsonView(Views.ViewEntreprise.class)
 	private String siret;
 
