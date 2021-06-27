@@ -410,8 +410,8 @@ class ShareYourFoodBootApplicationTests {
 		assertEquals(true, entiteFind.get().isDonneur());
 		assertEquals(false, entiteFind.get().isBeneficiaire());
 		
-//		List<Entite> entites=entiteRepo.findAll();
-//		assertEquals(6, entites.size());
+		
+
 		
 		//ADRESSE
 		Optional<Adresse> adrfind = adresseRepo.findById(adrLeclerc.getId());
@@ -421,8 +421,7 @@ class ShareYourFoodBootApplicationTests {
 		assertEquals("Mérignac", adrfind.get().getVille());
 		assertEquals(Leclerc.getId(), adrfind.get().getEntite().getId());
 		
-//		List<Adresse> adresses = adresseRepo.findAll();
-//		assertEquals(5, adresses.size());
+
 		
 		//DON
 		Optional<Don> donFind = donRepo.findById(donLeclerc.getId());
@@ -433,8 +432,6 @@ class ShareYourFoodBootApplicationTests {
 		assertEquals(adrLeclerc.getId(), donFind.get().getAdresse().getId());
 		assertEquals(Leclerc.getId(), donFind.get().getEntite().getId());
 		
-//		List<Don> dons = donRepo.findAll();
-//		assertEquals(1, dons.size());
 		
 		// LOT
 		Optional<Lot> lotFind = lotRepo.findById(pain.getId());
