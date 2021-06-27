@@ -11,11 +11,10 @@
         <th>QUANTITE</th>
         <th>Message du bénéficiaire</th>
         <th></th>
-        <th></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let lot of listLot()" class="center">
+      <tr *ngFor="let lot of listLotNonDonneByEntite">
         <td>{{lot.nom}}</td>
         <td>{{lot.volume}}</td>
         <td></td>
@@ -24,7 +23,7 @@
       </tr>
       </tbody>
     </table>
-  </div>
+<!--  </div>-->
 
 
 <!--    <div class="row">-->
