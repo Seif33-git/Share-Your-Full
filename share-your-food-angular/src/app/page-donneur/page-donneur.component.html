@@ -1,10 +1,9 @@
 <div class="container">
-  <div id="creaLotForm" class="card mt-3" style="display: yes;">
-    <div class="card-header bg-info text-white text-center">
-      <h2>Mes Dons en Cours</h2>
-    </div>
+<!--  <div id="creaLotForm" class="card mt-3" style="display: yes;">-->
 
-    <p>En cours:</p>
+    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+      <p>MES DONS</p>
+    </div>
 
     <table class="table table-striped">
       <thead>
@@ -13,20 +12,19 @@
         <th>Quantité:</th>
         <th>Message du bénéficiaire:</th>
         <th></th>
-        <th></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let lot of listLot()">
+      <tr *ngFor="let lot of listLotNonDonneByEntite">
         <td>{{lot.nom}}</td>
         <td>{{lot.volume}}</td>
         <td></td>
-        <td><a class="btn btn-secondary btn-m" routerLinkActive="active" [routerLink]="['/lot']">Modifier</a></td>
-        <td><a class="btn btn-danger btn-m" (click)="delete(lot.id)">Supprimer</a></td>
+        <td><a class="btn btn-info btn-m" routerLinkActive="active" [routerLink]="['/lot']"><i class="fa fa-edit"></i> Modifier</a>
+          <a class="btn btn-danger btn-m" (click)="delete(lot.id)"><i class="fa fa-trash"></i> Supprimer</a></td>
       </tr>
       </tbody>
     </table>
-  </div>
+<!--  </div>-->
 
 
 
@@ -35,7 +33,7 @@
       <div class="col text-center">
         <div class="btn-group btn-group-lg float-middle ml-auto mr-auto">
           <button type="button"
-                  class="btn btn-success btn-lg ml-auto mr-auto" routerLinkActive="active" [routerLink]="['/don']">+ NOUVEAU DON</button>
+                  class="btn float-right btn-sm btn-info btnImpact" routerLinkActive="active" [routerLink]="['/don']"><i class="fas fa-plus-square"></i> NOUVEAU DON</button>
         </div>
       </div>
     </div>

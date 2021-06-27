@@ -1,13 +1,350 @@
 package sopra.ShareYourFood;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import sopra.ShareYourFood.model.Adresse;
+import sopra.ShareYourFood.model.Association;
+import sopra.ShareYourFood.model.Categorie;
+import sopra.ShareYourFood.model.Demande;
+import sopra.ShareYourFood.model.Destinataire;
+import sopra.ShareYourFood.model.Don;
+import sopra.ShareYourFood.model.Entreprise;
+import sopra.ShareYourFood.model.Lot;
+import sopra.ShareYourFood.model.Particulier;
+import sopra.ShareYourFood.model.Role;
+import sopra.ShareYourFood.model.Statut;
+import sopra.ShareYourFood.model.StatutNotif;
+import sopra.ShareYourFood.model.Utilisateur;
+import sopra.ShareYourFood.model.UtilisateurRole;
+import sopra.ShareYourFood.repository.IAdresseRepository;
+import sopra.ShareYourFood.repository.IDemandeRepository;
+import sopra.ShareYourFood.repository.IDonRepository;
+import sopra.ShareYourFood.repository.IEntiteRepository;
+import sopra.ShareYourFood.repository.ILotRepository;
+import sopra.ShareYourFood.repository.IMessageRepository;
+import sopra.ShareYourFood.repository.IProduitLotRepository;
+import sopra.ShareYourFood.repository.IProduitRepository;
+import sopra.ShareYourFood.repository.IUtilisateurRepository;
+import sopra.ShareYourFood.repository.IUtilisateurRoleRepository;
 
 @SpringBootTest
 class ShareYourFoodBootApplicationTests {
+	
+	@Autowired
+	private IAdresseRepository adresseRepo;
+	
+	@Autowired
+	private IDemandeRepository demandeRepo;
+	
+	@Autowired
+	private IDonRepository donRepo;
+	
+	@Autowired
+	private IEntiteRepository entiteRepo;
+	
+	@Autowired
+	private ILotRepository lotRepo;
+	
+	@Autowired
+	private IMessageRepository messageRepo;
+	
+	@Autowired
+	private IProduitLotRepository produitLotRepo;
+	
+	@Autowired
+	private IProduitRepository produitRepo;
+	
+	@Autowired
+	private IUtilisateurRepository utilisateurRepo;
+	
+	@Autowired
+	private IUtilisateurRoleRepository utilisateurRoleRepo;
 
 	@Test
-	void contextLoads() {
+	void contextLoads() throws ParseException {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// CREATION OBJETS /////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// UTILISATEURROLE
+		
+		UtilisateurRole donneur = new UtilisateurRole();
+		donneur.setRole(Role.DONNEUR);
+		
+		
+		// UTILISATEURS
+		
+		Utilisateur cocoDu06 = new Utilisateur("Coco_du_06", "cocodu06@gmail.com","azerty", true);
+		
+		Utilisateur toto65 = new Utilisateur();
+		toto65.setPseudo("Toto65");
+		toto65.setMotDePasse("azerty123");
+		toto65.setMail("toto65@gmail.com");
+		toto65.setMessagerieActivation(true);
+		
+		Utilisateur aube = new Utilisateur();
+		aube.setPseudo("Aube");
+		aube.setMotDePasse("azerty1234");
+		aube.setMail("aubeline.pecque@hotmail.com");
+		aube.setMessagerieActivation(true);
+		
+		Utilisateur sarahCze = new Utilisateur();
+		sarahCze.setPseudo("SarahCZE");
+		sarahCze.setMotDePasse("azerty12345");
+		sarahCze.setMail("sarah.caze@hotmail.com");
+		sarahCze.setMessagerieActivation(true);
+		
+		
+		// ENTITES
+		Particulier aubeline = new Particulier("aubeline", 28);
+		aubeline.setNom("PECQUE");
+		aubeline.setDonneur(true);
+		aubeline.setBeneficiaire(false);
+		
+		Particulier sarah = new Particulier("sarah", 25);
+		sarah.setNom("CAZE");
+		sarah.setDonneur(true);
+		sarah.setBeneficiaire(false);
+		
+		Particulier regis = new Particulier("regis", 25);
+		regis.setNom("SIMON");
+		regis.setDonneur(false);
+		regis.setBeneficiaire(true);
+		
+		Association CroixRouge = new Association("FR123456789", "justificatif1");
+		CroixRouge.setNom("La Croix Rouge");
+		CroixRouge.setDonneur(true);
+		CroixRouge.setBeneficiaire(true);
+		
+		Association DonPourTous = new Association("FR987654321", "justificatif2");
+		DonPourTous.setNom("Dons pour tous");
+		DonPourTous.setDonneur(false);
+		DonPourTous.setBeneficiaire(true);
+		
+		Entreprise Leclerc = new Entreprise("5486935JH14S", Categorie.GRANDE_SURFACE);
+		Leclerc.setNom("Leclerc");
+		Leclerc.setDonneur(true);
+		Leclerc.setBeneficiaire(false);
+		
+		
+		// ADRESSES
+		Adresse adrSarahCze = new Adresse("75 rue d'Athènes", "bis", "33000", "Bordeaux");
+		Adresse adrCroixRouge = new Adresse();
+		adrCroixRouge.setRue("9 avenue de Gambetta");
+		adrCroixRouge.setComplement(null);
+		adrCroixRouge.setCodePostal("13001");
+		adrCroixRouge.setVille("Marseille");
+		Adresse adrDonPourTous = new Adresse("277 boulevard Leon Blum", "Bâtiment C", "75004", "Paris");
+		Adresse adrLeclerc = new Adresse("50 avenue Gutemberg", "Zone commerciale Soleil", "33700", "Mérignac");
+		Adresse adrRegis = new Adresse("3 avenue Molière", null, "33000", "Bordeaux");
+		
+		
+		// DON
+		Don donLeclerc = new Don();
+		try {
+			donLeclerc.setDateDeMiseEnLigne(sdf.parse("02/09/2020"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		donLeclerc.setCreneau("13h à 15h");
+		donLeclerc.setCommentaire("DLC à peine passée, mais encore en bon état");
+		donLeclerc.setDestinataire(Destinataire.ASSOCIATION);
+		
+		
+		// LOT
+		Lot chocolat = new Lot();
+		chocolat.setNom("Chocolat");
+		try {
+			chocolat.setDtPeremptionLot(sdf.parse("05/07/2022"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		chocolat.setPhoto("djvbv/didz/yugi");
+		chocolat.setVolume((long) 50);
+		chocolat.setStatut(Statut.DISPONIBLE);
+		
+		
+		Lot pain = new Lot();
+		pain.setNom("Pain");
+		try {
+			pain.setDtPeremptionLot(sdf.parse("20/05/2023"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		pain.setPhoto("ouoio/ju/hh");
+		pain.setVolume((long) 25);
+		pain.setStatut(Statut.DISPONIBLE);
+		
+		
+		// DEMANDE
+		Demande demandeDonPourTous = new Demande();
+		try {
+			demandeDonPourTous.setDtDemande(sdf.parse("22/05/2021"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		demandeDonPourTous.setStatutNotif(StatutNotif.ACCEPTER);
+		
+		Demande demandeRegis = new Demande();
+		try {
+			demandeRegis.setDtDemande(sdf.parse("01/06/2021"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		demandeRegis.setStatutNotif(StatutNotif.ACCEPTER);
+		
+		
+		
+		// MESSAGES
+		sopra.ShareYourFood.model.Message messageDonPourTousLeclerc = new sopra.ShareYourFood.model.Message();
+		messageDonPourTousLeclerc.setContenu("Bonjour, Don Pour Tous souhaiterai bénéficier de ce don. Nous vous remercions par avance.");
+		messageDonPourTousLeclerc.setDonneur(false);
+		messageDonPourTousLeclerc.setDtEnvoi(sdf.parse("23/05/2021"));
+		
+		sopra.ShareYourFood.model.Message messageLeclercDonPourTous = new sopra.ShareYourFood.model.Message();
+		messageLeclercDonPourTous.setContenu("Bien volontiers");
+		messageLeclercDonPourTous.setDonneur(true);
+		messageLeclercDonPourTous.setDtEnvoi(sdf.parse("24/05/2021"));
+		
+		
+		sopra.ShareYourFood.model.Message messageRegis = new sopra.ShareYourFood.model.Message();
+		messageRegis.setContenu("Bonjour, est-il possible de disposer de chocolat ? Bien à vous");
+		messageRegis.setDonneur(false);
+		messageRegis.setDtEnvoi(sdf.parse("02/06/2021"));
+		
+		sopra.ShareYourFood.model.Message messageLeclercRegis = new sopra.ShareYourFood.model.Message();
+		messageLeclercRegis.setContenu("Bien sur");
+		messageLeclercRegis.setDonneur(true);
+		messageLeclercRegis.setDtEnvoi(sdf.parse("03/06/2021"));
+		
+		
+		
+		
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// CREATION BDD ////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// UTILISATEURROLE
+		utilisateurRoleRepo.save(donneur);
+		
+		// UTILISATEUR
+		utilisateurRepo.save(cocoDu06);
+		utilisateurRepo.save(toto65);
+		utilisateurRepo.save(aube);
+		utilisateurRepo.save(sarahCze);
+		
+		// LIEN UTILISATEURROLE UTILISATEUR
+		donneur.setUser(cocoDu06);
+		utilisateurRoleRepo.save(donneur);
+		
+		
+		// ENTITES
+		entiteRepo.save(aubeline);
+		entiteRepo.save(sarah);
+		entiteRepo.save(regis);
+		entiteRepo.save(CroixRouge);
+		entiteRepo.save(DonPourTous);
+		entiteRepo.save(Leclerc);
+		
+		// LIEN UTILISATEUR ENTITE
+		aube.setEntite(aubeline);
+		sarahCze.setEntite(sarah);
+		toto65.setEntite(CroixRouge);
+		cocoDu06.setEntite(Leclerc);
+		
+		utilisateurRepo.save(cocoDu06);
+		utilisateurRepo.save(toto65);
+		utilisateurRepo.save(aube);
+		utilisateurRepo.save(sarahCze);
+		
+		
+		// ADRESSES
+		adresseRepo.save(adrSarahCze);
+		adresseRepo.save(adrCroixRouge);
+		adresseRepo.save(adrDonPourTous);
+		adresseRepo.save(adrLeclerc);
+		adresseRepo.save(adrRegis);
+		
+		
+		// LIEN ENTITE ADRESSE
+		adrSarahCze.setEntite(sarah);
+		adrCroixRouge.setEntite(CroixRouge);
+		adrDonPourTous.setEntite(DonPourTous);
+		adrLeclerc.setEntite(Leclerc);
+		adrRegis.setEntite(regis);
+		
+		sarah = (Particulier) entiteRepo.save(sarah);
+		regis = (Particulier) entiteRepo.save(regis);
+		CroixRouge = (Association) entiteRepo.save(CroixRouge);
+		DonPourTous = (Association) entiteRepo.save(DonPourTous);
+		Leclerc = (Entreprise) entiteRepo.save(Leclerc);
+		
+		
+		// DON
+		donRepo.save(donLeclerc);
+		
+		// LIEN DON ADRESSE + ENTITE
+		donLeclerc.setAdresse(adrLeclerc);
+
+		donLeclerc.setEntite(Leclerc);
+		
+		donRepo.save(donLeclerc);
+		
+		
+		// LOTS
+		lotRepo.save(chocolat);
+		lotRepo.save(pain);
+		
+		
+		// LIEN LOT DON
+		chocolat.setDon(donLeclerc);
+		pain.setDon(donLeclerc);
+		
+		lotRepo.save(chocolat);
+		lotRepo.save(pain);
+		
+		// DEMANDE
+		demandeRepo.save(demandeRegis);
+		demandeRepo.save(demandeDonPourTous);
+		
+		//LIEN DEMANDE ENTITE + LOT
+		demandeDonPourTous.setEntite(DonPourTous);
+		demandeRegis.setEntite(regis);
+		
+		demandeDonPourTous.setLot(pain);
+		demandeRegis.setLot(chocolat);
+		
+		demandeRepo.save(demandeRegis);
+		demandeRepo.save(demandeDonPourTous);
+		
+		// MESSAGES
+		messageRepo.save(messageDonPourTousLeclerc);
+		messageRepo.save(messageLeclercDonPourTous);
+		messageRepo.save(messageRegis);
+		messageRepo.save(messageLeclercRegis);
+		
+		// LIEN MESSAGE DEMANDE
+		messageDonPourTousLeclerc.setDemande(demandeDonPourTous);
+		messageLeclercDonPourTous.setDemande(demandeDonPourTous);
+		messageRegis.setDemande(demandeRegis);
+		messageLeclercRegis.setDemande(demandeRegis);
+		
+		messageRepo.save(messageDonPourTousLeclerc);
+		messageRepo.save(messageLeclercDonPourTous);
+		messageRepo.save(messageRegis);
+		messageRepo.save(messageLeclercRegis);
+		
+	
 	}
 
 }

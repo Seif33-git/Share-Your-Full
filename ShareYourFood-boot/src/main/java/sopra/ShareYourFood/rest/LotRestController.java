@@ -65,18 +65,18 @@ public class LotRestController {
 		return lotRepo.findAllLotsDonne();
 	}
 	
-	@GetMapping("/non-donne-by-entite/{id}")
+	@GetMapping("/non-donne-by-entite/{idEntite}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
-	public List<Lot> findNonDonneByEntite(@PathVariable Long id) {
-		return lotRepo.findAllNonDonneByEntiteById(id);
+	public List<Lot> findNonDonneByEntite(@PathVariable Long idEntite) {
+		return lotRepo.findAllNonDonneByEntiteById(idEntite);
 	}
 	
-	@GetMapping("/donne-by-entite/{id}")
+	@GetMapping("/donne-by-entite/{idEntite}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
-	public List<Lot> findDonneByEntite(@PathVariable Long id) {
-		return lotRepo.findAllDonneByEntiteById(id);
+	public List<Lot> findDonneByEntite(@PathVariable Long idEntite) {
+		return lotRepo.findAllDonneByEntiteById(idEntite);
 	}
 
 	

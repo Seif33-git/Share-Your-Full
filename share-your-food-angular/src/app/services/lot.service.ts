@@ -21,6 +21,10 @@ export class LotHttpService {
    return this.http.get<Array<Demande>>(this.appConfig.backEndUrl + "demande/list-lot-demande/"+idEntite)
   }
 
+  listLotNonDonneByEntite(idEntite: number): Observable<Array<Lot>>{
+    return this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/non-donne-by-entite/"+idEntite)
+  }
+
   compteurLot(): Observable<number> {
     return this.http.get<number>(this.appConfig.backEndUrl + "lot/count-lots");
   }
