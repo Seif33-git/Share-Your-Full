@@ -1,0 +1,229 @@
+<div class="container policeChampagne25">
+  <div class="mt-5 policeChampagneEspaceCenter"><b>INSCRIPTION</b></div>
+  <div class="center">________________________</div>
+
+  <div class="policeImpactCenter">Je m'inscris en tant que :</div>
+
+<div class="center mt-3">
+    <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="addParticulier()"><i class="fas fa-child"></i> Particulier</a>
+    <a class="btn btn-lg btn-info btnImpact mr-3" (click)="addEntreprise()"><i class="fas fa-briefcase"></i> Entreprise</a>
+    <a class="btn btn-lg btn-danger btnImpact mr-3" (click)="addAssociation()"><i class="fas fa-hands-helping"></i> Association</a>
+</div>
+
+<!--IF ON CLICK SUR PARTICULIER-->
+<div *ngIf="particulierForm">
+    <div class="pt-5">
+    <label for="nom">Nom:*</label>
+    <input type="text" class="form-control" id="nom" [(ngModel)]="particulierForm.nom" [readonly]="particulierForm.id"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="prenom">Prénom:</label>
+    <input type="text" class="form-control" id="prenom" [(ngModel)]="particulierForm.prenom" [readonly]="particulierForm.id"/>
+  </div>
+
+  <a class="btn btn-lg btn-outline-warning mt-3" (click)="addUtilisateur()"><i class="fas fa-plus-circle"></i> Détails de connexion</a>
+  <div *ngIf="utilisateurParticulier">
+  <div class="pt-3">
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" class="form-control" id="pseudo" [(ngModel)]="utilisateurParticulier.pseudo"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="email">Email:*</label>
+    <input type="email" class="form-control" id="email" [(ngModel)]="utilisateurParticulier.mail"/>
+  </div>
+
+  <div class="pt-3"><label for="motdepasse">Mot de passe:*</label>
+    <input type="text" class="form-control" id="motdepasse" [(ngModel)]="utilisateurParticulier.motDePasse"/>
+  </div>
+
+
+<!--  <div class="pt-3"><label for="adresse">Adresse:*</label>-->
+<!--    <input type="text" class="form-control" id="adresse"/>-->
+<!--  </div>-->
+
+  <span>Les champs * sont obligatoires</span>
+
+
+  <div class="mt-5">
+    <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="annulerTout()"><i class="fas fa-undo-alt"></i> Retour</a>
+    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieParticulier()"><i class="fas fa-check"></i> Valider</a>
+  </div>
+</div>
+</div>
+
+  <!--IF ON CLICK SUR ENTREPRISE-->
+  <div *ngIf="entrepriseForm">
+
+  <div class="pt-3" *ngIf="!nouvelleEntreprise&&entrepriseForm">
+    <label>Votre entreprise:</label>
+    <a class="btn float-right btn-lg btn-outline-info" (click)="addCreation()"><i class="fas fa-plus-square"></i> Nouvelle entreprise</a>
+  </div>
+
+    <div class="form-group mt-3" *ngIf="!nouvelleEntreprise">
+      <select class="form-control" id="evaluation" [(ngModel)]="entrepriseForm.id" (ngModelChange)="onChangeEntreprise($event)">
+        <option value="" disabled>Choisir une entreprise</option>
+        <option *ngFor="let entreprise of listEntreprise()" [value]="entreprise.id">{{entreprise.nom}} - SIRET : {{entreprise.siret}}</option>
+      </select>
+    </div>
+
+
+
+    <div *ngIf="entrepriseSelect&&!nouvelleEntreprise">
+    <table class="table mt-3">
+    <thead>
+    <tr>
+      <th>Nom de l'entreprise</th>
+      <th>SIRET</th>
+<!--      <th>Adresse</th>-->
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{entrepriseSelect.nom}}</td>
+      <td>{{entrepriseSelect.siret}}</td>
+<!--      <td>{{entrepriseForm.adresse}}</td>-->
+      <td><a class="btn btn-secondary" (click)="delete(entrepriseSelect.id)"><i class="far fa-trash-alt"></i></a></td>
+    </tr>
+    </tbody>
+  </table>
+    </div>
+
+    <div *ngIf="nouvelleEntreprise">
+      <div class="pt-5">
+        <label for="nom">Nom de l'entreprise:*</label>
+        <input type="text" class="form-control" id="nom" [(ngModel)]="nouvelleEntreprise.nom"/>
+      </div>
+
+      <div class="pt-3">
+        <label for="siret">SIRET de l'entreprise:*</label>
+        <input type="text" class="form-control" id="siret" [(ngModel)]="nouvelleEntreprise.siret"/>
+      </div>
+
+<!--      <div class="pt-3">-->
+<!--        <label for="adresse">Adresse de l'entreprise:</label>-->
+<!--        <input type="text" class="form-control" id="adresse" [(ngModel)]="nouvelleEntreprise.categorie"/>-->
+<!--      </div>-->
+
+      <div class="mt-5">
+        <a class="btn btn-sm btn-warning btnImpact mr-3" (click)="annuler()"><i class="fas fa-undo-alt"></i></a>
+        <a class="btn btn-sm btn-info btnImpact" (click)="addTableau()"><i class="fas fa-check"></i></a>
+      </div>
+    </div>
+
+
+  <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+  <p>DONNEES PERSONNELLES</p>
+  </div>
+
+  <div class="pt-3">
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" class="form-control" name="pseudo" [(ngModel)]="utilisateurEntreprise.pseudo"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="email">Email:*</label>
+    <input type="email" class="form-control" name="email" [(ngModel)]="utilisateurEntreprise.mail"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="motdepasse">Mot de passe:*</label>
+    <input type="text" class="form-control" name="motdepasse" [(ngModel)]="utilisateurEntreprise.motDePasse"/>
+  </div>
+
+  <span>Les champs * sont obligatoires</span>
+
+  <div class="mt-5">
+    <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="annulerTout()"><i class="fas fa-undo-alt"></i> Retour</a>
+    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieEntreprise()"><i class="fas fa-check"></i> Valider</a>
+  </div>
+  </div>
+
+  <!--IF ON CLICK SUR ASSOCIATION-->
+  <div *ngIf="associationForm">
+
+    <div class="pt-3" *ngIf="!nouvelleAssociation&&associationForm">
+    <span>Votre association:</span>
+      <a class="btn float-right btn-lg btn-outline-danger" (click)="addCreation()"><i class="fas fa-plus-square"></i> Nouvelle association</a>
+  </div>
+
+    <div class="form-group mt-3" *ngIf="!nouvelleAssociation">
+      <select class="form-control" id="association" [(ngModel)]="associationForm.id" (ngModelChange)="onChangeAssociation($event)">
+        <option value="" disabled>Choisir une association</option>
+        <option *ngFor="let association of listAssociation()" [value]="association.id">{{association.nom}} - RNA : {{association.numeroAssociation}}</option>
+      </select>
+    </div>
+
+    <div *ngIf="associationSelect&&!nouvelleAssociation">
+  <table class="table mt-3">
+    <thead>
+    <tr>
+      <th>Nom de l'association</th>
+      <th>Numéro associatif</th>
+<!--      <th>Adresse</th>-->
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{associationSelect.nom}}</td>
+      <td>{{associationSelect.numeroAssociation}}</td>
+<!--      <td>-</td>-->
+      <td><a class="btn btn-secondary" (click)="delete(associationSelect.id)"><i class="far fa-trash-alt"></i></a></td>
+    </tr>
+    </tbody>
+  </table>
+    </div>
+
+    <div *ngIf="nouvelleAssociation">
+      <div class="pt-5">
+        <label for="nomA">Nom de l'association:*</label>
+        <input type="text" class="form-control" id="nomA" [(ngModel)]="nouvelleAssociation.nom"/>
+      </div>
+
+      <div class="pt-3">
+        <label for="numeroAsso">Numéro associatif:*</label>
+        <input type="text" class="form-control" id="numeroAsso" [(ngModel)]="nouvelleAssociation.numeroAssociation"/>
+      </div>
+
+      <!--      <div class="pt-3">-->
+      <!--        <label for="adresseA">Adresse de l'association:</label>-->
+      <!--        <input type="text" class="form-control" id="adresseA" [(ngModel)]="nouvelleAssociation.adresse"/>-->
+      <!--      </div>-->
+
+      <div class="mt-5">
+        <a class="btn btn-sm btn-warning btnImpact mr-3" (click)="annuler()"><i class="fas fa-undo-alt"></i></a>
+        <a class="btn btn-sm btn-info btnImpact" (click)="addTableau()"><i class="fas fa-check"></i></a>
+      </div>
+    </div>
+
+  <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
+    <p>DONNEES PERSONNELLES</p>
+  </div>
+
+  <div class="pt-3">
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" class="form-control" name="pseudo" [(ngModel)]="utilisateurAssociation.pseudo" />
+  </div>
+
+  <div class="pt-3">
+    <label for="email">Email:*</label>
+    <input type="email" class="form-control" name="email" [(ngModel)]="utilisateurAssociation.mail" />
+  </div>
+
+  <div class="pt-3">
+    <label for="motdepasse">Mot de passe:*</label>
+    <input type="text" class="form-control" name="motdepasse" [(ngModel)]="utilisateurAssociation.motDePasse" />
+  </div>
+
+  <span>Les champs * sont obligatoires</span>
+
+  <div class="mt-5">
+    <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="annulerTout()"><i class="fas fa-undo-alt"></i> Retour</a>
+    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieAssociation()"><i class="fas fa-check"></i> Valider</a>
+  </div>
+  </div>
+</div>
+

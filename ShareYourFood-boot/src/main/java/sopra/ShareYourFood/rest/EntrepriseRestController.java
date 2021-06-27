@@ -1,6 +1,7 @@
 package sopra.ShareYourFood.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -38,17 +39,19 @@ public class EntrepriseRestController {
 		return entiteRepo.findAllEntreprise();
 	}
 
-//	@GetMapping("/{id}")
-//	@JsonView(Views.ViewEntrepriseDetail.class)
-//	public Entreprise find(@PathVariable Long id) {
-//		Optional<Entreprise> optEntreprise = entiteRepo.findById(id);
-//
-//		if (optEntreprise.isPresent()) {
-//			return optEntreprise.get();
-//		} else {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
-//		}
-//	}
+
+	@GetMapping("/{id}")
+	@JsonView(Views.ViewEntreprise.class)
+	public Entreprise find(@PathVariable Long id) {
+
+		Optional<Entreprise> optEntreprise = entiteRepo.findEntrepriseById(id);
+
+		if (optEntreprise.isPresent()) {
+			return optEntreprise.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewEntrepriseDetail.class)
