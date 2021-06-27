@@ -410,7 +410,10 @@ class ShareYourFoodBootApplicationTests {
 		assertEquals(true, entiteFind.get().isDonneur());
 		assertEquals(false, entiteFind.get().isBeneficiaire());
 		
-		
+//		Entreprise Leclerc = new Entreprise("5486935JH14S", Categorie.GRANDE_SURFACE);
+//		Leclerc.setNom("Leclerc");
+//		Leclerc.setDonneur(true);
+//		Leclerc.setBeneficiaire(false);
 
 		
 		//ADRESSE
