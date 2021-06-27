@@ -1,6 +1,7 @@
 package sopra.ShareYourFood.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
-
 import sopra.ShareYourFood.model.Particulier;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.IEntiteRepository;
@@ -40,17 +40,18 @@ public class ParticulierRestController {
 		return entiteRepo.findAllParticulier();
 	}
 
-//	@GetMapping("/{id}")
-//	@JsonView(Views.ViewParticulierDetail.class)
-//	public Particulier find(@PathVariable Long id) {
-//		Optional<Particulier> optParticulier = entiteRepo.findById(id);
-//
-//		if (optParticulier.isPresent()) {
-//			return optParticulier.get();
-//		} else {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
-//		}
-//	}
+	@GetMapping("/{id}")
+	@JsonView(Views.ViewParticulier.class)
+	public Particulier find(@PathVariable Long id) {
+
+		Optional<Particulier> optParticulier = entiteRepo.findParticulierById(id);
+
+		if (optParticulier.isPresent()) {
+			return optParticulier.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewParticulierDetail.class)

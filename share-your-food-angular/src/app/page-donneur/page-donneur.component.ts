@@ -12,6 +12,7 @@ export class PageDonneurComponent implements OnInit {
 
   lotForm: Lot = null;
   donForm: Don = null;
+  historique: Don = null;
 
   constructor(private lotService: LotHttpService) { }
 
@@ -47,6 +48,10 @@ export class PageDonneurComponent implements OnInit {
 
   delete(id: number) {
     this.lotService.deleteById(id);
+  }
+
+  afficheHistorique() {
+    this.historique = new Don();
   }
 
 }

@@ -9,6 +9,7 @@ public class Views {
 	public static class ViewProduit extends ViewCommon{}
 	
 	public static class ViewUtilisateur extends ViewCommon{}
+	public static class ViewUtilisateurDetail extends ViewUtilisateur{}
 	
 	public static class ViewLot extends ViewCommon{}
 	
