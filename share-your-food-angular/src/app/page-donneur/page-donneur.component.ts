@@ -10,40 +10,23 @@ import {LotHttpService} from "../services/lot.service";
 })
 export class PageDonneurComponent implements OnInit {
 
-  lotForm: Lot = null;
-  donForm: Don = null;
+  listLotNonDonneByEntite: Array<Lot>;
   historique: Don = null;
 
   constructor(private lotService: LotHttpService) { }
 
   ngOnInit(): void {
+    this.listLotNonDonne()
   }
 
   listLot(): Array<Lot> {
     return this.lotService.findAll();
   }
 
-  add() {
-    this.donForm = new Don();
-  }
-
-  edit(id: number) {
-    this.lotService.findById(id).subscribe(resp => {
-      this.lotForm = resp;
-    }, error => console.log(error));
-  }
-
-  save() {
-    if (!this.lotForm.id) {
-      this.lotService.create(this.lotForm);
-    } else {
-      this.lotService.modify(this.lotForm);
-    }
-    this.lotForm = null;
-  }
-
-  cancel() {
-    this.lotForm = null;
+  listLotNonDonne(){
+    this.lotService.listLotNonDonneByEntite(Number(sessionStorage.getItem("idEntite"))).subscribe(
+      resp=> {this.listLotNonDonneByEntite = resp},
+        error => console.log(error));
   }
 
   delete(id: number) {

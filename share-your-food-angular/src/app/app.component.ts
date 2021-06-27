@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'share-your-food-angular';
  connexion(){
-   sessionStorage.setItem("idEntite","3");
+   sessionStorage.setItem("idEntite","6");
  }
   sessionencours(){
   return Number(sessionStorage.getItem("idEntite"));
