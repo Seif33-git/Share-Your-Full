@@ -1,7 +1,11 @@
 package sopra.ShareYourFood;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +17,17 @@ import sopra.ShareYourFood.model.Categorie;
 import sopra.ShareYourFood.model.Demande;
 import sopra.ShareYourFood.model.Destinataire;
 import sopra.ShareYourFood.model.Don;
+import sopra.ShareYourFood.model.Entite;
 import sopra.ShareYourFood.model.Entreprise;
 import sopra.ShareYourFood.model.Lot;
+import sopra.ShareYourFood.model.Message;
 import sopra.ShareYourFood.model.Particulier;
+import sopra.ShareYourFood.model.Produit;
+import sopra.ShareYourFood.model.ProduitLot;
 import sopra.ShareYourFood.model.Role;
 import sopra.ShareYourFood.model.Statut;
 import sopra.ShareYourFood.model.StatutNotif;
+import sopra.ShareYourFood.model.Type;
 import sopra.ShareYourFood.model.Utilisateur;
 import sopra.ShareYourFood.model.UtilisateurRole;
 import sopra.ShareYourFood.repository.IAdresseRepository;
@@ -225,7 +234,23 @@ class ShareYourFoodBootApplicationTests {
 		messageLeclercRegis.setDonneur(true);
 		messageLeclercRegis.setDtEnvoi(sdf.parse("03/06/2021"));
 		
+		// PRODUITLOT
+		ProduitLot chocolatNoirLot1 = new ProduitLot();
+		chocolatNoirLot1.setQuantite(1000L);
+		chocolatNoirLot1.setDtPeremption(sdf.parse("02/02/2022"));
 		
+		ProduitLot croissantLot4 = new ProduitLot();
+		croissantLot4.setQuantite(200L);
+		croissantLot4.setDtPeremption(sdf.parse("30/08/2021"));
+		
+		//PRODUIT
+		Produit chocolatNoir = new Produit();
+		chocolatNoir.setNom("chocolat noir");
+		chocolatNoir.setType(Type.EPICERIE_SUCREE);
+		
+		Produit croissant = new Produit();
+		croissant.setNom("croissant");
+		croissant.setType(Type.PAIN_PATISSERIE);
 		
 		
 		
@@ -283,11 +308,11 @@ class ShareYourFoodBootApplicationTests {
 		adrLeclerc.setEntite(Leclerc);
 		adrRegis.setEntite(regis);
 		
-		sarah = (Particulier) entiteRepo.save(sarah);
-		regis = (Particulier) entiteRepo.save(regis);
-		CroixRouge = (Association) entiteRepo.save(CroixRouge);
-		DonPourTous = (Association) entiteRepo.save(DonPourTous);
-		Leclerc = (Entreprise) entiteRepo.save(Leclerc);
+		adresseRepo.save(adrSarahCze);
+		adresseRepo.save(adrCroixRouge);
+		adresseRepo.save(adrDonPourTous);
+		adresseRepo.save(adrLeclerc);
+		adresseRepo.save(adrRegis);
 		
 		
 		// DON
@@ -344,7 +369,117 @@ class ShareYourFoodBootApplicationTests {
 		messageRepo.save(messageRegis);
 		messageRepo.save(messageLeclercRegis);
 		
+		//PRODUITLOT
+		produitLotRepo.save(chocolatNoirLot1);
+		produitLotRepo.save(croissantLot4);
+				
+		//PRODUIT
+		produitRepo.save(chocolatNoir);
+		produitRepo.save(croissant);
+				
+		//LIEN PRODUITLOT PRODUIT + LOT
+		chocolatNoirLot1.setProduit(chocolatNoir);
+		chocolatNoirLot1.setLot(chocolat);
+				
+		croissantLot4.setProduit(croissant);
+		croissantLot4.setLot(pain);
+				
+		produitLotRepo.save(chocolatNoirLot1);
+		produitLotRepo.save(croissantLot4);
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// TESTS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		//UTILISATEUR
+		Optional<Utilisateur> uFind = utilisateurRepo.findById(cocoDu06.getId());
+		assertEquals("Coco_du_06", uFind.get().getPseudo());
+		assertEquals("azerty", uFind.get().getMotDePasse());
+		assertEquals("cocodu06@gmail.com", uFind.get().getMail());
+		assertEquals(true, uFind.get().getMessagerieActivation());
+		assertEquals(Leclerc.getId(), uFind.get().getEntite().getId());
+		
+		List<Utilisateur> utilisateurs=utilisateurRepo.findAll();
+		assertEquals(4, utilisateurs.size());
+		
+		//ENTITE
+		Optional<Entite> entiteFind = entiteRepo.findById(Leclerc.getId());
+		assertEquals("Leclerc", entiteFind.get().getNom());
+		assertEquals(true, entiteFind.get().isDonneur());
+		assertEquals(false, entiteFind.get().isBeneficiaire());
+		
+//		List<Entite> entites=entiteRepo.findAll();
+//		assertEquals(6, entites.size());
+		
+		//ADRESSE
+		Optional<Adresse> adrfind = adresseRepo.findById(adrLeclerc.getId());
+		assertEquals("50 avenue Gutemberg", adrfind.get().getRue());
+		assertEquals("Zone commerciale Soleil", adrfind.get().getComplement());
+		assertEquals("33700", adrfind.get().getCodePostal());
+		assertEquals("Mérignac", adrfind.get().getVille());
+		assertEquals(Leclerc.getId(), adrfind.get().getEntite().getId());
+		
+//		List<Adresse> adresses = adresseRepo.findAll();
+//		assertEquals(5, adresses.size());
+		
+		//DON
+		Optional<Don> donFind = donRepo.findById(donLeclerc.getId());
+		assertEquals(sdf.parse("02/09/2020"), donFind.get().getDateDeMiseEnLigne());
+		assertEquals("13h à 15h", donFind.get().getCreneau());
+		assertEquals("DLC à peine passée, mais encore en bon état", donFind.get().getCommentaire());
+		assertEquals(Destinataire.ASSOCIATION, donFind.get().getDestinataire());
+		assertEquals(adrLeclerc.getId(), donFind.get().getAdresse().getId());
+		assertEquals(Leclerc.getId(), donFind.get().getEntite().getId());
+		
+//		List<Don> dons = donRepo.findAll();
+//		assertEquals(1, dons.size());
+		
+		// LOT
+		Optional<Lot> lotFind = lotRepo.findById(pain.getId());
+		assertEquals("Pain", lotFind.get().getNom());
+		assertEquals(sdf.parse("20/05/2023"), lotFind.get().getDtPeremptionLot());
+		assertEquals("ouoio/ju/hh", lotFind.get().getPhoto());
+		assertEquals((long) 25, lotFind.get().getVolume());
+		assertEquals(Statut.DISPONIBLE, lotFind.get().getStatut());
+		assertEquals(donLeclerc.getId(), lotFind.get().getDon().getId());
+		
+		// DEMANDE
+		Optional<Demande> demandeFind = demandeRepo.findById(demandeDonPourTous.getId());
+		
+		try {
+			assertEquals(sdf.parse("22/05/2021"), demandeFind.get().getDtDemande());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		assertEquals(StatutNotif.ACCEPTER, demandeFind.get().getStatutNotif());
+		assertEquals(DonPourTous.getId(), demandeFind.get().getEntite().getId());
+		assertEquals(pain.getId(), demandeFind.get().getLot().getId());
+		
+		// MESSAGE
+		Optional<Message> messagefind = messageRepo.findById(messageDonPourTousLeclerc.getId());
+		assertEquals("Bonjour, Don Pour Tous souhaiterai bénéficier de ce don. Nous vous remercions par avance.", messagefind.get().getContenu());
+		assertEquals(false, messagefind.get().getDonneur());
+		assertEquals(sdf.parse("23/05/2021"), messagefind.get().getDtEnvoi());
+		assertEquals(demandeDonPourTous.getId(), messagefind.get().getDemande().getId());
+		
+		// PRODUITLOT
+		Optional<ProduitLot> produitLotfind = produitLotRepo.findById(chocolatNoirLot1.getId());
+		assertEquals(sdf.parse("02/02/2022"), produitLotfind.get().getDtPeremption());
+		assertEquals(1000L, produitLotfind.get().getQuantite());
+		assertEquals(chocolatNoir.getNom(), produitLotfind.get().getProduit().getNom());
+		assertEquals(chocolat.getId(), produitLotfind.get().getLot().getId());
+		
+		// PRODUIT
+		Optional<Produit> produitFind = produitRepo.findById(chocolatNoir.getNom());
+		assertEquals("chocolat noir", produitFind.get().getNom());
+		assertEquals(Type.EPICERIE_SUCREE, produitFind.get().getType());
+		
+		
 	
 	}
+	
+	
 
 }
