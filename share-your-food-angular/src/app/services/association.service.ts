@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Association} from "../model/association";
 import {AppConfigService} from "../app-config.service";
+import {Entreprise} from "../model/entreprise";
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +26,16 @@ export class AssociationHttpService {
   create(association: Association) {
 
     this.http.post<Association>(this.appConfig.backEndUrl +"association", association).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
+  createID(association: Association) {
+
+    this.http.post<Association>(this.appConfig.backEndUrl + "association", association).subscribe(resp => {
+      console.log(association.id);
+      association.id=resp.id;
+      console.log(association.id);
       this.load();
     }, error => console.log(error));
   }

@@ -11,6 +11,7 @@ import {LotHttpService} from "../services/lot.service";
 export class PageDonneurComponent implements OnInit {
 
   listLotNonDonneByEntite: Array<Lot>;
+  historique: Don = null;
 
   constructor(private lotService: LotHttpService) { }
 
@@ -30,6 +31,10 @@ export class PageDonneurComponent implements OnInit {
 
   delete(id: number) {
     this.lotService.deleteById(id);
+  }
+
+  afficheHistorique() {
+    this.historique = new Don();
   }
 
 }

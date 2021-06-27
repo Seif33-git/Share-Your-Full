@@ -8,6 +8,7 @@ import {CreationLotComponent} from "./creation-lot/creation-lot.component";
 import {TableauDeBordBeneficiaireComponent} from "./tableau-de-bord-beneficiaire/tableau-de-bord-beneficiaire.component";
 import {ConnexionComponent} from "./connexion/connexion.component";
 import {InscriptionComponent} from "./inscription/inscription.component";
+import {AdministrationComponent} from "./administration/administration.component";
 
 const routes: Routes = [
   {path: "accueil1", component: Accueil1Component},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'tableauDeBordBeneficiaire', component: TableauDeBordBeneficiaireComponent},
   {path: 'connexion', component: ConnexionComponent},
   {path: 'inscription', component: InscriptionComponent},
+  {path: 'administration', component: AdministrationComponent},
   {path: '**', component: PageNotFoundComponent},
 
 
