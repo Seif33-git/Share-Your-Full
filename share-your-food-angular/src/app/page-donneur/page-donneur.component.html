@@ -1,59 +1,63 @@
-<div class="container">
-  <div id="creaLotForm" class="card mt-3" style="display: yes;">
-    <div class="card-header bg-info text-white text-center">
-      <h2>Mes Dons en Cours</h2>
+<div class="container policeChampagne25">
+  <div>
+    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+      <p>MES DONS EN COURS</p>
     </div>
 
-    <p>En cours:</p>
-
-    <table class="table table-striped">
+    <table class="table">
       <thead>
-      <tr>
-        <th>Nom lot:</th>
-        <th>Quantité:</th>
-        <th>Message du bénéficiaire:</th>
-        <th></th>
+      <tr class="table-info policeChampagneCenter">
+        <th>LOT</th>
+        <th>QUANTITE</th>
+        <th>Message du bénéficiaire</th>
         <th></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let lot of listLot()">
+      <tr *ngFor="let lot of listLotNonDonneByEntite">
         <td>{{lot.nom}}</td>
         <td>{{lot.volume}}</td>
         <td></td>
-        <td><a class="btn btn-secondary btn-m" routerLinkActive="active" [routerLink]="['/lot']">Modifier</a></td>
-        <td><a class="btn btn-danger btn-m" (click)="delete(lot.id)">Supprimer</a></td>
+        <td><a class="btn btn-info btn-m" routerLinkActive="active" [routerLink]="['/lot']"><i class="fas fa-edit"></i> MODIFIER</a></td>
+        <td><a class="btn btn-secondary btn-m" (click)="delete(lot.id)"><i class="far fa-trash-alt"></i></a></td>
       </tr>
       </tbody>
     </table>
-  </div>
+<!--  </div>-->
 
 
+<!--    <div class="row">-->
+<!--          <button type="button"-->
+<!--                 class="btn btn-success btn-lg ml-auto mr-auto" routerLinkActive="active" [routerLink]="['/don']">+ NOUVEAU DON</button>-->
 
-  <div class="card-footer">
-    <div class="row">
-      <div class="col text-center">
-        <div class="btn-group btn-group-lg float-middle ml-auto mr-auto">
-          <button type="button"
-                  class="btn btn-success btn-lg ml-auto mr-auto" routerLinkActive="active" [routerLink]="['/don']">+ NOUVEAU DON</button>
-        </div>
-      </div>
+  <div class="row justify-content-center align-items-center text-center">
+    <div class="col">
+        <a class="btn btn-lg btn-warning btnImpact" [routerLink]="['/don']"><i class="fas fa-hand-holding-heart"></i> NOUVEAU DON</a>
+    </div>
+    <div class="col">
+      <img src="assets/panierDessin.png" class="mx-auto d-block">
+    </div>
+    <div class="col">
+        <a class="btn btn-lg btn-danger btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>
     </div>
   </div>
 
-  <div class="card-footer">
 
-    <p>Historique:</p>
+<div *ngIf="historique">
+  <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
+    <p>MON HISTORIQUE DE DONS</p>
+  </div>
 
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Nom lot:</th>
-        <th>Quantité:</th>
-        <th></th>
 
+  <table class="table">
+    <thead>
+    <tr class="table-danger policeChampagneCenter">
+      <th>LOT</th>
+      <th>QUANTITE</th>
+      <th></th>
       </tr>
       </thead>
+
       <tbody>
       <tr>
         <td></td>
@@ -62,6 +66,7 @@
       </tbody>
     </table>
 
-  </div>
 
 </div>
+</div>
+

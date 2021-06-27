@@ -88,4 +88,14 @@ public class Message {
 		this.version = version;
 	}
 
+	public Date getDtEnvoi() {
+		return dtEnvoi;
+	}
+
+	public void setDtEnvoi(Date dtEnvoi) {
+		this.dtEnvoi = dtEnvoi;
+	}
+	
+	
+
 }

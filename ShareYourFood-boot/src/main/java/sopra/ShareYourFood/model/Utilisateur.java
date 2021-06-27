@@ -17,6 +17,8 @@ import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import sopra.ShareYourFood.model.Views.ViewUtilisateurDetail;
+
 
 @Entity
 @Table(name = "utilisateur")
@@ -48,6 +50,7 @@ public class Utilisateur {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "entite_id")
+	@JsonView(Views.ViewUtilisateurDetail.class)
 	private Entite entite;
 
 	public Utilisateur() {

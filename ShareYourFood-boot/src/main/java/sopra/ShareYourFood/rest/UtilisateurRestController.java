@@ -48,6 +48,25 @@ public class UtilisateurRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
+	
+	@GetMapping("/{id}/detail")
+	@JsonView(Views.ViewUtilisateurDetail.class)
+	public Utilisateur detail(@PathVariable Long id) {
+
+		Optional<Utilisateur> optUtilisateur = utilisateurRepo.findByIdWithEntite(id);
+
+		if (optUtilisateur.isPresent()) {
+			return optUtilisateur.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+	}
+	
+	@GetMapping("/detail")
+	@JsonView(Views.ViewUtilisateurDetail.class)
+	public List<Utilisateur> findAllDetail() {
+		return utilisateurRepo.findAllWithEntite();
+	}
 
 	@PostMapping("")
 	public Utilisateur create(@RequestBody Utilisateur utilisateur) {
