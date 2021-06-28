@@ -20,9 +20,8 @@
         <td>{{lotDto.nomLot}}</td>
         <td>{{lotDto.quantiteLot}}</td>
         <td>{{lotDto.nomEntite}}</td>
-        <td></td>
-        <td><a class="btn btn-info btn-m" routerLinkActive="active" [routerLink]="['/lot']"><i class="fas fa-edit"></i> MODIFIER</a></td>
-<!--        <td><a class="btn btn-secondary btn-m" (click)="delete(lot.id)"><i class="far fa-trash-alt"></i></a></td>-->
+        <td><a class="btn btn-info btn-m" (click)="Accepter(lotDto.id)"><i class="fas fa-check"></i> Accepter</a>
+          <a class="btn btn-secondary btn-m"><i class="fas fa-trash-alt"></i> Refuser</a></td>
       </tr>
       </tbody>
     </table>

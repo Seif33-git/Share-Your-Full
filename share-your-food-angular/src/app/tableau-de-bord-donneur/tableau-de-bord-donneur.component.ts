@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {LotHttpService} from "../services/lot.service";
 import {dashboardGiverDTO} from "../model/dashboardGiverDTO";
 import {Don} from "../model/don";
+import {DemandeHttpService} from "../services/demande.service";
+import {Lot} from "../model/lot";
+import {Demande} from "../model/demande";
 
 @Component({
   selector: 'app-tableau-de-bord-donneur',
@@ -10,9 +13,11 @@ import {Don} from "../model/don";
 })
 export class TableauDeBordDonneurComponent implements OnInit {
 
-  constructor(private lotservice: LotHttpService) { }
+  constructor(private lotservice: LotHttpService, private demandeService: DemandeHttpService) { }
 
   listDashboardDonneur: Array<dashboardGiverDTO>;
+  lotCourant: Lot;
+  demandeCourante: Demande;
   historique: Don = null;
 
   ngOnInit(): void {
@@ -25,6 +30,12 @@ export class TableauDeBordDonneurComponent implements OnInit {
       resp=> {this.listDashboardDonneur = resp}
     );
   }
+
+  Accepter(idLot: number){
+    this.demandeService.accepterDemandeByLotId(idLot);
+
+  }
+
 
   afficheHistorique() {
     this.historique = new Don();

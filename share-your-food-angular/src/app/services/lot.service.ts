@@ -56,10 +56,11 @@ export class LotHttpService {
   }
 
   modify(lot: Lot): Observable<Lot> {
-
     return this.http.put<Lot>(this.appConfig.backEndUrl + "lot/" + lot.id, lot);
-
   }
+
+
+
 
   deleteById(id: number) {
     this.http.delete(this.appConfig.backEndUrl + "lot/" + id).subscribe(resp => {

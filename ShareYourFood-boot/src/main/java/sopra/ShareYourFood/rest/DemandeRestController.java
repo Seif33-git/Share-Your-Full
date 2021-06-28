@@ -22,6 +22,7 @@ import sopra.ShareYourFood.model.Demande;
 import sopra.ShareYourFood.model.Lot;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.IDemandeRepository;
+import sopra.ShareYourFood.repository.ILotRepository;
 
 @RestController
 @RequestMapping("/demande")
@@ -30,6 +31,9 @@ public class DemandeRestController {
 
 	@Autowired
 	private IDemandeRepository demandeRepo;
+	
+	@Autowired
+	private ILotRepository lotRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewDemande.class)
@@ -142,6 +146,12 @@ public class DemandeRestController {
 		demande = demandeRepo.save(demande);
 
 		return demande;
+	}
+	
+	@GetMapping("/demande-acceptee/{idLot}")
+	public void accepterDemande(@PathVariable Long idLot) {
+		demandeRepo.setDemandeAcceptee(idLot);
+		lotRepo.setLotReserve(idLot);
 	}
 
 	@DeleteMapping("/{id}")

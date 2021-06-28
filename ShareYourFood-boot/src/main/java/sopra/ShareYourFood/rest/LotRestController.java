@@ -138,6 +138,11 @@ public class LotRestController {
 		return listLotDto;
 	}
 	
+	@PutMapping("/lot-reserve/{idLot}")
+	public void reserverLot(@PathVariable Long idLot) {
+		lotRepo.setLotReserve(idLot);
+	}
+	
 //	@GetMapping("/advanceSearch")
 //	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
 //		

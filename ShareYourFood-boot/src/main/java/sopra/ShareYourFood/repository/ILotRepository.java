@@ -58,4 +58,9 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 	@Query("select d.entite.nom from Demande d where d.lot.id = :idLot")
 	String findNomEntiteLotByIdLot(@Param("idLot") Long idLot);
 	
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Lot l SET l.statut = sopra.ShareYourFood.model.Statut.RESERVE WHERE l.id = :idLot")
+	void setLotReserve(@Param("idLot") Long idLot);
 }
