@@ -14,20 +14,70 @@
 <div *ngIf="particulierForm">
     <div class="pt-5">
     <label for="nom">Nom:*</label>
-    <input type="text" class="form-control" id="nom" [(ngModel)]="particulierForm.nom" [readonly]="particulierForm.id"/>
+    <input type="text" class="form-control" id="nom" [(ngModel)]="particulierForm.nom" [readOnly]="particulierForm.id"/>
   </div>
 
   <div class="pt-3">
     <label for="prenom">Prénom:</label>
-    <input type="text" class="form-control" id="prenom" [(ngModel)]="particulierForm.prenom" [readonly]="particulierForm.id"/>
+    <input type="text" class="form-control" id="prenom" [(ngModel)]="particulierForm.prenom" [readOnly]="particulierForm.id"/>
   </div>
 
-  <a class="btn btn-lg btn-outline-warning mt-3" (click)="addUtilisateur()"><i class="fas fa-plus-circle"></i> Détails de connexion</a>
-  <div *ngIf="utilisateurParticulier">
-  <div class="pt-3">
-    <label for="pseudo">Pseudo:</label>
-    <input type="text" class="form-control" id="pseudo" [(ngModel)]="utilisateurParticulier.pseudo"/>
+  <div class="switch-field mt-4 policeChampagne25">
+    <span class="mr-3">Donneur: </span>
+    <input type="radio" id="radio-one" name="switch-one" value="true"[(ngModel)]="particulierForm.donneur" [attr.disabled]="particulierForm.id"/>
+    <label for="radio-one">Oui</label>
+    <input type="radio" id="radio-two" name="switch-one" value="false" [(ngModel)]="particulierForm.donneur" [attr.disabled]="particulierForm.id"/>
+    <label for="radio-two">Non</label>
   </div>
+
+  <div class="switch-field mt-4 policeChampagne25">
+    <span class="mr-3">Bénéficiare: </span>
+    <input type="radio" id="radio-one2" name="switch-one2" value="true"[(ngModel)]="particulierForm.beneficiaire" [attr.disabled]="particulierForm.id"/>
+    <label for="radio-one2">Oui</label>
+    <input type="radio" id="radio-two2" name="switch-one2" value="false" [(ngModel)]="particulierForm.beneficiaire" [attr.disabled]="particulierForm.id"/>
+    <label for="radio-two2">Non</label>
+  </div>
+
+  <fieldset [disabled]="isActiveBool">
+  <a class="btn btn-lg btn-outline-warning mt-3" (click)="saveEntiteParticulier()"><i class="fas fa-plus-circle"></i> Ajouter une adresse</a>
+  </fieldset>
+</div>
+<!--  LIEN AVEC ADRESSE (ADRESSE MAITRE)-->
+  <div *ngIf="particulierForm&&adresseParticulier">
+  <div class="pt-3">
+    <label for="rue">Rue:</label>
+    <input type="text" class="form-control" id="rue" [(ngModel)]="adresseParticulier.rue" [disabled]="isActiveBool2"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="complement">Complement:</label>
+    <input type="text" class="form-control" id="complement" [(ngModel)]="adresseParticulier.complement" [disabled]="isActiveBool2"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="codePostal">Code Postal:</label>
+    <input type="text" class="form-control" id="codePostal" [(ngModel)]="adresseParticulier.codePostal" [disabled]="isActiveBool2"/>
+  </div>
+
+  <div class="pt-3">
+    <label for="ville">Ville:</label>
+    <input type="text" class="form-control" id="ville" [(ngModel)]="adresseParticulier.ville" [disabled]="isActiveBool2"/>
+  </div>
+
+    <fieldset [disabled]="isActiveBool2">
+    <a class="btn btn-lg btn-outline-warning mt-3" (click)="saveAdresseParticulier()"><i class="fas fa-plus-circle"></i> Détails de connexion</a>
+    </fieldset>
+  </div>
+
+<!--  !!FIN ADRESSE-->
+
+    <div *ngIf="particulierForm&&utilisateurParticulier">
+
+
+      <div class="pt-3">
+        <label for="pseudo">Pseudo:</label>
+        <input type="text" class="form-control" id="pseudo" [(ngModel)]="utilisateurParticulier.pseudo"/>
+      </div>
 
   <div class="pt-3">
     <label for="email">Email:*</label>
@@ -38,20 +88,15 @@
     <input type="text" class="form-control" id="motdepasse" [(ngModel)]="utilisateurParticulier.motDePasse"/>
   </div>
 
-
-<!--  <div class="pt-3"><label for="adresse">Adresse:*</label>-->
-<!--    <input type="text" class="form-control" id="adresse"/>-->
-<!--  </div>-->
-
   <span>Les champs * sont obligatoires</span>
 
 
   <div class="mt-5">
     <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="annulerTout()"><i class="fas fa-undo-alt"></i> Retour</a>
-    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieParticulier()"><i class="fas fa-check"></i> Valider</a>
+    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurParticulier()"><i class="fas fa-check"></i> Valider</a>
   </div>
 </div>
-</div>
+
 
   <!--IF ON CLICK SUR ENTREPRISE-->
   <div *ngIf="entrepriseForm">
@@ -74,18 +119,17 @@
     <table class="table mt-3">
     <thead>
     <tr>
-      <th>Nom de l'entreprise</th>
+      <th>NOM de l'entreprise</th>
       <th>SIRET</th>
-<!--      <th>Adresse</th>-->
-      <th></th>
+      <th>CATEGORIE</th>
     </tr>
     </thead>
     <tbody>
     <tr>
       <td>{{entrepriseSelect.nom}}</td>
       <td>{{entrepriseSelect.siret}}</td>
-<!--      <td>{{entrepriseForm.adresse}}</td>-->
-      <td><a class="btn btn-secondary" (click)="delete(entrepriseSelect.id)"><i class="far fa-trash-alt"></i></a></td>
+      <td>{{entrepriseSelect.categorie}}</td>
+      <td><a class="btn btn-secondary" (click)="delete(entrepriseSelect.id)" *ngIf="flagDelete"><i class="far fa-trash-alt"></i></a></td>
     </tr>
     </tbody>
   </table>
@@ -93,27 +137,74 @@
 
     <div *ngIf="nouvelleEntreprise">
       <div class="pt-5">
-        <label for="nom">Nom de l'entreprise:*</label>
-        <input type="text" class="form-control" id="nom" [(ngModel)]="nouvelleEntreprise.nom"/>
+        <label for="nom2">Nom de l'entreprise:*</label>
+        <input type="text" class="form-control" id="nom2" [(ngModel)]="nouvelleEntreprise.nom" [readOnly]="nouvelleEntreprise.id"/>
       </div>
 
       <div class="pt-3">
         <label for="siret">SIRET de l'entreprise:*</label>
-        <input type="text" class="form-control" id="siret" [(ngModel)]="nouvelleEntreprise.siret"/>
+        <input type="text" class="form-control" id="siret" [(ngModel)]="nouvelleEntreprise.siret" [readOnly]="nouvelleEntreprise.id"/>
       </div>
 
-<!--      <div class="pt-3">-->
-<!--        <label for="adresse">Adresse de l'entreprise:</label>-->
-<!--        <input type="text" class="form-control" id="adresse" [(ngModel)]="nouvelleEntreprise.categorie"/>-->
-<!--      </div>-->
+      <div class="form-group">
+        <label for="categorie">Catégorie de l'entreprise:</label>
+        <select class="form-control" id="categorie" [(ngModel)]="nouvelleEntreprise.categorie" [attr.disabled]="nouvelleEntreprise.id">
+          <option value="" disabled>Choisir une catégorie</option>
+          <option *ngFor="let categ of listCategories()" value="{{categ}}">{{categ}}</option>
+        </select>
+      </div>
+
+      <div class="switch-field mt-4 policeChampagne25">
+        <span class="mr-3">Donneur: </span>
+        <input type="radio" id="radio-one3" name="switch-one3" value="true" [(ngModel)]="nouvelleEntreprise.donneur" [attr.disabled]="nouvelleEntreprise.id"/>
+        <label for="radio-one3">Oui</label>
+        <input type="radio" id="radio-two3" name="switch-one3" value="false" [(ngModel)]="nouvelleEntreprise.donneur" [attr.disabled]="nouvelleEntreprise.id"/>
+        <label for="radio-two3">Non</label>
+      </div>
+
+      <div class="switch-field mt-4 policeChampagne25">
+        <span class="mr-3">Bénéficiare: </span>
+        <input type="radio" id="radio-one4" name="switch-one4" value="true" [(ngModel)]="nouvelleEntreprise.beneficiaire" [attr.disabled]="nouvelleEntreprise.id"/>
+        <label for="radio-one4">Oui</label>
+        <input type="radio" id="radio-two4" name="switch-one4" value="false" [(ngModel)]="nouvelleEntreprise.beneficiaire" [attr.disabled]="nouvelleEntreprise.id"/>
+        <label for="radio-two4">Non</label>
+      </div>
+
+      <fieldset [disabled]="isActiveBool3">
+      <a class="btn btn-lg btn-outline-warning mt-3" (click)="saveEntiteEntreprise()"><i class="fas fa-plus-circle"></i> Ajouter une adresse</a>
+      </fieldset>
+      <!--  LIEN AVEC ADRESSE (ADRESSE MAITRE)-->
+      <div *ngIf="nouvelleAdresseEntreprise">
+      <div class="pt-3">
+        <label for="rueE">Rue:*</label>
+        <input type="text" class="form-control" id="rueE" [(ngModel)]="nouvelleAdresseEntreprise.rue"/>
+      </div>
+
+      <div class="pt-3">
+        <label for="complementE">Complement:</label>
+        <input type="text" class="form-control" id="complementE" [(ngModel)]="nouvelleAdresseEntreprise.complement"/>
+      </div>
+
+      <div class="pt-3">
+        <label for="codePostalE">Code Postal:*</label>
+        <input type="text" class="form-control" id="codePostalE" [(ngModel)]="nouvelleAdresseEntreprise.codePostal"/>
+      </div>
+
+      <div class="pt-3">
+        <label for="villeE">Ville:*</label>
+        <input type="text" class="form-control" id="villeE" [(ngModel)]="nouvelleAdresseEntreprise.ville"/>
+      </div>
+      </div>
+
+<!--      !!FIN ADRESSE-->
 
       <div class="mt-5">
         <a class="btn btn-sm btn-warning btnImpact mr-3" (click)="annuler()"><i class="fas fa-undo-alt"></i></a>
-        <a class="btn btn-sm btn-info btnImpact" (click)="addTableau()"><i class="fas fa-check"></i></a>
+        <a class="btn btn-sm btn-info btnImpact" *ngIf="nouvelleAdresseEntreprise" (click)="addTableauEntreprise()"><i class="fas fa-check"></i></a>
       </div>
     </div>
 
-
+    <div *ngIf="entrepriseSelect">
   <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
   <p>DONNEES PERSONNELLES</p>
   </div>
@@ -140,6 +231,7 @@
     <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieEntreprise()"><i class="fas fa-check"></i> Valider</a>
   </div>
   </div>
+  </div>
 
   <!--IF ON CLICK SUR ASSOCIATION-->
   <div *ngIf="associationForm">
@@ -162,7 +254,6 @@
     <tr>
       <th>Nom de l'association</th>
       <th>Numéro associatif</th>
-<!--      <th>Adresse</th>-->
       <th></th>
     </tr>
     </thead>
@@ -170,8 +261,7 @@
     <tr>
       <td>{{associationSelect.nom}}</td>
       <td>{{associationSelect.numeroAssociation}}</td>
-<!--      <td>-</td>-->
-      <td><a class="btn btn-secondary" (click)="delete(associationSelect.id)"><i class="far fa-trash-alt"></i></a></td>
+      <td><a class="btn btn-secondary" (click)="delete(associationSelect.id)" *ngIf="flagDelete"><i class="far fa-trash-alt"></i></a></td>
     </tr>
     </tbody>
   </table>
@@ -180,25 +270,65 @@
     <div *ngIf="nouvelleAssociation">
       <div class="pt-5">
         <label for="nomA">Nom de l'association:*</label>
-        <input type="text" class="form-control" id="nomA" [(ngModel)]="nouvelleAssociation.nom"/>
+        <input type="text" class="form-control" id="nomA" [(ngModel)]="nouvelleAssociation.nom" [readOnly]="nouvelleAssociation.id"/>
       </div>
 
       <div class="pt-3">
         <label for="numeroAsso">Numéro associatif:*</label>
-        <input type="text" class="form-control" id="numeroAsso" [(ngModel)]="nouvelleAssociation.numeroAssociation"/>
+        <input type="text" class="form-control" id="numeroAsso" [(ngModel)]="nouvelleAssociation.numeroAssociation" [readOnly]="nouvelleAssociation.id"/>
       </div>
 
-      <!--      <div class="pt-3">-->
-      <!--        <label for="adresseA">Adresse de l'association:</label>-->
-      <!--        <input type="text" class="form-control" id="adresseA" [(ngModel)]="nouvelleAssociation.adresse"/>-->
-      <!--      </div>-->
+      <div class="switch-field mt-4 policeChampagne25">
+        <span class="mr-3">Donneur: </span>
+        <input type="radio" id="radio-one5" name="switch-one5" value="true" [(ngModel)]="nouvelleAssociation.donneur" [attr.disabled]="nouvelleAssociation.id"/>
+        <label for="radio-one5">Oui</label>
+        <input type="radio" id="radio-two5" name="switch-one5" value="false" [(ngModel)]="nouvelleAssociation.donneur" [attr.disabled]="nouvelleAssociation.id"/>
+        <label for="radio-two5">Non</label>
+      </div>
+
+      <div class="switch-field mt-4 policeChampagne25">
+        <span class="mr-3">Bénéficiare: </span>
+        <input type="radio" id="radio-one6" name="switch-one6" value="true" [(ngModel)]="nouvelleAssociation.beneficiaire" [attr.disabled]="nouvelleAssociation.id"/>
+        <label for="radio-one6">Oui</label>
+        <input type="radio" id="radio-two6" name="switch-one6" value="false" [(ngModel)]="nouvelleAssociation.beneficiaire" [attr.disabled]="nouvelleAssociation.id"/>
+        <label for="radio-two6">Non</label>
+      </div>
+
+      <fieldset [disabled]="isActiveBool4">
+      <a class="btn btn-lg btn-outline-warning mt-3" (click)="saveEntiteAssociation()"><i class="fas fa-plus-circle"></i> Ajouter une adresse</a>
+      </fieldset>
+      <!--  LIEN AVEC ADRESSE (ADRESSE MAITRE)-->
+      <div *ngIf="nouvelleAdresseAssociation">
+        <div class="pt-3">
+          <label for="rueA">Rue:*</label>
+          <input type="text" class="form-control" id="rueA" [(ngModel)]="nouvelleAdresseAssociation.rue"/>
+        </div>
+
+        <div class="pt-3">
+          <label for="complementA">Complement:</label>
+          <input type="text" class="form-control" id="complementA" [(ngModel)]="nouvelleAdresseAssociation.complement"/>
+        </div>
+
+        <div class="pt-3">
+          <label for="codePostalA">Code Postal:*</label>
+          <input type="text" class="form-control" id="codePostalA" [(ngModel)]="nouvelleAdresseAssociation.codePostal"/>
+        </div>
+
+        <div class="pt-3">
+          <label for="villeA">Ville:*</label>
+          <input type="text" class="form-control" id="villeA" [(ngModel)]="nouvelleAdresseAssociation.ville"/>
+        </div>
+      </div>
+
+      <!--      !!FIN ADRESSE-->
 
       <div class="mt-5">
         <a class="btn btn-sm btn-warning btnImpact mr-3" (click)="annuler()"><i class="fas fa-undo-alt"></i></a>
-        <a class="btn btn-sm btn-info btnImpact" (click)="addTableau()"><i class="fas fa-check"></i></a>
+        <a class="btn btn-sm btn-info btnImpact" *ngIf="nouvelleAdresseAssociation" (click)="addTableauAssociation()"><i class="fas fa-check"></i></a>
       </div>
     </div>
 
+    <div *ngIf="associationSelect">
   <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
     <p>DONNEES PERSONNELLES</p>
   </div>

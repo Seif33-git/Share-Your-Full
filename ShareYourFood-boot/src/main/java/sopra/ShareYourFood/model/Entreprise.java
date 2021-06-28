@@ -20,7 +20,7 @@ public class Entreprise extends Entite {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "categorie", length = 45)
-	@JsonView(Views.ViewEntreprise.class)
+	@JsonView(Views.ViewCommon.class)
 	private Categorie categorie;
 
 	public Entreprise() {
