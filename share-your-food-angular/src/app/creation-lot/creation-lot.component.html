@@ -19,7 +19,7 @@
       </div>
       <div class="form-group">
         <label for="imageLot">Insérer une image (Format jpeg, png)
-          :</label> <input type="image" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
+          :</label> <input type="text" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
       </div>
       <table id="lotSpe" class="table">
         <tr class="row">
@@ -40,10 +40,11 @@
         </tr>
       </table>
       </thead>
-      <tbody id="produitlot">
+
+      <tbody id="produitlot"  *ngFor="let produitLForm of produitLotForms">
       <tr class="row" id="f">
         <td class="col-md-3">
-          <select class="form-control" id="produit" [(ngModel)]="lotForm.produit">
+          <select class="form-control" id="produit" [(ngModel)]="produitLotForm.produit.nom">
             <option value="">Choisir un Produit :</option>
             <option *ngFor="let produit of listProduit()" [value]="produit.nom">{{produit.nom}}</option>
           </select>
@@ -52,16 +53,17 @@
           <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLotForm.quantite">
         </td>
         <td class="col-md-3">
-          <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLotForm.dtPeremption">
+          <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLotForm.dtPeremption ">
         </td>
         <td class="col-md-3">
           <button type="button" class="btn btn-success btn-md"
-                  onclick="addLot();">+
+                  (click) ="addProduitLot();">+
           </button>
-          <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
+          <a class="btn btn-danger" (click) ="deleteProduitLot();"><i class="fa fa-trash"></i></a>
         </td>
       </tr>
       </tbody>
+
 
       <div class="card-footer">
         <div class="row">
@@ -69,7 +71,7 @@
             <a class="btn float-left btn-lg btn-outline-info" (click)="addProduit()"><i class="fas fa-plus-square"></i>
               Nouveau Produit</a>
             <button type="button"
-                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" onclick="saveLot();">VALIDER
+                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" (click)="saveLot();">VALIDER
             </button>
           </div>
         </div>

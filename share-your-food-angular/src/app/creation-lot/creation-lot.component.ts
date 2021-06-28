@@ -5,6 +5,7 @@ import {ProduitHttpService} from "../services/produit.service";
 import {LotHttpService} from "../services/lot.service";
 import {ProduitLot} from "../model/produitLot";
 import {ProduitLotHttpService} from "../services/produit-lot.service";
+import {endWith} from "rxjs/operators";
 
 
 @Component({
@@ -16,7 +17,8 @@ export class CreationLotComponent implements OnInit {
 
   lotForm: Lot = new Lot();
   produitForm: Produit = null;
-  produitLotForm: ProduitLot = null;
+  produitLotForm: ProduitLot = new ProduitLot();
+  produitLotForms: Array<ProduitLot> = new Array<ProduitLot>();
   types: Array<String> = new Array<String>();
   statuts: Array<String> = new Array<String>();
 
@@ -24,15 +26,16 @@ export class CreationLotComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.produitLotForms.push(this.produitLotForm);
   }
 
   listLot(): Array<Lot> {
     return this.lotService.findAll();
   }
 
-/*  listProduitLot(): Array<ProduitLot> {
+ listProduitLot(): Array<ProduitLot> {
     return this.produitLotService.findAll();
-  }*/
+  }
 
   listStatut(): Array<string> {
     return this.lotService.statuts;
@@ -46,14 +49,13 @@ export class CreationLotComponent implements OnInit {
     return this.produitService.findAll();
   }
 
-  listProduitLot(): Array<ProduitLot>{
-    return this.produitLotService.findAll();
-  }
-
-  addLot() {
-    this.lotForm = new Lot();
-    this.lotForm.produit = new Produit();
+   addProduitLot() {
+    this.produitLotForms.push (new ProduitLot());
    }
+
+  deleteProduitLot(){
+    this.produitLotForms.splice(1,1);
+  }
 
   editLot(id: number) {
     this.lotService.findById(id).subscribe(resp=> {
@@ -62,7 +64,6 @@ export class CreationLotComponent implements OnInit {
     this.produitLotService.findById(id).subscribe(resp=> {
       this.produitLotForm = resp;
     }, err => console.log(err));
-
   }
 
   saveLot() {
@@ -97,15 +98,8 @@ export class CreationLotComponent implements OnInit {
     this.produitForm = new Produit();
   }
   saveProduit(){
-    if (!this.produitForm.nom) {
-      this.produitService.create(this.produitForm);
-    } else {
-      this.produitService.modify(this.produitForm).subscribe(resp => {
-        this.produitService.load();
-      }, error => console.log(error));
-    }
+    this.produitService.create(this.produitForm);
     this.produitForm = null;
-
   }
   editProduit(nom: string) {
     this.produitService.findById(nom).subscribe(resp=> {

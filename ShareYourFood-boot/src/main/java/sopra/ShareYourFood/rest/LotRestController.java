@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import sopra.ShareYourFood.dto.CreationLotDTO;
 import sopra.ShareYourFood.model.Lot;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.ILotRepository;
@@ -50,28 +51,26 @@ public class LotRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
-	
 
-	
 	@GetMapping("/tri-par-volume")
 	@JsonView(Views.ViewLot.class)
 	public List<Lot> findLotGrosVolume() {
 		return lotRepo.findAllLotsDonneTrieParVolume(); // .subList(0, 6)
 	}
-	
+
 	@GetMapping("/count-lots")
 	@JsonView(Views.ViewLot.class)
 	public int compteurLot() {
 		return lotRepo.findAllLotsDonne();
 	}
-	
+
 	@GetMapping("/non-donne-by-entite/{idEntite}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
 	public List<Lot> findNonDonneByEntite(@PathVariable Long idEntite) {
 		return lotRepo.findAllNonDonneByEntiteById(idEntite);
 	}
-	
+
 	@GetMapping("/donne-by-entite/{idEntite}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
@@ -79,18 +78,15 @@ public class LotRestController {
 		return lotRepo.findAllDonneByEntiteById(idEntite);
 	}
 
-	
-
-	
 	@GetMapping("/TableauDeBordBeneficiaire/historique/{idEntite}/")
 	@JsonView(Views.ViewLot.class)
 	public List<Lot> findTBBH(@PathVariable Long idEntite) {
-		List<Lot> lots =lotRepo.findAllDonneEtDemandeArchiveeByEntiteById(idEntite);
-		
+		List<Lot> lots = lotRepo.findAllDonneEtDemandeArchiveeByEntiteById(idEntite);
+
 		return lots;
-		
+
 	}
-	
+
 	@PostMapping("")
 	public Lot create(@RequestBody Lot lot) {
 		lot = lotRepo.save(lot);
@@ -114,11 +110,22 @@ public class LotRestController {
 		lotRepo.setLotOfDemandeNull(id);
 		lotRepo.deleteById(id);
 	}
-	
-//	public DashboardGiverDTO dashboard() {
+
+//	public CreationLotDTO creationLot() {
+//
+//		CreationLotDTO l = new CreationLotDTO();
+//
+//		return l;
+//	}
+//
+//	@PutMapping("/{id}")
+//	public Lot updateCreationLot(@RequestBody CreationLotDTO creationLot, @PathVariable Long id) {
+//		return null;
 //
 //	}
-	
+
+}
+
 //	@GetMapping("/advanceSearch")
 //	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
 //		
@@ -126,4 +133,3 @@ public class LotRestController {
 //		
 //		return lots;
 //	}
-}

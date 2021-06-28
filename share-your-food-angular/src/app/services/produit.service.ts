@@ -31,13 +31,7 @@ export class ProduitHttpService {
     }, error => console.log(error));
   }
 
-  modify(produit: Produit): Observable<Produit> {
-
-    return this.http.put<Produit>(this.appConfig.backEndUrl + "produit/" + produit.nom, produit);
-
-  }
-
-  deleteById(nom: string) {
+   deleteById(nom: string) {
     this.http.delete(this.appConfig.backEndUrl +  "produit/" + nom).subscribe(resp => {
       this.load();
     }, error => console.log(error));

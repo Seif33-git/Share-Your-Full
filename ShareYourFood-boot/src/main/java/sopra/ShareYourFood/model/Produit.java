@@ -46,11 +46,11 @@ public class Produit {
 		this.nom = nom;
 	}
 
-	public Type getType() {
+	public Type getTyype() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setTyype(Type type) {
 		this.type = type;
 	}
 
