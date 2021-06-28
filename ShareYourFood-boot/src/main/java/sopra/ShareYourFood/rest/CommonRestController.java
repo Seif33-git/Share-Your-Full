@@ -10,7 +10,7 @@ import sopra.ShareYourFood.model.Statut;
 import sopra.ShareYourFood.model.Type;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("")
 @CrossOrigin("*")
 public class CommonRestController {
 

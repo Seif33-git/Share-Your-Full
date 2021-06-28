@@ -42,10 +42,6 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 //	List<Lot> findAllByDemande(@Param("idEntite") Long idEntite);
 	
 	
-	
-
-	
-	
 	@Query("select distinct d.lot from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
 			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
 			+ " and d.entite.id = :id")
@@ -58,5 +54,8 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 	void setLotOfDemandeNull(@Param("id") Long id);
 	
 	
+	//DASHBOARD DONNEUR
+	@Query("select d.entite.nom from Demande d where d.lot.id = :idLot")
+	String findNomEntiteLotByIdLot(@Param("idLot") Long idLot);
 	
 }

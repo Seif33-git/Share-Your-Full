@@ -1,9 +1,18 @@
 package sopra.ShareYourFood.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import sopra.ShareYourFood.model.Views;
+
 public class DashboardGiverDTO {
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
-	private String message;
-	private int quantite;
+	@JsonView(Views.ViewCommon.class)
+	private String nomLot;
+	@JsonView(Views.ViewCommon.class)
+	private Long quantiteLot;
+	@JsonView(Views.ViewCommon.class)
+	private String nomEntite;
 
 	public DashboardGiverDTO() {
 		super();
@@ -17,20 +26,30 @@ public class DashboardGiverDTO {
 		this.id = id;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getNomLot() {
+		return nomLot;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setNomLot(String nomLot) {
+		this.nomLot = nomLot;
 	}
 
-	public int getQuantite() {
-		return quantite;
+	public Long getQuantiteLot() {
+		return quantiteLot;
 	}
 
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
+	public void setQuantiteLot(Long quantiteLot) {
+		this.quantiteLot = quantiteLot;
 	}
+
+	public String getNomEntite() {
+		return nomEntite;
+	}
+
+	public void setNomEntite(String nomEntite) {
+		this.nomEntite = nomEntite;
+	}
+
+	
 
 }

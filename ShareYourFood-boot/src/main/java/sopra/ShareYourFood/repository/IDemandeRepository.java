@@ -68,7 +68,7 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 			+ " and d.entite.id = :id")
 	List<Demande> findAllNonDonneEtDemandeAccOuPasRepByEntiteById(@Param("id") Long id);
 
-	
+	//DTO DASHBOARD DONNEUR
 	
 	
 	
