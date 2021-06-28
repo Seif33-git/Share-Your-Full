@@ -50,7 +50,7 @@ public class DemandeRestController {
 		}
 	}
 	@GetMapping("/list-lot-demande/{idEntite}")
-	@JsonView(Views.ViewLot.class)
+	@JsonView(Views.ViewDemandeWithLot.class)
 	public List<Demande> findAllAccByEntite(@PathVariable Long idEntite){
 		return demandeRepo.findAllNonDonneEtDemandeAccOuPasRepByEntiteById(idEntite);
 	}
@@ -147,5 +147,20 @@ public class DemandeRestController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		demandeRepo.deleteById(id);
+	}
+	@GetMapping("/list-lot-demande-historique/{idEntite}")
+	@JsonView(Views.ViewDemandeWithLot.class)
+	public List<Demande> findTBBH(@PathVariable Long idEntite) {
+		List<Demande> demandes =demandeRepo.findAllDonneEtDemandeArchiveeByEntiteById(idEntite);
+		
+		return demandes;
+		
+	}
+	@GetMapping("/trouverNomEntiteByDemandeId/{idDemande}")
+	@JsonView(Views.ViewCommon.class)
+	public String findNomEntiteByDemandeId(@PathVariable Long idDemande) {
+		String nomEntite = demandeRepo.findNomEntiteByDemandeId(idDemande).get();
+		return nomEntite;
+		
 	}
 }

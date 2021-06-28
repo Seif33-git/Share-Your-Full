@@ -82,14 +82,7 @@ public class LotRestController {
 	
 
 	
-	@GetMapping("/TableauDeBordBeneficiaire/historique/{idEntite}/")
-	@JsonView(Views.ViewLot.class)
-	public List<Lot> findTBBH(@PathVariable Long idEntite) {
-		List<Lot> lots =lotRepo.findAllDonneEtDemandeArchiveeByEntiteById(idEntite);
-		
-		return lots;
-		
-	}
+	
 	
 	@PostMapping("")
 	public Lot create(@RequestBody Lot lot) {
