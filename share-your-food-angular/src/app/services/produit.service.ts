@@ -10,7 +10,7 @@ import {AppConfigService} from "../app-config.service";
 export class ProduitHttpService {
 
   produits: Array<Produit>;
-  types: Array<string>
+  types: Array<string>;
 
   constructor(private http: HttpClient, private appConfig: AppConfigService) {
     this.load()

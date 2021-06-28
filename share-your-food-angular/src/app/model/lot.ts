@@ -8,7 +8,7 @@ export class Lot {
   dtPeremptionLot: string;
   photo: string;
   statut: string;
-  produit: Array<Produit> = new Array<Produit>();
+  produit: Produit = new Array<Produit>();
 
 
   constructor(id?: number, version?: number, nom?: string, volume?: number, dtPeremptionLot?: string, photo?: string, statut?: string) {
