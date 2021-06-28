@@ -76,71 +76,52 @@ public class Entite {
 		return dons;
 	}
 
-//	public void setDons(List<Don> dons) {
-//		this.dons = dons;
-//	}
+	public void setDons(List<Don> dons) {
+		this.dons = dons;
+	}
 
 	public List<Adresse> getAdresses() {
 		return adresses;
 	}
 
-//	public void setAdresses(List<Adresse> adresses) {
-//		this.adresses = adresses;
-//	}
+	public void setAdresses(List<Adresse> adresses) {
+		this.adresses = adresses;
+	}
 
 	public List<Demande> getDemandes() {
 		return demandes;
 	}
 
-//	public void setDemandes(List<Demande> demandes) {
-//		this.demandes = demandes;
-//	}
+	public void setDemandes(List<Demande> demandes) {
+		this.demandes = demandes;
+	}
 
 	public List<Utilisateur> getUtilisateurs() {
 		return utilisateurs;
 	}
 
-//	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
-//		this.utilisateurs = utilisateurs;
-//	}
+	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+		this.utilisateurs = utilisateurs;
+	}
 	public boolean isDonneur() {
 		return donneur;
 	}
 	public void setDonneur(boolean donneur) {
 		this.donneur = donneur;
 	}
+	
 	public boolean isBeneficiaire() {
 		return beneficiaire;
 	}
 	public void setBeneficiaire(boolean beneficiaire) {
 		this.beneficiaire = beneficiaire;
 	}
-
-	public void addDon(Don don) {
-		this.dons.add(don);
-		don.setEntite(this);
-	}
-
-	public void addDemande(Demande demande) {
-		this.demandes.add(demande);
-		demande.setEntite(this);
-	}
-
-	public void addUtilisateur(Utilisateur utilisateur) {
-		this.utilisateurs.add(utilisateur);
-		utilisateur.setEntite(this);
-	}
-	
-	public void addAdresse(Adresse adresse) {
-		this.adresses.add(adresse);
-		adresse.setEntite(this);
-	}
 	
 
-	@Override
-	public String toString() {
-		return "Entite [id=" + id + ", nom=" + nom + ", donneur=" + donneur + ", beneficiaire=" + beneficiaire + "]";
-	}
+	
+	
+
+	
 	
 
 }
