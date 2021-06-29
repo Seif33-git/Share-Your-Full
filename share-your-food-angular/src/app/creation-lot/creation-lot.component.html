@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card mt-3" >
+  <div class="card mt-3">
 
     <div class="card-header bg-info text-white text-center">
       <h2>Création d'un Lot</h2>
@@ -7,26 +7,26 @@
 
     <div class="card-body">
       <div class="form-group">
-        <label for="nom">Nom du Lot :</label>
-        <input type="text" class="form-control" id="nom" [(ngModel)]="lotForm.nom">
+        <label for="nomLot">Nom du Lot :</label>
+        <input type="text" class="form-control" id="nomLot" [(ngModel)]="lotForm.nom">
       </div>
       <div class="form-group">
-        <label for="categorie">Choix de la catégorie (Une catégorie à la fois) :</label>
-        <select class="form-control" id="type" >
+        <label for="type">Choix du type (Une catégorie à la fois) :</label>
+        <select class="form-control" id="type">
           <option value="">Choisir un type</option>
           <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="imageLot">Insérer une image (Format jpeg, png)
-          :</label> <input type="image" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
+          :</label> <input type="text" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
       </div>
       <table id="lotSpe" class="table">
         <tr class="row">
           <th class="col-md-3">Date de Péremption Lot:</th>
-          <th class="col-md-2"><label id="dtPeremption"> -----   </label></th>
-          <th class="col-md-3">Volume Lot :  </th>
-          <th class="col-md-2"> <label id="volume"> ----- </label> </th>
+          <th class="col-md-3"><label id="dtPeremption"> ----- </label></th>
+          <th class="col-md-3">Volume Lot :</th>
+          <th class="col-md-3"><label id="volume"> ----- </label></th>
         </tr>
       </table>
 
@@ -36,40 +36,43 @@
           <th class="col-md-3">Nom du produit:</th>
           <th class="col-md-3">Quantité :</th>
           <th class="col-md-3">Date de péremption:</th>
-          <th class="col-md-3"> </th>
+          <th class="col-md-3"></th>
         </tr>
       </table>
       </thead>
-      <tbody>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-3">
-            <select class="form-control" id="produit" [(ngModel)]="lotForm.produit">
-              <option value="">Choisir un Produit :</option>
-              <option *ngFor="let produit of listProduit()" [value]="produit.nom">{{produit.nom}}</option>
-            </select>
-          </div>
-          <div class="col-md-3">
-            <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLotForm.quantite">
-          </div>
-          <div class="col-md-3">
-            <input type="number" class="form-control" id="peremption" [(ngModel)]="produitLotForm.dtPeremption">
-          </div>
-          <div class="col-md-3">
-            <button type="button" class="btn btn-success btn-md"
-                    onclick="add();">Ajouter</button>
-          </div>
-        </div>
-      </div>
+
+      <tbody id="produitlot"  *ngFor="let produitLForm of produitLotForms">
+      <tr class="row" id="f">
+        <td class="col-md-3">
+          <select class="form-control" id="produit" [(ngModel)]="produitLotForm.produit.nom">
+            <option value="">Choisir un Produit :</option>
+            <option *ngFor="let produit of listProduit()" [value]="produit.nom">{{produit.nom}}</option>
+          </select>
+        </td>
+        <td class="col-md-3">
+          <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLotForm.quantite">
+        </td>
+        <td class="col-md-3">
+          <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLotForm.dtPeremption ">
+        </td>
+        <td class="col-md-3">
+          <button type="button" class="btn btn-success btn-md"
+                  (click) ="addProduitLot();">+
+          </button>
+          <a class="btn btn-danger" (click) ="deleteProduitLot();"><i class="fa fa-trash"></i></a>
+        </td>
+      </tr>
       </tbody>
+
 
       <div class="card-footer">
         <div class="row">
           <div class="col text-center">
-            <div class="btn-group btn-group-lg float-middle ml-auto mr-auto">
-              <button type="button"
-                      class="btn btn-success btn-lg ml-auto mr-auto" onclick="add();">VALIDER</button>
-            </div>
+            <a class="btn float-left btn-lg btn-outline-info" (click)="addProduit()"><i class="fas fa-plus-square"></i>
+              Nouveau Produit</a>
+            <button type="button"
+                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" (click)="saveLot();">VALIDER
+            </button>
           </div>
         </div>
       </div>
@@ -78,37 +81,34 @@
 </div>
 
 
-<div class="container">
-
-  <div id="creaLotForm" class="card mt-3" style="display: yes;">
+<div *ngIf="produitForm">
+  <div id="creaProduitForm" class="card mt-3">
     <div class="card-header bg-info text-white text-center">
       <h2>Création d'un Produit</h2>
     </div>
     <div class="card-body">
-
       <div class="form-group">
-        <label for="nom">Nom du Produit :</label> <input type="text"
-                                                         class="form-control" id="nom">
+        <label for="nom">Nom du Produit :</label>
+        <input type="text" class="form-control" id="nom" [(ngModel)]="produitForm.nom">
       </div>
-
       <div class="form-group">
-        <label for="categorie">Choix de la catégorie :</label> <select
-        id="categorie" class="form-control">
-        <option value="categorie1">Produit Frais</option>
-        <option value="categorie2">Epicerie</option>
-        <option value="categorie3">Laitage</option>
+        <label for="typeProduit">Choix du type de produit :</label> <select
+        id="typeProduit" class="form-control" [(ngModel)]="produitForm.type">
+        <option value="">Choisir un type</option>
+        <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
       </select>
       </div>
     </div>
 
     <div class="card-footer">
-      <div class="row">
-        <div class="col text-center">
-          <div class="btn-group btn-group-lg float-middle ml-auto mr-auto">
-            <button type="button"
-                    class="btn btn-success btn-lg ml-auto mr-auto" onclick="add();">VALIDER</button>
-          </div>
-        </div>
+      <div class="col text-center">
+        <button type="button"
+                class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" (click)="saveProduit();">Ajouter le
+          produit
+        </button>
+        <button type="button" class="btn btn-warning" btn-float-left (click)="cancelProduit()">
+          <i class="fa fa-undo"></i>
+        </button>
       </div>
     </div>
   </div>
