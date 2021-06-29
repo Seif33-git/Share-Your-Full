@@ -39,7 +39,6 @@ public class EntrepriseRestController {
 		return entiteRepo.findAllEntreprise();
 	}
 
-
 	@GetMapping("/{id}")
 	@JsonView(Views.ViewEntreprise.class)
 	public Entreprise find(@PathVariable Long id) {
