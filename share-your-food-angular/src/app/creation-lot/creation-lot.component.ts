@@ -28,12 +28,11 @@ export class CreationLotComponent implements OnInit {
     this.produitLotForms.push(this.produitLotForm);
   }
 
-  listStatut(): Array<string> {
-    return this.lotService.statuts;
-  }
-
   listType(): Array<string> {
     return this.produitService.types;
+  }
+  listStatut(): Array<string> {
+    return this.lotService.statuts;
   }
 
   listProduit(): Array<Produit> {
@@ -46,7 +45,7 @@ export class CreationLotComponent implements OnInit {
    }
 
   deleteProduitLot(){
-    this.produitLotForms.splice(1,1);
+    this.produitLotForms.splice(-1,1);
   }
 
   saveLot() {
@@ -57,16 +56,9 @@ export class CreationLotComponent implements OnInit {
         this.lotService.load();
       }, error => console.log(error));
     }
-    this.lotForm = null;
+    this.produitService.create(this.produitForm);
 
-    if (!this.produitLotForm.id) {
-      this.produitLotService.create(this.produitLotForm);
-    } else {
-      this.produitLotService.modify(this.produitLotForm).subscribe(resp => {
-        this.produitLotService.load();
-      }, error => console.log(error));
-    }
-    this.produitLotForm = null;
+    this.lotForm = null;
   }
   cancelLot() {
     this.lotForm = null;

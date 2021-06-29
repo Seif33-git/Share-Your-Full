@@ -232,7 +232,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		demandeDonPourTous.setStatutNotif(StatutNotif.ACCEPTER);
+		demandeDonPourTous.setStatutNotif(StatutNotif.EN_ATTENTE);
 		
 		Demande demandeRegis = new Demande();
 		try {
@@ -240,7 +240,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		demandeRegis.setStatutNotif(StatutNotif.ACCEPTER);
+		demandeRegis.setStatutNotif(StatutNotif.EN_ATTENTE);
 		
 		
 		
