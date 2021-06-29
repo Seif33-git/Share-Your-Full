@@ -93,7 +93,7 @@ public class UtilisateurRestController {
 	}
 	
 	@PostMapping("/auth")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewUtilisateurDetail.class)
 	public Utilisateur connexionAuth(@RequestBody ConnexionDTO conn) {
 		Optional<Utilisateur> optUtilisateur = utilisateurRepo.connexionMailMdp(conn.getMail(), conn.getMotDePasse());
 		

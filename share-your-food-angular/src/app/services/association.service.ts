@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Association} from "../model/association";
 import {AppConfigService} from "../app-config.service";
 import {Entreprise} from "../model/entreprise";
+import {Adresse} from "../model/adresse";
 @Injectable({
   providedIn: 'root'
 })
@@ -33,9 +34,9 @@ export class AssociationHttpService {
   createID(association: Association) {
 
     this.http.post<Association>(this.appConfig.backEndUrl + "association", association).subscribe(resp => {
-      console.log(association.id);
+      console.log("association ID avant : "+association.id);
       association.id=resp.id;
-      console.log(association.id);
+      console.log("association ID après : "+association.id);
       this.load();
     }, error => console.log(error));
   }
