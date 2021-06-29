@@ -14,6 +14,8 @@ export class PageDonneurComponent implements OnInit {
 
   listLotNonDonneByEntite: Array<Lot>;
   listDonPageDonneur: Array<pageDonneurDTO>;
+  listLotByDonId: Array<Lot>;
+  lot: Lot;
   historique: Don = null;
 
   constructor(private lotService: LotHttpService, private donService: DonHttpService) {
@@ -26,6 +28,14 @@ export class PageDonneurComponent implements OnInit {
 
   listLot(): Array<Lot> {
     return this.lotService.findAll();
+  }
+
+  listLotByDon(IdDon: number) {
+    this.lotService.listLotByDonId(IdDon).subscribe(
+      resp => {
+        this.listLotByDonId = resp;
+      },
+      error => console.log(error));
   }
 
   listLotNonDonne() {
@@ -51,6 +61,10 @@ export class PageDonneurComponent implements OnInit {
 
   afficheHistorique() {
     this.historique = new Don();
+  }
+
+  afficherDetailDon(){
+    this.lot = new Lot();
   }
 
 }

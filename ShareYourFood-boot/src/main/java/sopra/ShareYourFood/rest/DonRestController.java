@@ -103,6 +103,7 @@ public class DonRestController {
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
+		donRepo.setDonOfLotNull(id);
 		donRepo.deleteById(id);
 	}
 	
