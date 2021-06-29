@@ -43,9 +43,8 @@ import {UtilisateurHttpService} from "./services/utilisateur.service";
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-
   ],
-  providers: [DonHttpService, LotHttpService, EntrepriseHttpService, ParticulierHttpService, AssociationHttpService, AdresseHttpService, UtilisateurHttpService],
+  providers: [DonHttpService, LotHttpService, ProduitLotHttpService,EntrepriseHttpService, ParticulierHttpService, AssociationHttpService, AdresseHttpService, UtilisateurHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

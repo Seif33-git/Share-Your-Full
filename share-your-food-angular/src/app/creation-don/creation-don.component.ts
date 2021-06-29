@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Don} from "../model/don";
 import {DonHttpService} from "../services/don.service";
+import {Lot} from "../model/lot";
+import {LotHttpService} from "../services/lot.service";
+import {ProduitLotHttpService} from "../services/produit-lot.service";
+import {ProduitLot} from "../model/produitLot";
 
 @Component({
   selector: 'app-creation-don',
@@ -10,9 +14,11 @@ import {DonHttpService} from "../services/don.service";
 export class CreationDonComponent implements OnInit {
 
   donForm: Don = null;
+  lotForm: Lot = null;
+  produitLotForm: ProduitLot = new ProduitLot();
   statuts: Array<String> = new Array<String>();
 
-  constructor(private donService: DonHttpService) {
+  constructor(private donService: DonHttpService, private lotService: LotHttpService,  private produitLotService: ProduitLotHttpService ) {
   }
 
   ngOnInit(): void {
@@ -22,17 +28,35 @@ export class CreationDonComponent implements OnInit {
     return this.donService.findAll();
   }
 
+  listLot(): Array<Lot> {
+    return this.lotService.findAll();
+  }
+
   add() {
     this.donForm = new Don();
   }
 
-  edit(id: number) {
+  editLot(id: number) {
+    this.lotService.findById(id).subscribe(resp=> {
+      this.lotForm = resp;
+    }, err => console.log(err));
+    this.produitLotService.findById(id).subscribe(resp=> {
+      this.produitLotForm = resp;
+    }, err => console.log(err));
+  }
+
+  deleteLot(id: number) {
+    this.lotService.deleteById(id);
+    this.produitLotService.deleteById(id);
+  }
+
+  editDon(id: number) {
     this.donService.findById(id).subscribe(resp=> {
       this.donForm = resp;
     }, err => console.log(err));
   }
 
-  save() {
+  saveDon() {
     if (!this.donForm.id) {
       this.donService.create(this.donForm);
     } else {
@@ -43,12 +67,9 @@ export class CreationDonComponent implements OnInit {
     this.donForm = null;
   }
 
-  cancel() {
+  cancelDon() {
     this.donForm = null;
   }
 
-  delete(id: number) {
-    this.donService.deleteById(id);
-  }
 }
 
