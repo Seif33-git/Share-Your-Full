@@ -52,28 +52,26 @@ public class LotRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
-	
 
-	
 	@GetMapping("/tri-par-volume")
 	@JsonView(Views.ViewLot.class)
 	public List<Lot> findLotGrosVolume() {
 		return lotRepo.findAllLotsDonneTrieParVolume(); // .subList(0, 6)
 	}
-	
+
 	@GetMapping("/count-lots")
 	@JsonView(Views.ViewLot.class)
 	public int compteurLot() {
 		return lotRepo.findAllLotsDonne();
 	}
-	
+
 	@GetMapping("/non-donne-by-entite/{idEntite}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
 	public List<Lot> findNonDonneByEntite(@PathVariable Long idEntite) {
 		return lotRepo.findAllNonDonneByEntiteById(idEntite);
 	}
-	
+
 	@GetMapping("/donne-by-entite/{idEntite}")
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
@@ -84,14 +82,7 @@ public class LotRestController {
 	
 
 	
-	@GetMapping("/TableauDeBordBeneficiaire/historique/{idEntite}/")
-	@JsonView(Views.ViewLot.class)
-	public List<Lot> findTBBH(@PathVariable Long idEntite) {
-		List<Lot> lots =lotRepo.findAllDonneEtDemandeArchiveeByEntiteById(idEntite);
-		
-		return lots;
-		
-	}
+	
 	
 	@PostMapping("")
 	public Lot create(@RequestBody Lot lot) {
@@ -142,6 +133,7 @@ public class LotRestController {
 	public void reserverLot(@PathVariable Long idLot) {
 		lotRepo.setLotReserve(idLot);
 	}
+}
 	
 //	@GetMapping("/advanceSearch")
 //	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
@@ -150,4 +142,3 @@ public class LotRestController {
 //		
 //		return lots;
 //	}
-}

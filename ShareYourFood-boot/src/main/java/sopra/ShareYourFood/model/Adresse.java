@@ -38,6 +38,7 @@ public class Adresse {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "entite_id")
+	@JsonView(Views.ViewAdresseDetail.class)
 	private Entite entite;
 
 	@OneToOne(mappedBy = "adresse")

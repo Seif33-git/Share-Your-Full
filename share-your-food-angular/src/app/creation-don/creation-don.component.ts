@@ -10,6 +10,7 @@ import {DonHttpService} from "../services/don.service";
 export class CreationDonComponent implements OnInit {
 
   donForm: Don = null;
+  statuts: Array<String> = new Array<String>();
 
   constructor(private donService: DonHttpService) {
   }

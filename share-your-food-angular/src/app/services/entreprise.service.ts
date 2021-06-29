@@ -3,13 +3,13 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Entreprise} from "../model/entreprise";
 import {AppConfigService} from "../app-config.service";
-import {Particulier} from "../model/particulier";
 @Injectable({
   providedIn: 'root'
 })
 export class EntrepriseHttpService {
 
   entreprises: Array<Entreprise>;
+  categories: Array<string>;
 
   constructor(private http: HttpClient, private appConfig: AppConfigService) {
     this.load()
@@ -33,9 +33,9 @@ export class EntrepriseHttpService {
   createID(entreprise: Entreprise) {
 
     this.http.post<Entreprise>(this.appConfig.backEndUrl + "entreprise", entreprise).subscribe(resp => {
-      console.log(entreprise.id);
+      console.log("entreprise ID avant : "+entreprise.id);
       entreprise.id=resp.id;
-      console.log(entreprise.id);
+      console.log("entreprise ID après : "+entreprise.id);
       this.load();
     }, error => console.log(error));
   }
@@ -56,5 +56,9 @@ export class EntrepriseHttpService {
     this.http.get<Array<Entreprise>>(this.appConfig.backEndUrl + "entreprise").subscribe(resp => {
       this.entreprises = resp;
     }, error => console.log(error))
+
+    this.appConfig.findAllCategories().subscribe(resp => {
+      this.categories = resp;
+    }, error => console.log(error));
   }
 }

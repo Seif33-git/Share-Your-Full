@@ -138,10 +138,35 @@ class ShareYourFoodBootApplicationTests {
 		DonPourTous.setDonneur(false);
 		DonPourTous.setBeneficiaire(true);
 		
+		Association RestoDuCoeur = new Association("FR45879002H", "justificatif3");
+		RestoDuCoeur.setNom("Resto du Coeur");
+		RestoDuCoeur.setDonneur(true);
+		RestoDuCoeur.setBeneficiaire(true);
+		
+		Association AideSolidaire = new Association("FR7854922458T", "justificatif4");
+		AideSolidaire.setNom("Aide Solidaire");
+		AideSolidaire.setDonneur(false);
+		AideSolidaire.setBeneficiaire(true);
+		
 		Entreprise Leclerc = new Entreprise("5486935JH14S", Categorie.GRANDE_SURFACE);
 		Leclerc.setNom("Leclerc");
 		Leclerc.setDonneur(true);
 		Leclerc.setBeneficiaire(false);
+		
+		Entreprise auchan = new Entreprise("70031895484G8", Categorie.GRANDE_SURFACE);
+		auchan.setNom("Auchan");
+		auchan.setDonneur(true);
+		auchan.setBeneficiaire(false);
+		
+		Entreprise bioCbon = new Entreprise("879220348547F", Categorie.SUPERETTE);
+		bioCbon.setNom("Bio C Bon");
+		bioCbon.setDonneur(true);
+		bioCbon.setBeneficiaire(false);
+		
+		Entreprise auGrandBonheur = new Entreprise("A48752J6990", Categorie.RESTAURANT);
+		auGrandBonheur.setNom("Au Grand Bonheur");
+		auGrandBonheur.setDonneur(true);
+		auGrandBonheur.setBeneficiaire(false);
 		
 		
 		// ADRESSES
@@ -154,6 +179,13 @@ class ShareYourFoodBootApplicationTests {
 		Adresse adrDonPourTous = new Adresse("277 boulevard Leon Blum", "Bâtiment C", "75004", "Paris");
 		Adresse adrLeclerc = new Adresse("50 avenue Gutemberg", "Zone commerciale Soleil", "33700", "Mérignac");
 		Adresse adrRegis = new Adresse("3 avenue Molière", null, "33000", "Bordeaux");
+		
+		Adresse adrRestoDuCoeur = new Adresse("80 rue François Pignon", "", "64000", "Pau");
+		Adresse adrAideSolidaire = new Adresse("10 rue Villeneuve", "", "33000", "Bordeaux");
+		
+		Adresse adrAuchan = new Adresse("20 avenue du Capitaine Crochet", "", "64000", "Pau");
+		Adresse adrBioCbon = new Adresse("11 rue Gilbert Montagnet", "", "33000", "Bordeaux");
+		Adresse adrAuGrandBonheur= new Adresse("1 avenue Orthense", "", "33000", "Bordeaux");
 		
 		
 		// DON
@@ -280,6 +312,12 @@ class ShareYourFoodBootApplicationTests {
 		entiteRepo.save(CroixRouge);
 		entiteRepo.save(DonPourTous);
 		entiteRepo.save(Leclerc);
+		entiteRepo.save(AideSolidaire);
+		entiteRepo.save(RestoDuCoeur);
+		entiteRepo.save(auchan);
+		entiteRepo.save(bioCbon);
+		entiteRepo.save(auGrandBonheur);
+		
 		
 		// LIEN UTILISATEUR ENTITE
 		aube.setEntite(aubeline);
@@ -299,7 +337,11 @@ class ShareYourFoodBootApplicationTests {
 		adresseRepo.save(adrDonPourTous);
 		adresseRepo.save(adrLeclerc);
 		adresseRepo.save(adrRegis);
-		
+		adresseRepo.save(adrAideSolidaire);
+		adresseRepo.save(adrRestoDuCoeur);
+		adresseRepo.save(adrAuchan);
+		adresseRepo.save(adrBioCbon);
+		adresseRepo.save(adrAuGrandBonheur);
 		
 		// LIEN ENTITE ADRESSE
 		adrSarahCze.setEntite(sarah);
@@ -307,12 +349,22 @@ class ShareYourFoodBootApplicationTests {
 		adrDonPourTous.setEntite(DonPourTous);
 		adrLeclerc.setEntite(Leclerc);
 		adrRegis.setEntite(regis);
+		adrAideSolidaire.setEntite(AideSolidaire);
+		adrRestoDuCoeur.setEntite(RestoDuCoeur);
+		adrAuchan.setEntite(auchan);
+		adrBioCbon.setEntite(bioCbon);
+		adrAuGrandBonheur.setEntite(auGrandBonheur);
 		
 		adresseRepo.save(adrSarahCze);
 		adresseRepo.save(adrCroixRouge);
 		adresseRepo.save(adrDonPourTous);
 		adresseRepo.save(adrLeclerc);
 		adresseRepo.save(adrRegis);
+		adresseRepo.save(adrAideSolidaire);
+		adresseRepo.save(adrRestoDuCoeur);
+		adresseRepo.save(adrAuchan);
+		adresseRepo.save(adrBioCbon);
+		adresseRepo.save(adrAuGrandBonheur);
 		
 		
 		// DON

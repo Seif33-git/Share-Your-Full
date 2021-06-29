@@ -17,14 +17,15 @@
             <th>Nom lot:</th>
             <th>Quantité:</th>
             <th>Statut:</th>
+            <th>Nom Entite:</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let lot of lotAccByEntite">
-            <td>{{lot.id}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let demande of demandeAccByEntite">
+            <td>{{demande.id}}</td>
+            <td>{{demande.lot.nom}}</td>
+            <td>{{demande.lot.volume}}</td>
+            <td>{{demande.statutNotif}}</td>
             <td></td>
           </tr>
           </tbody>
@@ -40,19 +41,21 @@
       <div class="pt-3">
         <table class="table table-striped">
           <thead>
-          <tr>
+          <tr >
             <th>Numéro:</th>
             <th>Nom lot:</th>
             <th>Quantité:</th>
-            <th></th>
+            <th>Donneur:</th>
 
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let demande of demandeHist">
+            <td>{{demande.id}}</td>
+            <td>{{demande.lot.nom}}</td>
+            <td>{{demande.lot.volume}}</td>
+            <td>{{demande.statutNotif}}</td>
+            <td>{{trouverDonneur(demande.id)}}</td>
           </tr>
           </tbody>
         </table>
