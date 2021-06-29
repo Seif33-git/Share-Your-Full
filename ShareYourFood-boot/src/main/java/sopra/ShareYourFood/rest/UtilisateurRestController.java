@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import sopra.ShareYourFood.dto.ConnexionDTO;
 import sopra.ShareYourFood.model.Utilisateur;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.IUtilisateurRepository;
@@ -89,5 +90,15 @@ public class UtilisateurRestController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		utilisateurRepo.deleteById(id);
+	}
+	
+	@PostMapping("/auth")
+	public Utilisateur connexionAuth(@RequestBody ConnexionDTO conn) {
+		Optional<Utilisateur> optUtilisateur = utilisateurRepo.connexionMailMdp(conn.getMail(), conn.getMotDePasse());
+		if (optUtilisateur.isPresent()) {
+			return optUtilisateur.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
 	}
 }

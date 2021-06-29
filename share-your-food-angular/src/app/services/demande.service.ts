@@ -9,7 +9,7 @@ import {AppConfigService} from "../app-config.service";
 export class DemandeHttpService {
 
   demandes: Array<Demande>;
-
+  NomEntiteByDemandeId : string;
   constructor(private http: HttpClient, private appConfig: AppConfigService) {
     this.load()
   }
@@ -35,6 +35,18 @@ export class DemandeHttpService {
 
   }
 
+  accepterDemandeByLotId(idLot: number){
+    this.http.get<Demande>(this.appConfig.backEndUrl + "demande/demande-acceptee/" + idLot).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
+  refuserDemandeByLotId(idLot: number){
+    this.http.get<Demande>(this.appConfig.backEndUrl + "demande/demande-refusee/" + idLot).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
   deleteById(id: number) {
     this.http.delete(this.appConfig.backEndUrl + "demande/" + id).subscribe(resp => {
       this.load();
@@ -46,4 +58,16 @@ export class DemandeHttpService {
       this.demandes = resp;
     }, error => console.log(error))
   }
+  listDemandeHistByEntite(idEntite: number): Observable<Array<Demande>>{
+    return this.http.get<Array<Demande>>(this.appConfig.backEndUrl + "demande/list-lot-demande-historique/"+idEntite)
+  }
+  trouverNomEntite(idDemande: number){
+    return this.http.get<string>(this.appConfig.backEndUrl + "trouverNomEntiteByDemandeId/{idDemande}").subscribe(
+      resp => {
+        this.NomEntiteByDemandeId = resp;
+      }
+    )
+  }
+
+
 }

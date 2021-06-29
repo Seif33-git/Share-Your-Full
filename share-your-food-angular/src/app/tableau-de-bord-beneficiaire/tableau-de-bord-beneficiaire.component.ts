@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LotHttpService} from "../services/lot.service";
 import {Lot} from "../model/lot";
 import {Demande} from "../model/demande";
+import {DemandeHttpService} from "../services/demande.service";
 
 @Component({
   selector: 'app-tableau-de-bord-beneficiaire',
@@ -10,14 +11,28 @@ import {Demande} from "../model/demande";
 })
 export class TableauDeBordBeneficiaireComponent implements OnInit {
 
-  constructor(private lotservice: LotHttpService) { }
-  lotAccByEntite: Array<Demande>;
+  constructor(private lotservice: LotHttpService, private demandeService: DemandeHttpService) { }
+  demandeAccByEntite: Array<Demande>;
+  demandeHist: Array<Demande>;
   ngOnInit(): void {
     this.listlotTDBB();
+    this.listHistTDBB();
+
   }
   listlotTDBB(){
    this.lotservice.listLotAccByEntite(Number(sessionStorage.getItem("idEntite"))).subscribe(
-  resp=> {this.lotAccByEntite = resp}
+  resp=> {this.demandeAccByEntite = resp}
     );
   }
+  listHistTDBB(){
+    this.demandeService.listDemandeHistByEntite(Number(sessionStorage.getItem("idEntite"))).subscribe(
+      resp=> {this.demandeHist = resp}
+    );
+  }
+
+  trouverDonneur(id : number):string{
+    this.demandeService.trouverNomEntite(id);
+    return this.demandeService.NomEntiteByDemandeId;
+  }
+
 }

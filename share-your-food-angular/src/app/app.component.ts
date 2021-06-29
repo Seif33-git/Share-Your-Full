@@ -11,7 +11,7 @@ export class AppComponent {
    sessionStorage.setItem("idEntite","11");
  }
   sessionencours(){
-  return Number(sessionStorage.getItem("idEntite"));
+  return sessionStorage.getItem("utilisateur");
   }
 
 }

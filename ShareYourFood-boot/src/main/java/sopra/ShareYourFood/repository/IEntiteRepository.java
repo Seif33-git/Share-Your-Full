@@ -29,5 +29,10 @@ public interface IEntiteRepository extends JpaRepository<Entite, Long>{
 	
 	@Query("select p from Particulier p where p.id = :id")
 	Optional<Particulier> findParticulierById(@Param("id") Long id);
+	
+	
+	//DASHBOARD DONNEUR
+	
 
+	
 }
