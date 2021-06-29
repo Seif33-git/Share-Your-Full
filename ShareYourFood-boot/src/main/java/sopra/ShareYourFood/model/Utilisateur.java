@@ -44,6 +44,7 @@ public class Utilisateur {
 	private boolean enable;
 	@Column(name = "roles")
 	@OneToMany(mappedBy = "user")
+	@JsonView(Views.ViewUtilisateurDetail.class)
 	private Set<UtilisateurRole> roles;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
