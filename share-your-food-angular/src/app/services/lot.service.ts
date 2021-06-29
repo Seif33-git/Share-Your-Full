@@ -13,11 +13,13 @@ export class LotHttpService {
 
   lots: Array<Lot>;
   grosLots: Array<Lot>;
-  statuts: Array<string>
+  statuts: Array<string>;
+  lotsDispo:Array<Lot>;
 
   constructor(private http: HttpClient,  private appConfig: AppConfigService) {
     this.load();
     this.loadGrosLot();
+    this.loadLotDispo();
   }
 
   listLotDashboardDonneur(idEntite: number): Observable<Array<dashboardGiverDTO>>{
@@ -81,5 +83,13 @@ export class LotHttpService {
     this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/tri-par-volume").subscribe(resp => {
       this.grosLots = resp;
     }, error => console.log(error))
+  }
+  loadLotDispo(){
+    this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/lot-dispo").subscribe(resp => {
+      this.lotsDispo = resp;
+    }, error => console.log(error))
+  }
+  findAllDispo(): Array<Lot>{
+    return this.lotsDispo;
   }
 }

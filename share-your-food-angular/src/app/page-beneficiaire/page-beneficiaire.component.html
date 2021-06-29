@@ -6,9 +6,9 @@
     <div
       style="overflow: scroll; border: #000000 1px solid; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
 
-      <div style="text-align: center ; border: #000000 1px solid;">
-        Lot : <br> <img style="width: 150px; height: 100px;"
-                        src="">
+      <div *ngFor="let lotreduc of ReductionListLot(valeur)" style="text-align: center ; border: #000000 1px solid;">
+        Lot : {{lotreduc.nom}}<br> <img style="width: 150px; height: 100px;"
+                        src="{{lotreduc.photo}}">
         <div class="btn-group float-middle ml-auto mr-auto">
           <button type="button"
                   class="btn btn-success btn-sm ml-auto mr-auto text-center">
@@ -21,7 +21,7 @@
   </div>
   <div>
     <span> Barre de recherche :</span>
-    <input type="text" class="form-control" id="recherche">
+    <input value="" type="text" class="form-control" id="recherche" [(ngModel)]="valeur" >
   </div>
 
 
