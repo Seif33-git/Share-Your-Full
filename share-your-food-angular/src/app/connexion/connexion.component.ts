@@ -10,7 +10,7 @@ import {ConnexionDTO} from "../model/connexionDTO";
 })
 export class ConnexionComponent implements OnInit {
   conn: ConnexionDTO = new ConnexionDTO();
-  constructor(private connexionService: ConnexionHttpService) { }
+  constructor(private connexionService: ConnexionHttpService ) { }
 
   ngOnInit(): void {
   }
