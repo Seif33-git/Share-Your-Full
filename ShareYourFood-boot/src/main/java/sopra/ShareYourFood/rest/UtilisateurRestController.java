@@ -93,12 +93,13 @@ public class UtilisateurRestController {
 	}
 	
 	@PostMapping("/auth")
+	@JsonView(Views.ViewCommon.class)
 	public Utilisateur connexionAuth(@RequestBody ConnexionDTO conn) {
 		Optional<Utilisateur> optUtilisateur = utilisateurRepo.connexionMailMdp(conn.getMail(), conn.getMotDePasse());
 		if (optUtilisateur.isPresent()) {
 			return optUtilisateur.get();
 		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unable to find resource");
 		}
 	}
 }
