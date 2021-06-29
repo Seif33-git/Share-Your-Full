@@ -456,16 +456,30 @@ class ShareYourFoodBootApplicationTests {
 		List<Utilisateur> utilisateurs=utilisateurRepo.findAll();
 		assertEquals(4, utilisateurs.size());
 		
-		//ENTITE
-		Optional<Entite> entiteFind = entiteRepo.findById(Leclerc.getId());
+		//ENTITE ENTREPRISE
+		Optional<Entreprise> entiteFind = entiteRepo.findEntrepriseById(Leclerc.getId());
 		assertEquals("Leclerc", entiteFind.get().getNom());
 		assertEquals(true, entiteFind.get().isDonneur());
 		assertEquals(false, entiteFind.get().isBeneficiaire());
+		assertEquals("5486935JH14S", entiteFind.get().getSiret());
+		assertEquals(Categorie.GRANDE_SURFACE, entiteFind.get().getCategorie());
 		
-//		Entreprise Leclerc = new Entreprise("5486935JH14S", Categorie.GRANDE_SURFACE);
-//		Leclerc.setNom("Leclerc");
-//		Leclerc.setDonneur(true);
-//		Leclerc.setBeneficiaire(false);
+		//ENTITE ASSOCIATION
+		Optional<Association> entiteFind2 = entiteRepo.findAssociationById(CroixRouge.getId());
+		assertEquals("La Croix Rouge", entiteFind2.get().getNom());
+		assertEquals(true, entiteFind2.get().isDonneur());
+		assertEquals(true, entiteFind2.get().isBeneficiaire());
+		assertEquals("FR123456789", entiteFind2.get().getNumeroAssociation());
+		assertEquals("justificatif1", entiteFind2.get().getJustificatif());
+		
+		//ENTITE PARTICULIER
+		Optional<Particulier> entiteFind3 = entiteRepo.findParticulierById(regis.getId());
+		assertEquals("SIMON", entiteFind3.get().getNom());
+		assertEquals(false, entiteFind3.get().isDonneur());
+		assertEquals(true, entiteFind3.get().isBeneficiaire());
+		assertEquals("regis", entiteFind3.get().getPrenom());
+		assertEquals(25, entiteFind3.get().getAge());
+
 
 		
 		//ADRESSE

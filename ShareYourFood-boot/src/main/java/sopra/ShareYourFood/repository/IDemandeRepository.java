@@ -2,7 +2,10 @@ package sopra.ShareYourFood.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -69,7 +72,14 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 	List<Demande> findAllNonDonneEtDemandeAccOuPasRepByEntiteById(@Param("id") Long id);
 
 	
+	//DASHBOARD DONNEUR
+	@Transactional
+	@Modifying
+	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER WHERE d.lot.id = :idLot")
+	void setDemandeAcceptee(@Param("idLot") Long idLot);
 	
-	
-	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.REFUSER WHERE d.lot.id = :idLot")
+	void setDemandeRefusee(@Param("idLot") Long idLot);
 }

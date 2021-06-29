@@ -1,5 +1,6 @@
 package sopra.ShareYourFood.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import sopra.ShareYourFood.dto.DashboardGiverDTO;
 import sopra.ShareYourFood.model.Lot;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.ILotRepository;
@@ -115,9 +117,31 @@ public class LotRestController {
 		lotRepo.deleteById(id);
 	}
 	
-//	public DashboardGiverDTO dashboard() {
-//
-//	}
+	@GetMapping("/dashboard-donneur-non-donne/{idEntite}")
+	@JsonView(Views.ViewLot.class)
+	public List<DashboardGiverDTO> dashboardDonneur(@PathVariable Long idEntite) {
+		
+		List <DashboardGiverDTO> listLotDto = new ArrayList<DashboardGiverDTO>();
+		
+		List<Lot> lots = lotRepo.findAllNonDonneByEntiteById(idEntite);
+		
+		for  (Lot lot : lots) {
+			DashboardGiverDTO e = new DashboardGiverDTO();
+			e.setId(lot.getId());
+			e.setNomLot(lot.getNom());
+			e.setQuantiteLot(lot.getVolume());
+			
+			String nomEntite = lotRepo.findNomEntiteLotByIdLot(e.getId());
+			e.setNomEntite(nomEntite);
+			listLotDto.add(e);
+		}
+		return listLotDto;
+	}
+	
+	@PutMapping("/lot-reserve/{idLot}")
+	public void reserverLot(@PathVariable Long idLot) {
+		lotRepo.setLotReserve(idLot);
+	}
 	
 //	@GetMapping("/advanceSearch")
 //	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
