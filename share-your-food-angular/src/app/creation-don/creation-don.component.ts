@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Don} from "../model/don";
 import {DonHttpService} from "../services/don.service";
+import {ProduitLot} from "../model/produitLot";
+import {Lot} from "../model/lot";
+import {LotHttpService} from "../services/lot.service";
 
 @Component({
   selector: 'app-creation-don',
@@ -10,9 +13,11 @@ import {DonHttpService} from "../services/don.service";
 export class CreationDonComponent implements OnInit {
 
   donForm: Don = null;
+  LotForm: ProduitLot = new ProduitLot();
+  LotForms: Array<ProduitLot> = new Array<ProduitLot>();
   statuts: Array<String> = new Array<String>();
 
-  constructor(private donService: DonHttpService) {
+  constructor(private donService: DonHttpService,private lotService: LotHttpService ) {
   }
 
   ngOnInit(): void {
@@ -22,8 +27,26 @@ export class CreationDonComponent implements OnInit {
     return this.donService.findAll();
   }
 
+  listLot(): Array<Lot> {
+    return this.lotService.findAll();
+  }
+
+  listStatut(): Array<string> {
+    return this.lotService.statuts;
+  }
+
   add() {
     this.donForm = new Don();
+  }
+
+  // editLot(id: number) {
+  //   this.lotService.findById(id).subscribe(resp=> {
+  //     this.lotForm = resp;
+  //   }, err => console.log(err));
+  // }
+
+  deleteLot(){
+    this.LotForms.splice(-1,1);
   }
 
   edit(id: number) {
