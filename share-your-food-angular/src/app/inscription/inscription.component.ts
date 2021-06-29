@@ -43,7 +43,6 @@ export class InscriptionComponent implements OnInit {
   isActiveBool3: boolean=false;
   isActiveBool4: boolean=false;
   flagDelete: boolean=false;
-  flagDelete2: boolean=false;
 
   constructor(private particulierService: ParticulierHttpService, private utilisateurService: UtilisateurHttpService, private entrepriseService: EntrepriseHttpService, private associationService: AssociationHttpService, private  adresseService: AdresseHttpService) { }
 
@@ -184,9 +183,9 @@ export class InscriptionComponent implements OnInit {
   addTableauEntreprise() {
     this.flagDelete=true;
     this.adresseSelectEntreprise = this.nouvelleAdresseEntreprise;
-    this.adresseSelectEntreprise.entite = this.entrepriseSelect;
 
     if (!this.adresseSelectEntreprise.id&&this.adresseSelectEntreprise.rue&&this.adresseSelectEntreprise.codePostal&&this.adresseSelectEntreprise.ville) {
+      this.adresseSelectEntreprise.entite = this.entrepriseSelect;
       this.adresseService.createID(this.adresseSelectEntreprise);
       this.utilisateurEntreprise=new Utilisateur();
       this.nouvelleEntreprise=null;
@@ -201,9 +200,10 @@ export class InscriptionComponent implements OnInit {
   addTableauAssociation() {
     this.flagDelete=true;
     this.adresseSelectAssociation = this.nouvelleAdresseAssociation;
-    this.adresseSelectAssociation.entite = this.associationSelect;
+
 
     if (!this.adresseSelectAssociation.id&&this.adresseSelectAssociation.rue&&this.adresseSelectAssociation.codePostal&&this.adresseSelectAssociation.ville) {
+      this.adresseSelectAssociation.entite = this.associationSelect;
       this.adresseService.createID(this.adresseSelectAssociation);
       this.utilisateurEntreprise=new Utilisateur();
       this.nouvelleAssociation=null;
@@ -217,10 +217,10 @@ export class InscriptionComponent implements OnInit {
   // Crée l'utilisateur et le lie au particulier (1 Utilisateur possède 1 Entité)
   saveUtilisateurParticulier() {
     this.utilisateurParticulier.entite = this.particulierForm;
-    if (!this.utilisateurParticulier.id&&this.utilisateurParticulier.pseudo&&this.utilisateurParticulier.motDePasse) {
+    if (!this.utilisateurParticulier.id&&this.utilisateurParticulier.mail&&this.utilisateurParticulier.motDePasse) {
       this.utilisateurService.createID(this.utilisateurParticulier);
     } else {
-      console.error("Veuillez entrer un pseudo et un mot de passe")
+      console.error("Veuillez entrer un email et un mot de passe")
     }
   }
 
@@ -228,8 +228,10 @@ export class InscriptionComponent implements OnInit {
   // Crée l'utilisateur et le lie à l'entreprise (1 Utilisateur possède 1 Entité)
   saveUtilisateurAssocieEntreprise() {
     this.utilisateurEntreprise.entite = this.entrepriseSelect;
-    if (!this.utilisateurEntreprise.id&&this.entrepriseSelect) {
+    if (!this.utilisateurEntreprise.id&&this.entrepriseSelect&&this.utilisateurEntreprise.mail&&this.utilisateurEntreprise.motDePasse) {
       this.utilisateurService.createID(this.utilisateurEntreprise)
+    } else {
+      console.error("Veuillez entrer un email et un mot de passe")
     }
   }
 
@@ -237,8 +239,10 @@ export class InscriptionComponent implements OnInit {
   // Crée l'utilisateur et le lie à l'association (1 Utilisateur possède 1 Entité)
   saveUtilisateurAssocieAssociation() {
     this.utilisateurAssociation.entite = this.associationSelect;
-    if (!this.utilisateurAssociation.id&&this.associationSelect) {
+    if (!this.utilisateurAssociation.id&&this.associationSelect&&this.utilisateurAssociation.mail&&this.utilisateurAssociation.motDePasse) {
       this.utilisateurService.createID(this.utilisateurAssociation)
+    } else {
+      console.error("Veuillez entrer un email et un mot de passe")
     }
   }
 
@@ -258,13 +262,9 @@ export class InscriptionComponent implements OnInit {
   delete(id: number) {
     this.entrepriseService.deleteById(id);
     this.entrepriseSelect=null;
+
+
     this.associationService.deleteById(id);
     this.associationSelect=null;
   }
-
-
-
-
-
-
 }

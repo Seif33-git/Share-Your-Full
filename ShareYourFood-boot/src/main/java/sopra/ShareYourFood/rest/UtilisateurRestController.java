@@ -96,6 +96,8 @@ public class UtilisateurRestController {
 	@JsonView(Views.ViewUtilisateurDetail.class)
 	public Utilisateur connexionAuth(@RequestBody ConnexionDTO conn) {
 		Optional<Utilisateur> optUtilisateur = utilisateurRepo.connexionMailMdp(conn.getMail(), conn.getMotDePasse());
+		
+		
 		if (optUtilisateur.isPresent()) {
 			return optUtilisateur.get();
 		} else {
