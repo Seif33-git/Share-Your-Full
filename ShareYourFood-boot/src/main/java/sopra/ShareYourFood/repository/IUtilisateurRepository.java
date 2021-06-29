@@ -20,6 +20,6 @@ public interface IUtilisateurRepository extends JpaRepository<Utilisateur, Long>
 	@Query("select distinct u from Utilisateur u left join fetch u.entite")
 	List<Utilisateur> findAllWithEntite();
 
-	@Query("select u from Utilisateur u where u.mail = :mail and u.motDePasse = :motDePasse")
+	@Query("select u from Utilisateur u left join fetch u.entite where u.mail = :mail and u.motDePasse = :motDePasse")
 	Optional<Utilisateur> connexionMailMdp(String mail, String motDePasse);
 }

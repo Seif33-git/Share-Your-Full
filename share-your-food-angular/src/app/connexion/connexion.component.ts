@@ -19,7 +19,7 @@ export class ConnexionComponent implements OnInit {
     console.log(this.conn)
     this.connexionService.connexionAuth(this.conn).subscribe(resp => {
       sessionStorage.setItem("utilisateur",JSON.stringify(resp));
-      sessionStorage.setItem("idEntite",JSON.parse(sessionStorage.getItem("utilisateur")).id);
+      sessionStorage.setItem("idEntite",JSON.parse(sessionStorage.getItem("utilisateur")).entite.id);
     }, error => console.log(error))
   }
 }
