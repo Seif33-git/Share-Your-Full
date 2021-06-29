@@ -10,7 +10,7 @@ import {ConnexionDTO} from "../model/connexionDTO";
 })
 export class ConnexionComponent implements OnInit {
   conn: ConnexionDTO = new ConnexionDTO();
-  constructor(private connexionService: ConnexionHttpService) { }
+  constructor(private connexionService: ConnexionHttpService ) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +19,7 @@ export class ConnexionComponent implements OnInit {
     console.log(this.conn)
     this.connexionService.connexionAuth(this.conn).subscribe(resp => {
       sessionStorage.setItem("utilisateur",JSON.stringify(resp));
+      sessionStorage.setItem("idEntite", JSON.parse(sessionStorage.getItem("utilisateur")).id);
     })
   }
 }

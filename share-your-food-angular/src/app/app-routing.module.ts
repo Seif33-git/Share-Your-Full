@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'don', component: CreationDonComponent},
   {path:'lot', component: CreationLotComponent},
   {path:'tableauDeBordBeneficiaire', component: TableauDeBordBeneficiaireComponent},
-  {path: 'connexion', component: ConnexionComponent},
+  {path: 'connexion', component: ConnexionComponent, },
   {path: 'inscription', component: InscriptionComponent},
   {path: 'administration', component: AdministrationComponent},
   {path: '**', component: PageNotFoundComponent},
