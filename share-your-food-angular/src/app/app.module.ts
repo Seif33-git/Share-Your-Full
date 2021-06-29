@@ -23,6 +23,7 @@ import {ParticulierHttpService} from "./services/particulier.service";
 import {AssociationHttpService} from "./services/association.service";
 import {AdresseHttpService} from "./services/adresse.service";
 import {UtilisateurHttpService} from "./services/utilisateur.service";
+import { Accueil2Component } from './accueil2/accueil2.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {UtilisateurHttpService} from "./services/utilisateur.service";
     InscriptionComponent,
     AdministrationComponent,
     TableauDeBordDonneurComponent,
+    Accueil2Component,
   ],
   imports: [
     BrowserModule,
