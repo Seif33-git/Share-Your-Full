@@ -1,4 +1,5 @@
-<div class="container policeChampagne25">
+<div class="container policeChampagne25" xmlns="http://www.w3.org/1999/html">
+  <div>
   <div class="mt-5 policeChampagneEspaceCenter"><b>INSCRIPTION</b></div>
   <div class="center">________________________</div>
 
@@ -9,10 +10,11 @@
     <a class="btn btn-lg btn-info btnImpact mr-3" (click)="addEntreprise()"><i class="fas fa-briefcase"></i> Entreprise</a>
     <a class="btn btn-lg btn-danger btnImpact mr-3" (click)="addAssociation()"><i class="fas fa-hands-helping"></i> Association</a>
 </div>
+  </div>
 
 <!--IF ON CLICK SUR PARTICULIER-->
 <div *ngIf="particulierForm">
-    <div class="pt-5">
+  <div class="pt-5">
     <label for="nom">Nom:*</label>
     <input type="text" class="form-control" id="nom" [(ngModel)]="particulierForm.nom" [readOnly]="particulierForm.id"/>
   </div>
@@ -93,10 +95,9 @@
 
   <div class="mt-5">
     <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="annulerTout()"><i class="fas fa-undo-alt"></i> Retour</a>
-    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurParticulier()"><i class="fas fa-check"></i> Valider</a>
+    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurParticulier()" [routerLink]="['/connexion']"><i class="fas fa-check"></i> Valider</a>
   </div>
 </div>
-
 
   <!--IF ON CLICK SUR ENTREPRISE-->
   <div *ngIf="entrepriseForm">
@@ -228,10 +229,11 @@
 
   <div class="mt-5">
     <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="annulerTout()"><i class="fas fa-undo-alt"></i> Retour</a>
-    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieEntreprise()"><i class="fas fa-check"></i> Valider</a>
+    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieEntreprise()" [routerLink]="['/connexion']"><i class="fas fa-check"></i> Valider</a>
   </div>
   </div>
   </div>
+
 
   <!--IF ON CLICK SUR ASSOCIATION-->
   <div *ngIf="associationForm">
@@ -352,8 +354,8 @@
 
   <div class="mt-5">
     <a class="btn btn-lg btn-warning btnImpact mr-3" (click)="annulerTout()"><i class="fas fa-undo-alt"></i> Retour</a>
-    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieAssociation()"><i class="fas fa-check"></i> Valider</a>
+    <a class="btn btn-lg btn-info btnImpact" (click)="saveUtilisateurAssocieAssociation()" [routerLink]="['/connexion']"><i class="fas fa-check"></i> Valider</a>
   </div>
   </div>
 </div>
-
+</div>

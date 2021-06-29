@@ -5,7 +5,6 @@ import {ProduitHttpService} from "../services/produit.service";
 import {LotHttpService} from "../services/lot.service";
 import {ProduitLot} from "../model/produitLot";
 import {ProduitLotHttpService} from "../services/produit-lot.service";
-import {endWith} from "rxjs/operators";
 
 
 @Component({
@@ -32,7 +31,6 @@ export class CreationLotComponent implements OnInit {
   listType(): Array<string> {
     return this.produitService.types;
   }
-
   listStatut(): Array<string> {
     return this.lotService.statuts;
   }
@@ -43,13 +41,12 @@ export class CreationLotComponent implements OnInit {
 
    addProduitLot() {
     this.produitLotForms.push (new ProduitLot());
+
    }
 
   deleteProduitLot(){
     this.produitLotForms.splice(-1,1);
   }
-
-
 
   saveLot() {
     if (!this.lotForm.id) {
@@ -67,10 +64,7 @@ export class CreationLotComponent implements OnInit {
     this.lotForm = null;
     this.produitLotForm = null;
   }
-  deleteLot(id: number) {
-    this.lotService.deleteById(id);
-    this.produitLotService.deleteById(id);
-  }
+
 
   addProduit() {
     this.produitForm = new Produit();
@@ -79,15 +73,8 @@ export class CreationLotComponent implements OnInit {
     this.produitService.create(this.produitForm);
     this.produitForm = null;
   }
-  editProduit(nom: string) {
-    this.produitService.findById(nom).subscribe(resp=> {
-      this.produitForm = resp;
-    }, err => console.log(err));
-  }
 
   cancelProduit() {
     this.produitForm = null;
   }
-
-
 }
