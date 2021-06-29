@@ -24,6 +24,7 @@ import {AssociationHttpService} from "./services/association.service";
 import {AdresseHttpService} from "./services/adresse.service";
 import {UtilisateurHttpService} from "./services/utilisateur.service";
 import { PageBeneficiaireComponent } from './page-beneficiaire/page-beneficiaire.component';
+import { Accueil2Component } from './accueil2/accueil2.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PageBeneficiaireComponent } from './page-beneficiaire/page-beneficiaire
     AdministrationComponent,
     TableauDeBordDonneurComponent,
     PageBeneficiaireComponent,
+    Accueil2Component,
   ],
   imports: [
     BrowserModule,

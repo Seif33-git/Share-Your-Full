@@ -11,9 +11,11 @@ import {InscriptionComponent} from "./inscription/inscription.component";
 import {AdministrationComponent} from "./administration/administration.component";
 import {TableauDeBordDonneurComponent} from "./tableau-de-bord-donneur/tableau-de-bord-donneur.component";
 import {PageBeneficiaireComponent} from "./page-beneficiaire/page-beneficiaire.component";
+import {Accueil2Component} from "./accueil2/accueil2.component";
 
 const routes: Routes = [
   {path: "accueil1", component: Accueil1Component},
+  {path: "accueil2", component: Accueil2Component},
   {path: 'donner', component: PageDonneurComponent},
   {path: 'beneficier', component: PageBeneficiaireComponent},
   {path: '', redirectTo: 'accueil1', pathMatch: 'full'},

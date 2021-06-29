@@ -78,6 +78,12 @@ public class LotRestController {
 	public List<Lot> findDonneByEntite(@PathVariable Long idEntite) {
 		return lotRepo.findAllDonneByEntiteById(idEntite);
 	}
+
+	@GetMapping("/attente-by-entite/{idEntite}")
+	@JsonView(Views.ViewLot.class)
+	public List<Lot> findAttenteByEntite(@PathVariable Long idEntite) {
+		return lotRepo.findAllDisponibleEnAttenteByEntiteById(idEntite);
+	}
 	
 	
 
@@ -88,8 +94,6 @@ public class LotRestController {
 		return lotRepo.findLotByDonId(idDon);
 	}
 
-	
-	
 	
 	@PostMapping("")
 	public Lot create(@RequestBody Lot lot) {
