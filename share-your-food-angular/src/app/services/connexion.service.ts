@@ -16,6 +16,4 @@ export class ConnexionHttpService {
     console.log(conn)
     return this.http.post<ConnexionDTO>(this.appConfig.backEndUrl + "utilisateur/auth", conn);
   }
-
-
 }
