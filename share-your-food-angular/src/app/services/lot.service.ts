@@ -5,6 +5,7 @@ import {Lot} from "../model/lot";
 import {AppConfigService} from "../app-config.service";
 import {Demande} from "../model/demande";
 import {dashboardGiverDTO} from "../model/dashboardGiverDTO";
+import {dashboardBeneficiaireDTO} from "../model/dashboardBeneficiaireDTO";
 @Injectable({
   providedIn: 'root'
 })
@@ -23,8 +24,8 @@ export class LotHttpService {
     return this.http.get<Array<dashboardGiverDTO>>(this.appConfig.backEndUrl + "lot/dashboard-donneur-non-donne/"+idEntite)
   }
 
-  listLotAccByEntite(idEntite: number): Observable<Array<Demande>>{
-   return this.http.get<Array<Demande>>(this.appConfig.backEndUrl + "demande/list-lot-demande/"+idEntite)
+  listLotAccByEntite(idEntite: number): Observable<Array<dashboardBeneficiaireDTO>>{
+   return this.http.get<Array<dashboardBeneficiaireDTO>>(this.appConfig.backEndUrl + "demande/TableaudeBordBeneficiaire/"+idEntite)
   }
 
   listLotNonDonneByEntite(idEntite: number): Observable<Array<Lot>>{

@@ -3,6 +3,7 @@ import {LotHttpService} from "../services/lot.service";
 import {Lot} from "../model/lot";
 import {Demande} from "../model/demande";
 import {DemandeHttpService} from "../services/demande.service";
+import {dashboardBeneficiaireDTO} from "../model/dashboardBeneficiaireDTO";
 
 @Component({
   selector: 'app-tableau-de-bord-beneficiaire',
@@ -12,8 +13,8 @@ import {DemandeHttpService} from "../services/demande.service";
 export class TableauDeBordBeneficiaireComponent implements OnInit {
 
   constructor(private lotservice: LotHttpService, private demandeService: DemandeHttpService) { }
-  demandeAccByEntite: Array<Demande>;
-  demandeHist: Array<Demande>;
+  demandeAccByEntite: Array<dashboardBeneficiaireDTO>;
+  demandeHist: Array<dashboardBeneficiaireDTO>;
   ngOnInit(): void {
     this.listlotTDBB();
     this.listHistTDBB();

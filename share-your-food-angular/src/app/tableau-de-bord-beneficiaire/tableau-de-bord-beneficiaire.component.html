@@ -21,12 +21,12 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let demande of demandeAccByEntite">
-            <td>{{demande.id}}</td>
-            <td>{{demande.lot.nom}}</td>
-            <td>{{demande.lot.volume}}</td>
-            <td>{{demande.statutNotif}}</td>
-            <td></td>
+          <tr *ngFor="let demandedto of demandeAccByEntite">
+            <td>{{demandedto.id}}</td>
+            <td>{{demandedto.nomLot}}</td>
+            <td>{{demandedto.quantiteLot}}</td>
+            <td>{{demandedto.statut}}</td>
+            <td>{{demandedto.nomEntite}}</td>
           </tr>
           </tbody>
         </table>
@@ -52,10 +52,9 @@
           <tbody>
           <tr *ngFor="let demande of demandeHist">
             <td>{{demande.id}}</td>
-            <td>{{demande.lot.nom}}</td>
-            <td>{{demande.lot.volume}}</td>
-            <td>{{demande.statutNotif}}</td>
-            <td>{{trouverDonneur(demande.id)}}</td>
+            <td>{{demande.nomLot}}</td>
+            <td>{{demande.quantiteLot}}</td>
+            <td>{{demande.nomEntite}}</td>
           </tr>
           </tbody>
         </table>
