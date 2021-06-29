@@ -1,43 +1,58 @@
 <div class="container">
-  <div class="card mt-3" style="display: yes;">
+  <div class="card mt-3" >
     <div class="card-header bg-info text-white text-center">
       <h2>Création d'un Don</h2>
     </div>
 
     <div class="card-body">
-      <label for="nom">Nom du don :</label>
-      <input type="text" class="form-control" id="nom">
+      <div class="form-group">
+        <label for="nom">Créneau de reception / remise :</label>
+        <input type="text" class="form-control" id="nom" [(ngModel)]="donForm.creneau">
+      </div>
+      <div class="form-group">
+        <label for="nom">Commentaires / précision  :</label>
+        <input type="text" class="form-control" id="commentaire" [(ngModel)]="donForm.commentaire">
+      </div>
+      <div>
+        <label for="nom"> Date de mise en ligne:</label>
+        <span type="date" class="form-control" id="DateDeMiseEnLigne" [(ngModel)]="donForm.dateDeMiseEnLigne">{{donForm.dateDeMiseEnLigne}}.now() | date:'yyyy-MM-dd'}}</span>
+      </div>
 
+
+      <thead>
       <table id="donTable" class="table">
         <tr class="row">
-          <th class="col-md-6"><label for="lots">Lots
-            disponibles :</label></th>
-          <th class="col-md-4"><label for="quantite">Quantité :</label>
-          </th>
-
-<!--          <th class="col-md-2"><label for="add"> </label></th>-->
-<!--        </tr>-->
+          <th class="col-md-4">Lots disponibles :</th>
+          <th class="col-md-4">Quantité : </th>
+          <th class="col-md-4"></th>
       </table>
+      </thead>
 
-      <div>
-         <div class="row">
-            <div class="col-md-6">
-              <select id="lots" class="form-control">
-                <option value="lot 1">Lot de fruits</option>
-                <option value="lot 2">Lot de produits frais</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <input type="number" class="form-control" id="quantite">
-            </div>
-            <div class="col-md-2">
+
+<!--      <tbody id="lot"  *ngFor="let LForm of lotForms">-->
+        <tr class="row" id="f">
+           <td class="col-md-3">
+             <select class="form-control" id="produit" [(ngModel)]="lotForm.nom">
+               <option value="">Lots disponibles :</option>
+               <option *ngFor="let lot of listLot()" [value]="lot.nom">{{lot.nom}}</option>
+             </select>
+           </td>
+            <td class="col-md-4">
+              <input type="number" class="form-control" id="quantite"  [(ngModel)]="lotForm.volume">
+            </td>
+            <td class="col-md-2">
               <button type="button" class="btn btn-success btn-md"
-                      onclick="add();">
+                      onclick="addLot();">
                 <i class="fa fa-plus"></i>
               </button>
-            </div>
-          </div>
-        </div>
+            </td>
+          </tr>
+<!--      </tbody>-->
+
+      <button type="button" class="btn btn-success btn-md"
+              (click) ="newLot();">Créer un lot
+      </button>
+
         <div class="form-group">
 <!--          <label for="destinataire">A qui est-ce destiné ?</label><br>-->
           <div class="form-check form-check-inline">
@@ -51,20 +66,6 @@
 <!--            class="form-check-label" for="inlineCheckbox2">Association</label>-->
           </div>
         </div>
-
-
-      <div class="card-footer">
-        <div class="row">
-          <div class="col text-center">
-            <div class="btn-group btn-group-lg float-middle ml-auto mr-auto">
-              <button type="button"
-                      class="btn btn-success btn-lg ml-auto mr-auto"  onclick="window.location.href = 'PageDonneur.html'">VALIDER</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
     </div>
-
   </div>
-
+</div>
