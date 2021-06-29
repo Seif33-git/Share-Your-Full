@@ -12,10 +12,12 @@ import { CreationLotComponent } from './creation-lot/creation-lot.component';
 import { PageDonneurComponent } from './page-donneur/page-donneur.component';
 import {LotHttpService} from "./services/lot.service";
 import {DonHttpService} from "./services/don.service";
+import {ProduitLotHttpService} from "./services/produit-lot.service";
 import { TableauDeBordBeneficiaireComponent } from './tableau-de-bord-beneficiaire/tableau-de-bord-beneficiaire.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { AdministrationComponent } from './administration/administration.component';
+import { TableauDeBordDonneurComponent } from './tableau-de-bord-donneur/tableau-de-bord-donneur.component';
 import {EntrepriseHttpService} from "./services/entreprise.service";
 import {ParticulierHttpService} from "./services/particulier.service";
 import {AssociationHttpService} from "./services/association.service";
@@ -34,6 +36,7 @@ import {UtilisateurHttpService} from "./services/utilisateur.service";
     ConnexionComponent,
     InscriptionComponent,
     AdministrationComponent,
+    TableauDeBordDonneurComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import {UtilisateurHttpService} from "./services/utilisateur.service";
     HttpClientModule,
 
   ],
-  providers: [DonHttpService, LotHttpService, EntrepriseHttpService, ParticulierHttpService, AssociationHttpService, AdresseHttpService, UtilisateurHttpService],
+  providers: [DonHttpService, LotHttpService, EntrepriseHttpService, ParticulierHttpService, AssociationHttpService, AdresseHttpService, UtilisateurHttpService, ProduitLotHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

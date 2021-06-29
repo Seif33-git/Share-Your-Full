@@ -2,7 +2,7 @@ package sopra.ShareYourFood.model;
 
 public enum Categorie {
 
-	GRANDE_SURFACE("Grande Surface"), SUPERETTE("Superette"), RESTAURANT("Restaurant"), CANTINE("Cantine"), AUTRE("Autre");
+	GRANDE_SURFACE("Grande surface"), SUPERETTE("Superette"), RESTAURANT("Restaurant"), CANTINE("Cantine"), AUTRE("Autre");
 	
 	private final String label;
 

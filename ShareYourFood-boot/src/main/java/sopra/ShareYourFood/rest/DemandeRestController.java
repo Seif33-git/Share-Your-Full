@@ -22,6 +22,7 @@ import sopra.ShareYourFood.model.Demande;
 import sopra.ShareYourFood.model.Lot;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.IDemandeRepository;
+import sopra.ShareYourFood.repository.ILotRepository;
 
 @RestController
 @RequestMapping("/demande")
@@ -30,6 +31,9 @@ public class DemandeRestController {
 
 	@Autowired
 	private IDemandeRepository demandeRepo;
+	
+	@Autowired
+	private ILotRepository lotRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewDemande.class)
@@ -50,7 +54,7 @@ public class DemandeRestController {
 		}
 	}
 	@GetMapping("/list-lot-demande/{idEntite}")
-	@JsonView(Views.ViewLot.class)
+	@JsonView(Views.ViewDemandeWithLot.class)
 	public List<Demande> findAllAccByEntite(@PathVariable Long idEntite){
 		return demandeRepo.findAllNonDonneEtDemandeAccOuPasRepByEntiteById(idEntite);
 	}
@@ -143,9 +147,35 @@ public class DemandeRestController {
 
 		return demande;
 	}
+	
+	@GetMapping("/demande-acceptee/{idLot}")
+	public void accepterDemande(@PathVariable Long idLot) {
+		demandeRepo.setDemandeAcceptee(idLot);
+		lotRepo.setLotReserve(idLot);
+	}
+	
+	@GetMapping("/demande-refusee/{idLot}")
+	public void refuserDemande(@PathVariable Long idLot) {
+		demandeRepo.setDemandeRefusee(idLot);
+	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		demandeRepo.deleteById(id);
+	}
+	@GetMapping("/list-lot-demande-historique/{idEntite}")
+	@JsonView(Views.ViewDemandeWithLot.class)
+	public List<Demande> findTBBH(@PathVariable Long idEntite) {
+		List<Demande> demandes =demandeRepo.findAllDonneEtDemandeArchiveeByEntiteById(idEntite);
+		
+		return demandes;
+		
+	}
+	@GetMapping("/trouverNomEntiteByDemandeId/{idDemande}")
+	@JsonView(Views.ViewCommon.class)
+	public String findNomEntiteByDemandeId(@PathVariable Long idDemande) {
+		String nomEntite = demandeRepo.findNomEntiteByDemandeId(idDemande).get();
+		return nomEntite;
+		
 	}
 }
