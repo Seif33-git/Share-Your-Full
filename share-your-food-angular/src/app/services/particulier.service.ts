@@ -33,9 +33,9 @@ export class ParticulierHttpService {
   createID(particulier: Particulier) {
 
     this.http.post<Particulier>(this.appConfig.backEndUrl + "particulier", particulier).subscribe(resp => {
-      console.log(particulier.id);
+      console.log("particulier ID avant : "+particulier.id);
       particulier.id=resp.id;
-      console.log(particulier.id);
+      console.log("particulier ID après : "+particulier.id);
       this.load();
     }, error => console.log(error));
   }

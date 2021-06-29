@@ -101,7 +101,7 @@ public class UtilisateurRestController {
 		if (optUtilisateur.isPresent()) {
 			return optUtilisateur.get();
 		} else {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unable to find user");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unable to find resource");
 		}
 	}
 }

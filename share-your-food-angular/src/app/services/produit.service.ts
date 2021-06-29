@@ -10,7 +10,7 @@ import {AppConfigService} from "../app-config.service";
 export class ProduitHttpService {
 
   produits: Array<Produit>;
-  types: Array<string>
+  types: Array<string>;
 
   constructor(private http: HttpClient, private appConfig: AppConfigService) {
     this.load()
@@ -31,13 +31,7 @@ export class ProduitHttpService {
     }, error => console.log(error));
   }
 
-  modify(produit: Produit): Observable<Produit> {
-
-    return this.http.put<Produit>(this.appConfig.backEndUrl + "produit/" + produit.nom, produit);
-
-  }
-
-  deleteById(nom: string) {
+   deleteById(nom: string) {
     this.http.delete(this.appConfig.backEndUrl +  "produit/" + nom).subscribe(resp => {
       this.load();
     }, error => console.log(error));

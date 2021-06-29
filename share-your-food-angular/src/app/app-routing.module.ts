@@ -9,6 +9,7 @@ import {TableauDeBordBeneficiaireComponent} from "./tableau-de-bord-beneficiaire
 import {ConnexionComponent} from "./connexion/connexion.component";
 import {InscriptionComponent} from "./inscription/inscription.component";
 import {AdministrationComponent} from "./administration/administration.component";
+import {TableauDeBordDonneurComponent} from "./tableau-de-bord-donneur/tableau-de-bord-donneur.component";
 
 const routes: Routes = [
   {path: "accueil1", component: Accueil1Component},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'don', component: CreationDonComponent},
   {path:'lot', component: CreationLotComponent},
   {path:'tableauDeBordBeneficiaire', component: TableauDeBordBeneficiaireComponent},
-  {path: 'connexion', component: ConnexionComponent, },
+  {path:'tableauDeBordDonneur', component: TableauDeBordDonneurComponent},
+  {path: 'connexion', component: ConnexionComponent},
   {path: 'inscription', component: InscriptionComponent},
   {path: 'administration', component: AdministrationComponent},
   {path: '**', component: PageNotFoundComponent},

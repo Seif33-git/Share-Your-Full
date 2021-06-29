@@ -17,8 +17,6 @@ import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.ShareYourFood.model.Views.ViewUtilisateurDetail;
-
 
 @Entity
 @Table(name = "utilisateur")

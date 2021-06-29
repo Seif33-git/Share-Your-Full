@@ -4,7 +4,7 @@ export class Demande {
   id: number;
   dtDemande: string;
   statutNotif: string;
-  lot : Lot;
+  lot: Lot;
 
   constructor(id?: number, dtDemande?: string, statutNotif?: string) {
     this.id=id!;

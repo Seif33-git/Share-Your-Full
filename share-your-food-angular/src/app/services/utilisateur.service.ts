@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Utilisateur} from "../model/utilisateur";
 import {AppConfigService} from "../app-config.service";
+import {Entreprise} from "../model/entreprise";
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +26,16 @@ export class UtilisateurHttpService {
   create(utilisateur: Utilisateur) {
 
     this.http.post<Utilisateur>(this.appConfig.backEndUrl + "utilisateur", utilisateur).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
+  createID(utilisateur: Utilisateur) {
+
+    this.http.post<Utilisateur>(this.appConfig.backEndUrl + "utilisateur", utilisateur).subscribe(resp => {
+      console.log("utilisateur ID avant : "+utilisateur.id);
+      utilisateur.id=resp.id;
+      console.log("utilisateur ID après : "+utilisateur.id);
       this.load();
     }, error => console.log(error));
   }

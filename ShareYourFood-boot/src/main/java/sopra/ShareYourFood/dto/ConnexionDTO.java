@@ -1,8 +1,14 @@
 package sopra.ShareYourFood.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import sopra.ShareYourFood.model.Views;
+
 public class ConnexionDTO {
 
+	@JsonView(Views.ViewCommon.class)
 	private String mail;
+	@JsonView(Views.ViewCommon.class)
 	private String motDePasse;
 	
 	public ConnexionDTO(String mail, String motDePasse) {

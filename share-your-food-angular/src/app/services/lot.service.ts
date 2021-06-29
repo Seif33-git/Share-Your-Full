@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Lot} from "../model/lot";
 import {AppConfigService} from "../app-config.service";
 import {Demande} from "../model/demande";
+import {dashboardGiverDTO} from "../model/dashboardGiverDTO";
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,11 @@ export class LotHttpService {
     this.load();
     this.loadGrosLot();
   }
+
+  listLotDashboardDonneur(idEntite: number): Observable<Array<dashboardGiverDTO>>{
+    return this.http.get<Array<dashboardGiverDTO>>(this.appConfig.backEndUrl + "lot/dashboard-donneur-non-donne/"+idEntite)
+  }
+
   listLotAccByEntite(idEntite: number): Observable<Array<Demande>>{
    return this.http.get<Array<Demande>>(this.appConfig.backEndUrl + "demande/list-lot-demande/"+idEntite)
   }
@@ -50,10 +56,11 @@ export class LotHttpService {
   }
 
   modify(lot: Lot): Observable<Lot> {
-
     return this.http.put<Lot>(this.appConfig.backEndUrl + "lot/" + lot.id, lot);
-
   }
+
+
+
 
   deleteById(id: number) {
     this.http.delete(this.appConfig.backEndUrl + "lot/" + id).subscribe(resp => {
