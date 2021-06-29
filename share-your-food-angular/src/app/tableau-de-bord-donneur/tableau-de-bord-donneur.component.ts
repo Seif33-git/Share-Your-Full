@@ -33,7 +33,10 @@ export class TableauDeBordDonneurComponent implements OnInit {
 
   Accepter(idLot: number){
     this.demandeService.accepterDemandeByLotId(idLot);
+  }
 
+  Refuser(idLot: number){
+    this.demandeService.refuserDemandeByLotId(idLot);
   }
 
 

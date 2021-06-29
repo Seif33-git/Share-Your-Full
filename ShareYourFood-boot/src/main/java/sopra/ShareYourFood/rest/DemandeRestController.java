@@ -153,6 +153,11 @@ public class DemandeRestController {
 		demandeRepo.setDemandeAcceptee(idLot);
 		lotRepo.setLotReserve(idLot);
 	}
+	
+	@GetMapping("/demande-refusee/{idLot}")
+	public void refuserDemande(@PathVariable Long idLot) {
+		demandeRepo.setDemandeRefusee(idLot);
+	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {

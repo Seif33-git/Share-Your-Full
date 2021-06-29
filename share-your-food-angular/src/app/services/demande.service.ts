@@ -41,6 +41,12 @@ export class DemandeHttpService {
     }, error => console.log(error));
   }
 
+  refuserDemandeByLotId(idLot: number){
+    this.http.get<Demande>(this.appConfig.backEndUrl + "demande/demande-refusee/" + idLot).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
   deleteById(id: number) {
     this.http.delete(this.appConfig.backEndUrl + "demande/" + id).subscribe(resp => {
       this.load();
