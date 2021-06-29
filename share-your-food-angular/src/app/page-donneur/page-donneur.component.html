@@ -1,18 +1,18 @@
 <div class="container policeChampagne25">
   <div>
-    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+    <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
       <p>MES DONS EN COURS</p>
     </div>
 
     <table class="table">
       <thead>
-      <tr class="table-info policeChampagneCenter">
-        <th>NUMÉRO</th>
-        <th>DATE DE MISE EN LIGNE</th>
-        <th>NOMBRE DE LOTS DISPONIBLES</th>
-        <th>CRÉNEAU</th>
-        <th>COMMENTAIRE</th>
-        <th>DESTINATAIRE</th>
+      <tr class="table-danger policeImpactCenter">
+        <th>N°</th>
+        <th>date de mise en ligne</th>
+        <th>lots disponibles</th>
+        <th>créneau</th>
+        <th>commentaire</th>
+        <th>destinataire</th>
         <th></th>
       </tr>
       </thead>
@@ -38,11 +38,11 @@
       <table class="table">
         <thead>
         <tr class="table-info policeChampagneCenter">
-          <th>Photo</th>
-          <th>Nom</th>
-          <th>Date de péremption</th>
-          <th>Statut</th>
-          <th>Volume</th>
+          <th>photo</th>
+          <th>nom</th>
+          <th>date de péremption</th>
+          <th>statut</th>
+          <th>volume</th>
           <th></th>
         </tr>
         </thead>
@@ -75,22 +75,22 @@
       <img src="assets/panierDessin.png" class="mx-auto d-block">
     </div>
     <div class="col">
-        <a class="btn btn-lg btn-danger btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>
+        <a class="btn btn-lg btn-info btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>
     </div>
   </div>
 
 
 <div *ngIf="historique">
-  <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
+  <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
     <p>MON HISTORIQUE DE DONS</p>
   </div>
 
 
   <table class="table">
     <thead>
-    <tr class="table-danger policeChampagneCenter">
-      <th>LOT</th>
-      <th>QUANTITE</th>
+    <tr class="table-info policeImpact">
+      <th>lot</th>
+      <th>quantité</th>
       <th></th>
       </tr>
       </thead>
@@ -106,4 +106,4 @@
 
 </div>
 </div>
-
+</div>

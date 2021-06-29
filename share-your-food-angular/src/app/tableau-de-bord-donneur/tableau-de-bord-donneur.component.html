@@ -1,16 +1,14 @@
-<div class="container policeChampagne25">
-  <div>
-    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
-      <p>TABLEAU DE BORD</p>
-    </div>
-
+<div class="bg-light mt-3 conteneurArrondi policeChampagne25">
+  <p>Mes demandes en cours</p>
+</div>
+<div class="pt-3">
     <table class="table">
       <thead>
-      <tr class="table-info policeChampagneCenter">
-        <th>NUMÉRO</th>
-        <th>NOM</th>
-        <th>Q UANTITE</th>
-        <th>DEMANDEUR</th>
+      <tr class="table-danger policeImpactCenter">
+        <th>N°</th>
+        <th>nom</th>
+        <th>quantité</th>
+        <th>demandeur</th>
         <th></th>
       </tr>
       </thead>
@@ -26,20 +24,20 @@
       </tbody>
     </table>
 
-    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
-      <p>Lots en préparation</p>
-    </div>
+  <div class="bg-light mt-3 conteneurArrondi policeChampagne25">
+    <p>Mes lots en préparation</p>
+  </div>
 
     <table class="table">
-      <thead>
-      <tr class="table-info policeChampagneCenter">
-        <th>NUMÉRO</th>
-        <th>NOM</th>
-        <th>Q UANTITE</th>
-        <th>DEMANDEUR</th>
-        <th></th>
-      </tr>
-      </thead>
+<!--      <thead>-->
+<!--      <tr class="table-info policeImpact">-->
+<!--        <th>N°</th>-->
+<!--        <th>nom</th>-->
+<!--        <th>quantité</th>-->
+<!--        <th>demandeur</th>-->
+<!--        <th></th>-->
+<!--      </tr>-->
+<!--      </thead>-->
       <tbody>
       <tr *ngFor="let lotDto of listDashboardDonneurReserve">
         <td>{{lotDto.id}}</td>
@@ -59,34 +57,34 @@
     <!--          <button type="button"-->
     <!--                 class="btn btn-success btn-lg ml-auto mr-auto" routerLinkActive="active" [routerLink]="['/don']">+ NOUVEAU DON</button>-->
 
-    <div class="row justify-content-center align-items-center text-center">
-      <div class="col">
-        <a class="btn btn-lg btn-warning btnImpact" [routerLink]="['/don']"><i class="fas fa-hand-holding-heart"></i> NOUVEAU DON</a>
-      </div>
-      <div class="col">
-        <img src="assets/panierDessin.png" class="mx-auto d-block">
-      </div>
-      <div class="col">
-        <a class="btn btn-lg btn-danger btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>
-      </div>
-    </div>
+<!--    <div class="row justify-content-center align-items-center text-center">-->
+<!--      <div class="col">-->
+<!--        <a class="btn btn-lg btn-warning btnImpact" [routerLink]="['/don']"><i class="fas fa-hand-holding-heart"></i> NOUVEAU DON</a>-->
+<!--      </div>-->
+<!--      <div class="col">-->
+<!--        <img src="assets/panierDessin.png" class="mx-auto d-block">-->
+<!--      </div>-->
+<!--      <div class="col">-->
+<!--        <a class="btn btn-lg btn-danger btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <div *ngIf="historique">
-      <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
-        <p>MON HISTORIQUE DE DONS</p>
-      </div>
+<!--    <div *ngIf="historique">-->
+  <div class="bg-light mt-3 conteneurArrondi policeChampagne25">
+    <p>Mes dons archivés</p>
+  </div>
 
 
       <table class="table">
-        <thead>
-        <tr class="table-info policeChampagneCenter">
-          <th>NUMÉRO</th>
-          <th>NOM</th>
-          <th>QUANTITE</th>
-          <th>DEMANDEUR</th>
-          <th></th>
-        </tr>
-        </thead>
+<!--        <thead>-->
+<!--        <tr class="table-info policeImpact">-->
+<!--          <th>N°</th>-->
+<!--          <th>nom</th>-->
+<!--          <th>quantité</th>-->
+<!--          <th>demandeur</th>-->
+<!--          <th></th>-->
+<!--        </tr>-->
+<!--        </thead>-->
         <tbody>
         <tr *ngFor="let lotDto of listDashboardDonneurDonne">
           <td>{{lotDto.id}}</td>
@@ -97,6 +95,5 @@
         </tbody>
       </table>
 
-    </div>
-  </div>
 </div>
+<!--</div>-->
