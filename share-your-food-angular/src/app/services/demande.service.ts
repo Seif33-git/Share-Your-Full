@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Demande} from "../model/demande";
 import {AppConfigService} from "../app-config.service";
+import {dashboardBeneficiaireDTO} from "../model/dashboardBeneficiaireDTO";
 @Injectable({
   providedIn: 'root'
 })
@@ -41,8 +42,20 @@ export class DemandeHttpService {
     }, error => console.log(error));
   }
 
+  annulerDemandeByLotId(idLot: number){
+    this.http.get<Demande>(this.appConfig.backEndUrl + "demande/demande-annulee/" + idLot).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
   refuserDemandeByLotId(idLot: number){
     this.http.get<Demande>(this.appConfig.backEndUrl + "demande/demande-refusee/" + idLot).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
+  donnerLotByLotId(idLot: number){
+    this.http.get<Demande>(this.appConfig.backEndUrl + "demande/lot-donne/" + idLot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }
@@ -58,8 +71,8 @@ export class DemandeHttpService {
       this.demandes = resp;
     }, error => console.log(error))
   }
-  listDemandeHistByEntite(idEntite: number): Observable<Array<Demande>>{
-    return this.http.get<Array<Demande>>(this.appConfig.backEndUrl + "demande/list-lot-demande-historique/"+idEntite)
+  listDemandeHistByEntite(idEntite: number): Observable<Array<dashboardBeneficiaireDTO>>{
+    return this.http.get<Array<dashboardBeneficiaireDTO>>(this.appConfig.backEndUrl + "demande/TableaudeBordBeneficiaireHisto/"+idEntite)
   }
   trouverNomEntite(idDemande: number){
     return this.http.get<string>(this.appConfig.backEndUrl + "trouverNomEntiteByDemandeId/{idDemande}").subscribe(

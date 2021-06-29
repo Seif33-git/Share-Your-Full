@@ -10,7 +10,6 @@ export class AppConfigService {
   backEndUrl: string = "http://localhost:8080/";
 
   constructor(private http: HttpClient) {
-
   }
 
   findAllCategories(): Observable<Array<string>> {

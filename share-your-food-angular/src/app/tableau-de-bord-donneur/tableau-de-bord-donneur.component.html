@@ -9,7 +9,7 @@
       <tr class="table-info policeChampagneCenter">
         <th>NUMÉRO</th>
         <th>NOM</th>
-        <th>QUANTITE</th>
+        <th>Q UANTITE</th>
         <th>DEMANDEUR</th>
         <th></th>
       </tr>
@@ -25,6 +25,33 @@
       </tr>
       </tbody>
     </table>
+
+    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+      <p>Lots en préparation</p>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr class="table-info policeChampagneCenter">
+        <th>NUMÉRO</th>
+        <th>NOM</th>
+        <th>Q UANTITE</th>
+        <th>DEMANDEUR</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let lotDto of listDashboardDonneurReserve">
+        <td>{{lotDto.id}}</td>
+        <td>{{lotDto.nomLot}}</td>
+        <td>{{lotDto.quantiteLot}}</td>
+        <td>{{lotDto.nomEntite}}</td>
+        <td><a class="btn btn-info btn-m" (click)="Donner(lotDto.id)"><i class="fas fa-check"></i> Donné</a>
+          <a class="btn btn-secondary btn-m" (click)="Annuler(lotDto.id)"><i class="fas fa-trash-alt"></i> Annuler</a></td>
+      </tr>
+      </tbody>
+    </table>
+
     <!--  </div>-->
 
 
@@ -44,7 +71,6 @@
       </div>
     </div>
 
-
     <div *ngIf="historique">
       <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
         <p>MON HISTORIQUE DE DONS</p>
@@ -53,21 +79,23 @@
 
       <table class="table">
         <thead>
-        <tr class="table-danger policeChampagneCenter">
-          <th>LOT</th>
+        <tr class="table-info policeChampagneCenter">
+          <th>NUMÉRO</th>
+          <th>NOM</th>
           <th>QUANTITE</th>
+          <th>DEMANDEUR</th>
           <th></th>
         </tr>
         </thead>
-
         <tbody>
-        <tr>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let lotDto of listDashboardDonneurDonne">
+          <td>{{lotDto.id}}</td>
+          <td>{{lotDto.nomLot}}</td>
+          <td>{{lotDto.quantiteLot}}</td>
+          <td>{{lotDto.nomEntite}}</td>
         </tr>
         </tbody>
       </table>
-
 
     </div>
   </div>

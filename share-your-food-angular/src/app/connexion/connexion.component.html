@@ -7,7 +7,9 @@
 
   <label for="motdepasse">Entrer votre mot de passe :</label>
   <input type="text" class="form-control" id="motdepasse" [(ngModel)]="conn.motDePasse"/>
-
+  <div class="mt-3" *ngIf="flagMDP == true" style="color: red">
+    Mot de passe erroné !
+  </div>
   <div class="mt-3">
     <a class="lien" [routerLink]="['/informations']">Mot de passe oublié ?</a>
   </div>

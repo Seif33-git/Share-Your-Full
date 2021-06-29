@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -33,6 +34,7 @@ public class Don {
 	private int version;
 	@Column(name = "date_de_mise_en_ligne", length = 255)
 	@JsonView(Views.ViewCommon.class)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dateDeMiseEnLigne;
 	@Column(name = "créneau", length = 255)
 	@JsonView(Views.ViewCommon.class)

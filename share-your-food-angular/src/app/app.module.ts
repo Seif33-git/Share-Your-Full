@@ -23,6 +23,7 @@ import {ParticulierHttpService} from "./services/particulier.service";
 import {AssociationHttpService} from "./services/association.service";
 import {AdresseHttpService} from "./services/adresse.service";
 import {UtilisateurHttpService} from "./services/utilisateur.service";
+import { PageBeneficiaireComponent } from './page-beneficiaire/page-beneficiaire.component';
 import { Accueil2Component } from './accueil2/accueil2.component';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { Accueil2Component } from './accueil2/accueil2.component';
     InscriptionComponent,
     AdministrationComponent,
     TableauDeBordDonneurComponent,
+    PageBeneficiaireComponent,
     Accueil2Component,
   ],
   imports: [
@@ -45,8 +47,9 @@ import { Accueil2Component } from './accueil2/accueil2.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-
   ],
+
+
   providers: [DonHttpService, LotHttpService, EntrepriseHttpService, ParticulierHttpService, AssociationHttpService, AdresseHttpService, UtilisateurHttpService, ProduitLotHttpService],
   bootstrap: [AppComponent]
 })
