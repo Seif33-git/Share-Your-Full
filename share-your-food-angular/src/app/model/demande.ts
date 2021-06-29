@@ -1,6 +1,5 @@
 import {Lot} from "./lot";
 
-
 export class Demande {
   id: number;
   dtDemande: string;
