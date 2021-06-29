@@ -79,15 +79,20 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 	@Modifying
 	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER WHERE d.lot.id = :idLot")
 	void setDemandeAcceptee(@Param("idLot") Long idLot);
-	@Query("select distinct d from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
-			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
-			+ " and d.entite.id = :id")
-	List<Demande> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
 	
 	@Transactional
 	@Modifying
 	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.REFUSER WHERE d.lot.id = :idLot")
 	void setDemandeRefusee(@Param("idLot") Long idLot);
+	
+	
 	@Query("select d.lot.don.entite.nom from Demande d where d.id = :id")
 	Optional<String> findNomEntiteByDemandeId(@Param("id") Long id);
+	
+	@Query("select distinct d from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
+			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
+			+ " and d.entite.id = :id")
+	List<Demande> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
+	
+	
 }

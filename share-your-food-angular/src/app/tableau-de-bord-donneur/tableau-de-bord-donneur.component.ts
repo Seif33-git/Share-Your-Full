@@ -16,18 +16,33 @@ export class TableauDeBordDonneurComponent implements OnInit {
   constructor(private lotservice: LotHttpService, private demandeService: DemandeHttpService) { }
 
   listDashboardDonneur: Array<dashboardGiverDTO>;
+  listDashboardDonneurReserve: Array<dashboardGiverDTO>;
+  listDashboardDonneurDonne: Array<dashboardGiverDTO>;
   lotCourant: Lot;
   demandeCourante: Demande;
   historique: Don = null;
 
   ngOnInit(): void {
     this.ListLotDashboard();
-    console.log(this.listDashboardDonneur);
+    this.ListLotDashboardDonne();
+    this.ListLotDashboardReserve();
   }
 
   ListLotDashboard(){
     this.lotservice.listLotDashboardDonneur(Number(sessionStorage.getItem("idEntite"))).subscribe(
       resp=> {this.listDashboardDonneur = resp}
+    );
+  }
+
+  ListLotDashboardReserve(){
+    this.lotservice.listLotDashboardDonneurReserve(Number(sessionStorage.getItem("idEntite"))).subscribe(
+      resp=> {this.listDashboardDonneurReserve = resp}
+    );
+  }
+
+  ListLotDashboardDonne(){
+    this.lotservice.listLotDashboardDonneurDonne(Number(sessionStorage.getItem("idEntite"))).subscribe(
+      resp=> {this.listDashboardDonneurDonne = resp}
     );
   }
 
@@ -37,6 +52,14 @@ export class TableauDeBordDonneurComponent implements OnInit {
 
   Refuser(idLot: number){
     this.demandeService.refuserDemandeByLotId(idLot);
+  }
+
+  Annuler(idLot: number){
+    this.demandeService.annulerDemandeByLotId(idLot);
+  }
+
+  Donner(idLot: number){
+    this.demandeService.donnerLotByLotId(idLot);
   }
 
 

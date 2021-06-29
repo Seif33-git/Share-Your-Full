@@ -69,7 +69,7 @@ public class LotRestController {
 	@JsonView(Views.ViewLot.class)
 	@PreAuthorize("hasRole('DONNEUR')")
 	public List<Lot> findNonDonneByEntite(@PathVariable Long idEntite) {
-		return lotRepo.findAllNonDonneByEntiteById(idEntite);
+		return lotRepo.findAllDisponibleByEntiteById(idEntite);
 	}
 
 	@GetMapping("/donne-by-entite/{idEntite}")
@@ -78,8 +78,15 @@ public class LotRestController {
 	public List<Lot> findDonneByEntite(@PathVariable Long idEntite) {
 		return lotRepo.findAllDonneByEntiteById(idEntite);
 	}
-
 	
+	
+
+	@GetMapping("/lot-by-don/{idDon}")
+	@JsonView(Views.ViewLot.class)
+	@PreAuthorize("hasRole('DONNEUR')")
+	public List<Lot> findByDon(@PathVariable Long idDon) {
+		return lotRepo.findLotByDonId(idDon);
+	}
 
 	
 	
@@ -108,13 +115,55 @@ public class LotRestController {
 		lotRepo.deleteById(id);
 	}
 	
-	@GetMapping("/dashboard-donneur-non-donne/{idEntite}")
+	@GetMapping("/dashboard-donneur-disponible/{idEntite}")
 	@JsonView(Views.ViewLot.class)
 	public List<DashboardGiverDTO> dashboardDonneur(@PathVariable Long idEntite) {
 		
 		List <DashboardGiverDTO> listLotDto = new ArrayList<DashboardGiverDTO>();
 		
-		List<Lot> lots = lotRepo.findAllNonDonneByEntiteById(idEntite);
+		List<Lot> lots = lotRepo.findAllDisponibleByEntiteById(idEntite);
+		
+		for  (Lot lot : lots) {
+			DashboardGiverDTO e = new DashboardGiverDTO();
+			e.setId(lot.getId());
+			e.setNomLot(lot.getNom());
+			e.setQuantiteLot(lot.getVolume());
+			
+			String nomEntite = lotRepo.findNomEntiteLotByIdLot(e.getId());
+			e.setNomEntite(nomEntite);
+			listLotDto.add(e);
+		}
+		return listLotDto;
+	}
+	
+	@GetMapping("/dashboard-donneur-reserve/{idEntite}")
+	@JsonView(Views.ViewLot.class)
+	public List<DashboardGiverDTO> dashboardDonneurReserve(@PathVariable Long idEntite) {
+		
+		List <DashboardGiverDTO> listLotDto = new ArrayList<DashboardGiverDTO>();
+		
+		List<Lot> lots = lotRepo.findAllReserveByEntiteById(idEntite);
+		
+		for  (Lot lot : lots) {
+			DashboardGiverDTO e = new DashboardGiverDTO();
+			e.setId(lot.getId());
+			e.setNomLot(lot.getNom());
+			e.setQuantiteLot(lot.getVolume());
+			
+			String nomEntite = lotRepo.findNomEntiteLotByIdLot(e.getId());
+			e.setNomEntite(nomEntite);
+			listLotDto.add(e);
+		}
+		return listLotDto;
+	}
+	
+	@GetMapping("/dashboard-donneur-donne/{idEntite}")
+	@JsonView(Views.ViewLot.class)
+	public List<DashboardGiverDTO> dashboardDonneurDonne(@PathVariable Long idEntite) {
+		
+		List <DashboardGiverDTO> listLotDto = new ArrayList<DashboardGiverDTO>();
+		
+		List<Lot> lots = lotRepo.findAllDonneByEntiteById(idEntite);
 		
 		for  (Lot lot : lots) {
 			DashboardGiverDTO e = new DashboardGiverDTO();
