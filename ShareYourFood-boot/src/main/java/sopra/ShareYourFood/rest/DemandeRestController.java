@@ -1,5 +1,6 @@
 package sopra.ShareYourFood.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import sopra.ShareYourFood.dto.DashboardBeneficiaireDTO;
 import sopra.ShareYourFood.model.Demande;
 import sopra.ShareYourFood.model.Lot;
 import sopra.ShareYourFood.model.Views;
@@ -188,5 +190,50 @@ public class DemandeRestController {
 		String nomEntite = demandeRepo.findNomEntiteByDemandeId(idDemande).get();
 		return nomEntite;
 		
+	}
+	
+	@GetMapping("TableaudeBordBeneficiaire/{idEntite}")
+	@JsonView(Views.ViewCommon.class)
+	public List<DashboardBeneficiaireDTO> remplirTDBB(@PathVariable Long idEntite) {
+		List<DashboardBeneficiaireDTO> tdbbDto = new ArrayList<DashboardBeneficiaireDTO>();
+		List<Demande> demandes = new ArrayList<Demande>();
+		demandes = demandeRepo.findAllNonDonneEtDemandeAccOuPasRepByEntiteById(idEntite);
+		for (Demande demande : demandes) {
+			DashboardBeneficiaireDTO e = new DashboardBeneficiaireDTO();
+			e.setId(demande.getId());
+			e.setNomLot(demande.getLot().getNom());
+			e.setQuantiteLot(demande.getLot().getVolume());
+			e.setStatut(demande.getStatutNotif());
+			
+			String nomEntite = demandeRepo.findNomEntiteByDemandeId(e.getId()).get();
+			e.setNomEntite(nomEntite);
+			tdbbDto.add(e);
+		}
+		
+		
+		
+		return tdbbDto;
+	}
+	@GetMapping("TableaudeBordBeneficiaireHisto/{idEntite}")
+	@JsonView(Views.ViewCommon.class)
+	public List<DashboardBeneficiaireDTO> remplirTDBBHisto(@PathVariable Long idEntite) {
+		List<DashboardBeneficiaireDTO> tdbbDto = new ArrayList<DashboardBeneficiaireDTO>();
+		List<Demande> demandes = new ArrayList<Demande>();
+		demandes = demandeRepo.findAllDonneEtDemandeArchiveeByEntiteById(idEntite);
+		for (Demande demande : demandes) {
+			DashboardBeneficiaireDTO e = new DashboardBeneficiaireDTO();
+			e.setId(demande.getId());
+			e.setNomLot(demande.getLot().getNom());
+			e.setQuantiteLot(demande.getLot().getVolume());
+			e.setStatut(demande.getStatutNotif());
+			
+			String nomEntite = demandeRepo.findNomEntiteByDemandeId(e.getId()).get();
+			e.setNomEntite(nomEntite);
+			tdbbDto.add(e);
+		}
+		
+		
+		
+		return tdbbDto;
 	}
 }

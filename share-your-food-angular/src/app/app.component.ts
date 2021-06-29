@@ -23,4 +23,12 @@ export class AppComponent {
   deconnexion() {
     sessionStorage.clear()
   }
+
+  areYouDonneur() {
+    return JSON.parse(sessionStorage.getItem("utilisateur")).entite.donneur
+  }
+
+  areYouBeneficiaire() {
+    return JSON.parse(sessionStorage.getItem("utilisateur")).entite.beneficiaire
+  }
 }

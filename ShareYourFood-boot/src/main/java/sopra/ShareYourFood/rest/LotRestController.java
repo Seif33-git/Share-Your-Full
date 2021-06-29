@@ -182,8 +182,16 @@ public class LotRestController {
 	public void reserverLot(@PathVariable Long idLot) {
 		lotRepo.setLotReserve(idLot);
 	}
-}
+
 	
+@GetMapping("/lot-dispo")
+@JsonView(Views.ViewCommon.class)
+public List<Lot> findLotDispo() {
+	return lotRepo.findAllLotsDispo(); // .subList(0, 6)
+}
+
+
+}
 //	@GetMapping("/advanceSearch")
 //	public List<Lot> advanceSearchResult(@RequestParam("ville") String ville, @RequestParam("codePostal") String codePostal, @RequestParam("recherche") String recherche){
 //		

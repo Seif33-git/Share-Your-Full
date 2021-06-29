@@ -1,7 +1,5 @@
 package sopra.ShareYourFood.repository;
 
-
-
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,20 +21,17 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 	
 	@Query("select l from Lot l where l.statut = sopra.ShareYourFood.model.Statut.DONNE and l.don.entite.id = :idEntite")
 	List<Lot> findAllDonneByEntiteById(@Param("idEntite") Long idEntite);
-	
+
 	@Query("select d.lot from Demande d where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE and "
-			+ "d.lot.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE and "
-			+ "d.lot.don.entite.id = :idEntite")
+			+ "d.lot.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE and " + "d.lot.don.entite.id = :idEntite")
 	List<Lot> findAllDisponibleEnAttenteByEntiteById(@Param("idEntite") Long idEntite);
-	
+
 	@Query("select d.lot from Demande d where d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER and "
-			+ "d.lot.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE and "
-			+ "d.lot.don.entite.id = :idEntite")
+			+ "d.lot.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE and " + "d.lot.don.entite.id = :idEntite")
 	List<Lot> findAllDisponibleAccepteByEntiteById(@Param("idEntite") Long idEntite);
-	
-	@Query("select l from Lot l WHERE l.statut = sopra.ShareYourFood.model.Statut.DONNE "
-			+ "ORDER BY l.volume DESC")			
-	List<Lot> findAllLotsDonneTrieParVolume();	
+
+	@Query("select l from Lot l WHERE l.statut = sopra.ShareYourFood.model.Statut.DONNE " + "ORDER BY l.volume DESC")
+	List<Lot> findAllLotsDonneTrieParVolume();
 
 	@Query("select count(l) from Lot l where l.statut = sopra.ShareYourFood.model.Statut.DONNE")
 	int findAllLotsDonne();
@@ -49,19 +44,19 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 
 //	@Query("select d.lot from Don d where d.entite.id=:idEntite")
 //	List<Lot> findAllByDemande(@Param("idEntite") Long idEntite);
-	
-	
+
+	@Query("select l from Lot l where l.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE")
+	List<Lot> findAllLotsDispo();
+
 	@Transactional
 	@Modifying
 	@Query("UPDATE Demande d SET d.lot = NULL WHERE lot.id = :id")
 	void setLotOfDemandeNull(@Param("id") Long id);
-	
-	
-	//DASHBOARD DONNEUR
+
+	// DASHBOARD DONNEUR
 	@Query("select d.entite.nom from Demande d where d.lot.id = :idLot")
 	String findNomEntiteLotByIdLot(@Param("idLot") Long idLot);
-	
-	
+
 	@Transactional
 	@Modifying
 	@Query("UPDATE Lot l SET l.statut = sopra.ShareYourFood.model.Statut.RESERVE WHERE l.id = :idLot")
