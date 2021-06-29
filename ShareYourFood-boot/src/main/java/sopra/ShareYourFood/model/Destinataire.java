@@ -2,7 +2,7 @@ package sopra.ShareYourFood.model;
 
 public enum Destinataire {
 	
-	ENTREPRISE("Entreprise"),PARTICULIER("prticulier"),ASSOCIATION("Association");
+	ENTREPRISE("Entreprise"),PARTICULIER("particulier"),ASSOCIATION("Association");
 	
 	private final String label;
 

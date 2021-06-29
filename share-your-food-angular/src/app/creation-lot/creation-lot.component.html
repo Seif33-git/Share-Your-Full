@@ -64,14 +64,13 @@
       </tr>
       </tbody>
 
-
       <div class="card-footer">
         <div class="row">
           <div class="col text-center">
             <a class="btn float-left btn-lg btn-outline-info" (click)="addProduit()"><i class="fas fa-plus-square"></i>
               Nouveau Produit</a>
             <button type="button"
-                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" (click)="saveLot();">VALIDER
+                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto"  (click)="saveLot();" [routerLink]="['/don']">VALIDER
             </button>
           </div>
         </div>
@@ -88,14 +87,14 @@
     </div>
     <div class="card-body">
       <div class="form-group">
-        <label for="nom">Nom du Produit :</label>
-        <input type="text" class="form-control" id="nom" [(ngModel)]="produitForm.nom">
+        <!--<label for="nom">Nom du Produit :</label>-->
+        <!--<input type="text" class="form-control" id="nom" [(ngModel)]="produitForm.nom">-->
       </div>
       <div class="form-group">
         <label for="typeProduit">Choix du type de produit :</label> <select
         id="typeProduit" class="form-control" [(ngModel)]="produitForm.type">
         <option value="">Choisir un type</option>
-        <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
+        <!--<option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>-->
       </select>
       </div>
     </div>

@@ -46,6 +46,8 @@ import { PageBeneficiaireComponent } from './page-beneficiaire/page-beneficiaire
     FormsModule,
     HttpClientModule,
   ],
+
+
   providers: [DonHttpService, LotHttpService, EntrepriseHttpService, ParticulierHttpService, AssociationHttpService, AdresseHttpService, UtilisateurHttpService, ProduitLotHttpService],
   bootstrap: [AppComponent]
 })
