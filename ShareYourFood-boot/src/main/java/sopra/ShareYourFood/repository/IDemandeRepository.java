@@ -85,6 +85,11 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER WHERE d.lot.id = :idLot")
 	void setDemandeAcceptee(@Param("idLot") Long idLot);
 	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE WHERE d.lot.id = :idLot")
+	void setDemandeEnAttente(@Param("idLot") Long idLot);
+	
 	
 	@Transactional
 	@Modifying

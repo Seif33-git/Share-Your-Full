@@ -158,7 +158,7 @@ public class DemandeRestController {
 	
 	@GetMapping("/demande-annulee/{idLot}")
 	public void annulerDemande(@PathVariable Long idLot) {
-		demandeRepo.setDemandeAcceptee(idLot);
+		demandeRepo.setDemandeEnAttente(idLot);
 		lotRepo.setLotDisponible(idLot);
 	}
 	

@@ -13,7 +13,11 @@ import sopra.ShareYourFood.model.Lot;
 
 public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepositoryCustom {
 	
-	@Query("select l from Lot l where l.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE and l.don.entite.id = :idEntite")
+//	@Query("select l from Lot l where l.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE and l.don.entite.id = :idEntite")
+//	List<Lot> findAllDisponibleByEntiteById(@Param("idEntite") Long idEntite);
+	
+	@Query("select dl from Demande d left join d.lot dl where d.lot.statut = sopra.ShareYourFood.model.Statut.DISPONIBLE and"
+			+ " d.statutNotif<>sopra.ShareYourFood.model.StatutNotif.REFUSER and d.lot.don.entite.id = :idEntite")
 	List<Lot> findAllDisponibleByEntiteById(@Param("idEntite") Long idEntite);
 	
 	@Query("select l from Lot l where l.statut = sopra.ShareYourFood.model.Statut.RESERVE and l.don.entite.id = :idEntite")
