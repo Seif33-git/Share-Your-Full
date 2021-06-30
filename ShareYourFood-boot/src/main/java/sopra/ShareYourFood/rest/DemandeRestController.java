@@ -164,6 +164,7 @@ public class DemandeRestController {
 	
 	@GetMapping("/lot-donne/{idLot}")
 	public void lotDonne(@PathVariable Long idLot) {
+		demandeRepo.setDemandeArchivee(idLot);
 		lotRepo.setLotDonne(idLot);
 	}
 	
