@@ -12,7 +12,7 @@ export class ProduitHttpService {
   produits: Array<Produit>;
   types: Array<string>;
 
-  constructor(private http: HttpClient, private appConfig: AppConfigService) {
+  constructor(private http: HttpClient, private appConfig: AppConfigService,) {
     this.load()
   }
 
@@ -20,15 +20,18 @@ export class ProduitHttpService {
     return this.produits;
   }
 
+  findAllByCategorie(typeProduit : string): Observable< Array<Produit>> {
+    return this.http.get<Array<Produit>>(this.appConfig.backEndUrl + "produit/produitType/" + typeProduit ) ;
+  }
+
   findById(nom: string): Observable<Produit> {
     return this.http.get<Produit>(this.appConfig.backEndUrl + "produit/" + nom);
   }
 
-  create(produit: Produit) {
+  create(produit: Produit): Observable<Produit> {
 
-    this.http.post<Produit>(this.appConfig.backEndUrl + "produit", produit).subscribe(resp => {
-      this.load();
-    }, error => console.log(error));
+   return  this.http.post<Produit>(this.appConfig.backEndUrl + "produit", produit);
+
   }
 
    deleteById(nom: string) {
@@ -45,4 +48,6 @@ export class ProduitHttpService {
       this.types = resp;
     }, error => console.log(error));
   }
+
+
 }

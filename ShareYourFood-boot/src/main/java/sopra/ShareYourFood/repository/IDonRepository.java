@@ -18,6 +18,12 @@ public interface IDonRepository extends JpaRepository<Don, Long> {
 	@Query("select d from Don d where d.entite.id = :idEntite")
 	List<Don> findDonByEntiteId(@Param("idEntite") Long idEntite);
 	
+//	@Query("select ld from Lot l left join l.don ld where l.statut<>sopra.ShareYourFood.model.Statut.DONNE and l.don.entite.id = :idEntite")
+//	List<Don> findDonByEntiteId(@Param("idEntite") Long idEntite);
+	
+//	@Query("select ld from Lot l left join l.don ld where l.statut = sopra.ShareYourFood.model.Statut.DONNE and l.don.entite.id = :idEntite")
+//	List<Don> findDonByEntiteIdHistorique(@Param("idEntite") Long idEntite);
+	
 	@Transactional
 	@Modifying
 	@Query("UPDATE Lot l SET l.don = NULL WHERE don.id = :id")

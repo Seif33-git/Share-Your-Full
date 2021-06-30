@@ -8,7 +8,7 @@ export class Lot {
   dtPeremptionLot: string;
   photo: string;
   statut: string;
-
+  produitLots: Array<ProduitLot> = new Array<ProduitLot>();
 
   constructor(id?: number, version?: number, nom?: string, volume?: number, dtPeremptionLot?: string, photo?: string, statut?: string) {
     this.id=id!;
