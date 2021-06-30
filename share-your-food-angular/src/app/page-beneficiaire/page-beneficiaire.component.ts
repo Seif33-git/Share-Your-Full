@@ -8,8 +8,8 @@ import {LotHttpService} from "../services/lot.service";
   styleUrls: ['./page-beneficiaire.component.scss']
 })
 export class PageBeneficiaireComponent implements OnInit {
-  lots: Array<Lot>
-  valeur:string
+  lots: Array<Lot>;
+  valeur:string = "";
   constructor(private lotservice: LotHttpService) { }
 
   ngOnInit(): void {

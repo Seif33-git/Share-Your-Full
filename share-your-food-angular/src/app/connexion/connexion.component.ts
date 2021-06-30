@@ -22,6 +22,7 @@ export class ConnexionComponent implements OnInit {
     this.connexionService.connexionAuth(this.conn).subscribe(resp => {
       sessionStorage.setItem("utilisateur",JSON.stringify(resp));
       sessionStorage.setItem("idEntite",JSON.parse(sessionStorage.getItem("utilisateur")).entite.id);
+      sessionStorage.setItem("pivot",JSON.parse(sessionStorage.getItem("utilisateur")).entite.donneur);
       this.flagMDP = false
       this.router.navigate(['/accueil2']);
     }, error => {

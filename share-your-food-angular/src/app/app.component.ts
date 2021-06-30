@@ -31,4 +31,8 @@ export class AppComponent {
   areYouBeneficiaire() {
     return JSON.parse(sessionStorage.getItem("utilisateur")).entite.beneficiaire
   }
+
+  recupPivot() {
+    return sessionStorage.getItem("pivot");
+  }
 }
