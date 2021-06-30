@@ -1,18 +1,18 @@
 <div class="container policeChampagne25">
   <div>
-    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
-      <p>MES DONS EN COURS</p>
+    <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
+      <p>MES LOTS EN COURS</p>
     </div>
 
     <table class="table">
       <thead>
-      <tr class="table-info policeChampagneCenter">
-        <th>NUMÉRO</th>
-        <th>DATE DE MISE EN LIGNE</th>
-        <th>NOMBRE DE LOTS DISPONIBLES</th>
-        <th>CRÉNEAU</th>
-        <th>COMMENTAIRE</th>
-        <th>DESTINATAIRE</th>
+      <tr class="table-danger policeChampagne25">
+        <th>N°</th>
+        <th>Mise en ligne</th>
+        <th>Lots disponibles</th>
+        <th>Créneau</th>
+        <th>Commentaire</th>
+        <th>Destinataire</th>
         <th></th>
       </tr>
       </thead>
@@ -30,14 +30,14 @@
       </tbody>
     </table>
 
-    <div class="card mt-3" *ngIf="listLotByDonId">
+    <div *ngIf="listLotByDonId">
       <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
-        <p>Détail</p>
+        <p>MES DONS</p>
       </div>
 
       <table class="table">
         <thead>
-        <tr class="table-info policeChampagneCenter">
+        <tr class="table-info policeChampagne25">
           <th>Photo</th>
           <th>Nom</th>
           <th>Date de péremption</th>
@@ -58,7 +58,7 @@
         </tr>
         </tbody>
       </table>
-
+      <a class="btn btn-sm btn-secondary float-right" (click)="fermerDetail()"><i class="fas fa-times"></i> FERMER</a>
     </div>
 <!--  </div>-->
 
@@ -75,22 +75,22 @@
       <img src="assets/panierDessin.png" class="mx-auto d-block">
     </div>
     <div class="col">
-        <a class="btn btn-lg btn-danger btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>
+        <a class="btn btn-lg btn-info btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>
     </div>
   </div>
 
 
 <div *ngIf="historique">
-  <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
+  <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
     <p>MON HISTORIQUE DE DONS</p>
   </div>
 
 
   <table class="table">
     <thead>
-    <tr class="table-danger policeChampagneCenter">
-      <th>LOT</th>
-      <th>QUANTITE</th>
+    <tr class="table-info policeImpact">
+      <th>lot</th>
+      <th>quantité</th>
       <th></th>
       </tr>
       </thead>
@@ -106,4 +106,4 @@
 
 </div>
 </div>
-
+</div>

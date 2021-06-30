@@ -12,8 +12,6 @@ import org.springframework.data.repository.query.Param;
 
 
 import sopra.ShareYourFood.model.Demande;
-import sopra.ShareYourFood.model.Lot;
-
 
 
 public interface IDemandeRepository extends JpaRepository<Demande, Long> {
@@ -73,10 +71,11 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 			+ " and d.entite.id = :id")
 	List<Demande> findAllNonDonneEtDemandeAccOuPasRepByEntiteById(@Param("id") Long id);
 	
-	@Query("select distinct d from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
-			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
-			+ " and d.entite.id = :id")
-	List<Demande> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
+//	@Query("select distinct d from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
+//			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
+//			+ " and d.entite.id = :id")
+//	List<Demande> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
+	
 	
 	//DASHBOARD DONNEUR
 	@Transactional
@@ -84,6 +83,15 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ACCEPTER WHERE d.lot.id = :idLot")
 	void setDemandeAcceptee(@Param("idLot") Long idLot);
 	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.EN_ATTENTE WHERE d.lot.id = :idLot")
+	void setDemandeEnAttente(@Param("idLot") Long idLot);
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Demande d SET d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER WHERE d.lot.id = :idLot")
+	void setDemandeArchivee(@Param("idLot") Long idLot);
 	
 	@Transactional
 	@Modifying
@@ -94,10 +102,7 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 	@Query("select d.lot.don.entite.nom from Demande d where d.id = :id")
 	Optional<String> findNomEntiteByDemandeId(@Param("id") Long id);
 	
-	@Query("select distinct d from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
-			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
-			+ " and d.entite.id = :id")
-	List<Demande> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
+	
 	
 	
 }
