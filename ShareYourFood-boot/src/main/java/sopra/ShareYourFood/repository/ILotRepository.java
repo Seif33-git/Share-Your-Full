@@ -40,8 +40,11 @@ public interface ILotRepository extends JpaRepository<Lot, Long>, ILotRepository
 	@Query("select count(l) from Lot l where l.statut = sopra.ShareYourFood.model.Statut.DONNE")
 	int findAllLotsDonne();
 	
-	@Query("select count(l) from Lot l where l.don.id = :idDon")
+	@Query("select count(l) from Lot l where l.statut<>sopra.ShareYourFood.model.Statut.DONNE and l.don.id = :idDon")
 	Long findNombreLotByDonId(@Param("idDon") Long idDon);
+	
+	@Query("select count(l) from Lot l where l.statut = sopra.ShareYourFood.model.Statut.DONNE and l.don.id = :idDon")
+	Long findNombreLotDonneByDonId(@Param("idDon") Long idDon);
 	
 	@Query("select l from Lot l where l.don.id = :idDon")
 	List<Lot> findLotByDonId(@Param("idDon") Long idDon);
