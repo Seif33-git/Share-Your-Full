@@ -81,7 +81,34 @@ public class DonRestController {
 			
 			Long nombreLot = lotRepo.findNombreLotByDonId(e.getId());
 			e.setNombreLot(nombreLot);
+			if(nombreLot != 0) {
+				listDonDto.add(e);
+			}
+//			listDonDto.add(e);
+		}
+		return listDonDto;
+	}
+	
+	@GetMapping("/page-mes-dons-historique/{idEntite}")
+	@JsonView(Views.ViewDon.class)
+	public List<PageDonneurDTO> pageDonneurHistorique(@PathVariable Long idEntite) {
+		
+		List <PageDonneurDTO> listDonDto = new ArrayList<PageDonneurDTO>();
+		
+		List<Don> dons = donRepo.findDonByEntiteId(idEntite);
+		
+		for (Don don : dons) {
+			PageDonneurDTO e = new PageDonneurDTO();
+			e.setId(don.getId());
+			e.setDtMiseEnLigne(don.getDateDeMiseEnLigne());
+			e.setCreneau(don.getCreneau());
+			e.setCommentaire(don.getCommentaire());
+			e.setDestinataire(don.getDestinataire());
+			
+			Long nombreLot = lotRepo.findNombreLotDonneByDonId(e.getId());
+			e.setNombreLot(nombreLot);
 			listDonDto.add(e);
+			
 		}
 		return listDonDto;
 	}

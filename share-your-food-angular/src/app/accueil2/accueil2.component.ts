@@ -17,6 +17,7 @@ export class Accueil2Component implements OnInit {
   listLotDispoEnAttenteByEntite: Array<Lot>;
   changeB : boolean = false;
   changeD : boolean = false;
+  homme : boolean=true;
 
 
   constructor(private lotService: LotHttpService, private particulierService: ParticulierHttpService, private utilisateurService: UtilisateurHttpService) { }
@@ -42,35 +43,11 @@ export class Accueil2Component implements OnInit {
     return  JSON.parse(sessionStorage.getItem("utilisateur")).entite.donneur;
   }
 
-  changeOnBeneficiaire() {
-   // this.particulierService.findById(JSON.parse(sessionStorage.getItem("utilisateur")).entite.id).subscribe(resp=>{this.particulierChange=resp;
-   //   console.log(this.particulierChange.id);
-   // });
-   // if (this.particulierChange) {
-   //   this.particulierChange.beneficiaire = !JSON.parse(sessionStorage.getItem("utilisateur")).entite.beneficiaire;
-   //   this.particulierChange.donneur = !this.particulierChange.beneficiaire;
-   //   this.utilisateurChange.entite=this.particulierChange;
-   //   console.log("BENEF: " + this.particulierChange.beneficiaire);
-   //   console.log("DONNEUR: " + this.particulierChange.donneur);
-   //   this.particulierService.modify(this.particulierChange);
-   //   sessionStorage.setItem("utilisateur",JSON.stringify( this.utilisateurChange));
-   // }
-  }
-
   listLotDispoEnAttente() {
     this.lotService.listLotDispoEnAttenteByEntite(Number(sessionStorage.getItem("idEntite"))).subscribe(resp => {
       this.listLotDispoEnAttenteByEntite = resp
     }, error => console.log(error));
   }
-
-  // recupParticulier() {
-  //   console.log("Entite ID : "+(JSON.parse(sessionStorage.getItem("utilisateur")).entite.id));
-  //   // this.particulierService.findById(JSON.parse(sessionStorage.getItem("utilisateur")).entite.id).subscribe(resp => {
-  //   //   this.particulierRead = resp
-  //   // }, error => console.log(error));
-  // }
-
-
 
   tableauDeBordB() {
     this.changeB=true;
@@ -97,6 +74,10 @@ export class Accueil2Component implements OnInit {
   } else {
       sessionStorage.setItem("pivot","true");
     }
+  }
+
+  changeSexe() {
+  this.homme=!this.homme;
   }
 
 }

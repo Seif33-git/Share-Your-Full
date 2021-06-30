@@ -6,21 +6,26 @@
   <div class="row">
 
     <div class="col-3 bg-info">
-      <div>
+
+      <div *ngIf="homme">
     <img src="assets/2275816-dessin-anime-avatar-de-sourire-barbe-homme-profil-icone-vectoriel.jpg" class="border mt-3 avatar mx-auto d-block">
       </div>
+      <div *ngIf="!homme">
+        <img src="assets/profil3.jpg" class="border mt-3 avatar mx-auto d-block">
+      </div>
+      <a (click)="changeSexe()" class="btn-sm text-light float-left"><i class="fas fa-sync-alt "></i></a>
 
       <div class="bg-light mt-5 conteneurArrondi policeChampagneEspaceCenter">
         <p>PROFIL</p>
       </div>
 
 
-<!--        <div class="switch-field mt-4 policeChampagne25">-->
-<!--          <input type="radio" id="radio-one" name="switch-one" [defaultChecked]="recupDonneur" disabled/>-->
-<!--          <label for="radio-one">Donneur</label>-->
-<!--          <input type="radio" id="radio-two" name="switch-one" [defaultChecked]="recupBeneficiaire" disabled/>-->
-<!--          <label for="radio-two">Bénéficiaire</label>-->
-<!--        </div>-->
+        <div class="switch-field mt-4 policeChampagne25">
+          <input type="radio" id="radio-one" name="switch-one" [defaultChecked]="recupDonneur" disabled/>
+          <label for="radio-one">Donneur</label>
+          <input type="radio" id="radio-two" name="switch-one" [defaultChecked]="recupBeneficiaire" disabled/>
+          <label for="radio-two">Bénéficiaire</label>
+        </div>
 
 
       <div>
@@ -120,21 +125,25 @@
     <div class="row">
 
       <div class="col-3 bg-danger">
-        <div>
+        <div *ngIf="homme">
+          <img src="assets/2275816-dessin-anime-avatar-de-sourire-barbe-homme-profil-icone-vectoriel.jpg" class="border mt-3 avatar mx-auto d-block">
+        </div>
+        <div *ngIf="!homme">
           <img src="assets/profil3.jpg" class="border mt-3 avatar mx-auto d-block">
         </div>
+        <a (click)="changeSexe()" class="btn-sm text-light float-left"><i class="fas fa-sync-alt"></i></a>
 
         <div class="bg-light mt-5 conteneurArrondi policeChampagneEspaceCenter">
           <p>PROFIL</p>
         </div>
 
 
-<!--        <div class="switch-field mt-4 policeChampagne25">-->
-<!--          <input type="radio" id="radio-one2" name="switch-one2" [defaultChecked]="recupDonneur()" disabled/>-->
-<!--          <label for="radio-one2">Donneur</label>-->
-<!--          <input type="radio" id="radio-two2" name="switch-one2" [defaultChecked]="recupBeneficiaire()" disabled/>-->
-<!--          <label for="radio-two2">Bénéficiaire</label>-->
-<!--        </div>-->
+        <div class="switch-field mt-4 policeChampagne25">
+          <input type="radio" id="radio-one2" name="switch-one2" [defaultChecked]="recupDonneur()" disabled/>
+          <label for="radio-one2">Donneur</label>
+          <input type="radio" id="radio-two2" name="switch-one2" [defaultChecked]="recupBeneficiaire()" disabled/>
+          <label for="radio-two2">Bénéficiaire</label>
+        </div>
 
 
         <div>
