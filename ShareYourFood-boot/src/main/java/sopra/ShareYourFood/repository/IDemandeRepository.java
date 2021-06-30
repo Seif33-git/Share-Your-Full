@@ -71,10 +71,10 @@ public interface IDemandeRepository extends JpaRepository<Demande, Long> {
 			+ " and d.entite.id = :id")
 	List<Demande> findAllNonDonneEtDemandeAccOuPasRepByEntiteById(@Param("id") Long id);
 	
-//	@Query("select distinct d from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
-//			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
-//			+ " and d.entite.id = :id")
-//	List<Demande> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
+	@Query("select distinct d from Demande d where d.lot.statut = sopra.ShareYourFood.model.Statut.DONNE "
+			+ "and  d.statutNotif = sopra.ShareYourFood.model.StatutNotif.ARCHIVER"
+			+ " and d.entite.id = :id")
+	List<Demande> findAllDonneEtDemandeArchiveeByEntiteById(@Param("id") Long id);
 	
 	
 	//DASHBOARD DONNEUR
