@@ -67,4 +67,8 @@ export class PageDonneurComponent implements OnInit {
     this.lot = new Lot();
   }
 
+  fermerDetail() {
+    this.listLotByDonId=null;
+  }
+
 }

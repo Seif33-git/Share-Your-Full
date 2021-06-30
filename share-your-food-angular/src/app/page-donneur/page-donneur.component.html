@@ -1,18 +1,18 @@
 <div class="container policeChampagne25">
   <div>
     <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
-      <p>MES DONS EN COURS</p>
+      <p>MES LOTS EN COURS</p>
     </div>
 
     <table class="table">
       <thead>
-      <tr class="table-danger policeImpactCenter">
+      <tr class="table-danger policeChampagne25">
         <th>N°</th>
-        <th>date de mise en ligne</th>
-        <th>lots disponibles</th>
-        <th>créneau</th>
-        <th>commentaire</th>
-        <th>destinataire</th>
+        <th>Mise en ligne</th>
+        <th>Lots disponibles</th>
+        <th>Créneau</th>
+        <th>Commentaire</th>
+        <th>Destinataire</th>
         <th></th>
       </tr>
       </thead>
@@ -30,19 +30,19 @@
       </tbody>
     </table>
 
-    <div class="card mt-3" *ngIf="listLotByDonId">
+    <div *ngIf="listLotByDonId">
       <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
-        <p>Détail</p>
+        <p>MES DONS</p>
       </div>
 
       <table class="table">
         <thead>
-        <tr class="table-info policeChampagneCenter">
-          <th>photo</th>
-          <th>nom</th>
-          <th>date de péremption</th>
-          <th>statut</th>
-          <th>volume</th>
+        <tr class="table-info policeChampagne25">
+          <th>Photo</th>
+          <th>Nom</th>
+          <th>Date de péremption</th>
+          <th>Statut</th>
+          <th>Volume</th>
           <th></th>
         </tr>
         </thead>
@@ -58,7 +58,7 @@
         </tr>
         </tbody>
       </table>
-
+      <a class="btn btn-sm btn-secondary float-right" (click)="fermerDetail()"><i class="fas fa-times"></i> FERMER</a>
     </div>
 <!--  </div>-->
 

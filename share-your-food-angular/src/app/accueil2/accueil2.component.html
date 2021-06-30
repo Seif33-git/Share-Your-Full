@@ -1,4 +1,4 @@
-<div *ngIf="recupBeneficiaire()">
+<div *ngIf="recupPivot()=='false'">
 <div class="container-fluid policeChampagne25">
 
 <!--  COLONNE 1 A GAUCHE-->
@@ -15,12 +15,12 @@
       </div>
 
 
-        <div class="switch-field mt-4 policeChampagne25">
-          <input type="radio" id="radio-one" name="switch-one" [defaultChecked]="recupDonneur()" disabled/>
-          <label for="radio-one">Donneur</label>
-          <input type="radio" id="radio-two" name="switch-one" [defaultChecked]="recupBeneficiaire()" disabled/>
-          <label for="radio-two">Bénéficiaire</label>
-        </div>
+<!--        <div class="switch-field mt-4 policeChampagne25">-->
+<!--          <input type="radio" id="radio-one" name="switch-one" [defaultChecked]="recupDonneur" disabled/>-->
+<!--          <label for="radio-one">Donneur</label>-->
+<!--          <input type="radio" id="radio-two" name="switch-one" [defaultChecked]="recupBeneficiaire" disabled/>-->
+<!--          <label for="radio-two">Bénéficiaire</label>-->
+<!--        </div>-->
 
 
       <div>
@@ -28,7 +28,7 @@
       <p class="mt-3 policeImpact mr-3">EMAIL :</p><p>{{recupMail()}}</p>
 
         <button type="button" class="btn btn-lg btn-danger container-fluid">
-          <a class="text-white lien" (click)="changeOnBeneficiaire()"><i class="fas fa-sync-alt"></i> Donneur</a></button>
+          <a class="text-white lien" (click)="changePivot()"><i class="fas fa-sync-alt"></i> Donneur</a></button>
 
       <button type="button" class="btn btn-lg btn-warning container-fluid mt-4">
         <a class="text-white lien" [routerLink]="['/profil']"><i class="fas fa-user-edit"></i> Modifier mon profil</a></button>
@@ -112,7 +112,7 @@
 </div>
 
 
-<div *ngIf="recupDonneur()">
+<div *ngIf="recupPivot()=='true'">
   <div class="container-fluid policeChampagne25">
 
     <!--  COLONNE 1 A GAUCHE-->
@@ -129,12 +129,12 @@
         </div>
 
 
-        <div class="switch-field mt-4 policeChampagne25">
-          <input type="radio" id="radio-one2" name="switch-one2" [defaultChecked]="recupDonneur()" disabled/>
-          <label for="radio-one2">Donneur</label>
-          <input type="radio" id="radio-two2" name="switch-one2" [defaultChecked]="recupBeneficiaire()" disabled/>
-          <label for="radio-two2">Bénéficiaire</label>
-        </div>
+<!--        <div class="switch-field mt-4 policeChampagne25">-->
+<!--          <input type="radio" id="radio-one2" name="switch-one2" [defaultChecked]="recupDonneur()" disabled/>-->
+<!--          <label for="radio-one2">Donneur</label>-->
+<!--          <input type="radio" id="radio-two2" name="switch-one2" [defaultChecked]="recupBeneficiaire()" disabled/>-->
+<!--          <label for="radio-two2">Bénéficiaire</label>-->
+<!--        </div>-->
 
 
         <div>
@@ -142,7 +142,7 @@
           <p class="mt-3 policeImpact mr-3">EMAIL :</p><p>{{recupMail()}}</p>
 
           <button type="button" class="btn btn-lg btn-info container-fluid">
-            <a class="text-white lien" (click)="changeOnBeneficiaire()"><i class="fas fa-sync-alt"></i> Bénéficiaire</a></button>
+            <a class="text-white lien" (click)="changePivot()"><i class="fas fa-sync-alt"></i> Bénéficiaire</a></button>
 
           <button type="button" class="btn btn-lg btn-info container-fluid mt-4">
             <a class="text-white lien" [routerLink]="['/profil']"><i class="fas fa-user-edit"></i> Modifier mon profil</a></button>

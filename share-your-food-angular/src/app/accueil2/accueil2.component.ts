@@ -17,13 +17,13 @@ export class Accueil2Component implements OnInit {
   listLotDispoEnAttenteByEntite: Array<Lot>;
   changeB : boolean = false;
   changeD : boolean = false;
-  particulierChange: Particulier=null;
-  utilisateurChange: Utilisateur=JSON.parse(sessionStorage.getItem("utilisateur"));
+
 
   constructor(private lotService: LotHttpService, private particulierService: ParticulierHttpService, private utilisateurService: UtilisateurHttpService) { }
 
   ngOnInit(): void {
     this.listLotDispoEnAttente();
+    // this.initialisationDonnePivot();
   }
 
   recupPseudo() {
@@ -42,9 +42,6 @@ export class Accueil2Component implements OnInit {
     return  JSON.parse(sessionStorage.getItem("utilisateur")).entite.donneur;
   }
 
-  changeOnDonneur() {
-  }
-
   changeOnBeneficiaire() {
    // this.particulierService.findById(JSON.parse(sessionStorage.getItem("utilisateur")).entite.id).subscribe(resp=>{this.particulierChange=resp;
    //   console.log(this.particulierChange.id);
@@ -58,7 +55,6 @@ export class Accueil2Component implements OnInit {
    //   this.particulierService.modify(this.particulierChange);
    //   sessionStorage.setItem("utilisateur",JSON.stringify( this.utilisateurChange));
    // }
-
   }
 
   listLotDispoEnAttente() {
@@ -67,12 +63,40 @@ export class Accueil2Component implements OnInit {
     }, error => console.log(error));
   }
 
+  // recupParticulier() {
+  //   console.log("Entite ID : "+(JSON.parse(sessionStorage.getItem("utilisateur")).entite.id));
+  //   // this.particulierService.findById(JSON.parse(sessionStorage.getItem("utilisateur")).entite.id).subscribe(resp => {
+  //   //   this.particulierRead = resp
+  //   // }, error => console.log(error));
+  // }
+
+
+
   tableauDeBordB() {
     this.changeB=true;
   }
 
   tableauDeBordD() {
     this.changeD=true;
+  }
+
+  // initialisationDonnePivot() {
+  //   if(!sessionStorage.getItem("pivot")) {
+  //     console.log("UTILISATEUR  "+sessionStorage.getItem("utilisateur"));
+  //     sessionStorage.setItem("pivot",JSON.parse(sessionStorage.getItem("utilisateur")).entite.donneur);
+  //   }
+  // }
+
+  recupPivot() {
+    return sessionStorage.getItem("pivot");
+  }
+
+  changePivot() {
+    if (sessionStorage.getItem("pivot") == "true") {
+    sessionStorage.setItem("pivot","false");
+  } else {
+      sessionStorage.setItem("pivot","true");
+    }
   }
 
 }
