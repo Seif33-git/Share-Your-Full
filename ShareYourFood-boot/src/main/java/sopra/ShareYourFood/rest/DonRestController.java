@@ -106,5 +106,5 @@ public class DonRestController {
 		donRepo.setDonOfLotNull(id);
 		donRepo.deleteById(id);
 	}
-	
+				
 }

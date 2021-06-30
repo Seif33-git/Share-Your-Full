@@ -46,20 +46,40 @@ export class TableauDeBordDonneurComponent implements OnInit {
     );
   }
 
+  // Accepter(idLot: number){
+  //   this.demandeService.accepterDemandeByLotId(idLot);
+  // }
+
   Accepter(idLot: number){
-    this.demandeService.accepterDemandeByLotId(idLot);
+    this.demandeService.accepterDemandeByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+      }, error => console.log(error));
   }
 
   Refuser(idLot: number){
-    this.demandeService.refuserDemandeByLotId(idLot);
+    this.demandeService.refuserDemandeByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+    }, error => console.log(error));
   }
 
   Annuler(idLot: number){
-    this.demandeService.annulerDemandeByLotId(idLot);
+    this.demandeService.annulerDemandeByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+    }, error => console.log(error));
   }
 
   Donner(idLot: number){
-    this.demandeService.donnerLotByLotId(idLot);
+    this.demandeService.donnerLotByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+    }, error => console.log(error));
   }
 
 

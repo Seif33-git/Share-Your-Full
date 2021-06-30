@@ -16,7 +16,7 @@
     <div class="pt-3">
       <label for="nom"> Date de mise en ligne:</label>
       <span type="date" class="form-control" id="dateDeMiseEnLigne"
-            [(ngModel)]="donForm.dateDeMiseEnLigne">{{donForm.dateDeMiseEnLigne}}.now() | date:'yyyy-MM-dd'</span>
+            [(ngModel)]="donForm.dateDeMiseEnLigne">  </span>
     </div>
 
     <!--Choix du destinataire -->
@@ -106,39 +106,41 @@
           </tr>
         </table>
 
-        <thead>
+
         <table id="lotTable" class="table">
+          <thead>
           <tr class="row">
             <th class="col-md-3">Nom du produit:</th>
             <th class="col-md-3">Quantité :</th>
             <th class="col-md-3">Date de péremption:</th>
             <th class="col-md-3"></th>
           </tr>
-        </table>
-        </thead>
 
-        <tbody id="produitlot" *ngFor="let produitLForm of produitLotForms">
-        <tr class="row">
-          <td class="col-md-3">
-            <select class="form-control" id="produit" [(ngModel)]="produitLForm.produit.nom">
-              <option value="">Choisir un Produit :</option>
-              <option *ngFor="let produit of listProduit()" [value]="produit.nom">{{produit.nom}}</option>
-            </select>
-          </td>
-          <td class="col-md-3">
-            <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLForm.quantite">
-          </td>
-          <td class="col-md-3">
-            <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLForm.dtPeremption ">
-          </td>
-          <td class="col-md-3">
-            <button type="button" class="btn btn-success btn-md"
-                    (click)="addProduitLot();">+
-            </button>
-            <a class="btn btn-danger" (click)="deleteProduitLot();"><i class="fa fa-trash"></i></a>
-          </td>
-        </tr>
-        </tbody>
+          </thead>
+
+          <tbody id="produitlot">
+          <tr class="row" *ngFor="let produitLForm of produitLotForms">
+            <td class="col-md-3">
+              <select class="form-control" id="produit" [(ngModel)]="produitLForm.produit.nom">
+                <option value="">Choisir un Produit :</option>
+                <option *ngFor="let produit of listProduit()" [value]="produit.nom">{{produit.nom}}</option>
+              </select>
+            </td>
+            <td class="col-md-3">
+              <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLForm.quantite">
+            </td>
+            <td class="col-md-3">
+              <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLForm.dtPeremption ">
+            </td>
+            <td class="col-md-3">
+              <button type="button" class="btn btn-success btn-md"
+                      (click)="addProduitLot();">+
+              </button>
+              <a class="btn btn-danger" (click)="deleteProduitLot();"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
 
         <div class="card-footer">
           <div class="row">
@@ -158,40 +160,39 @@
       </div>
     </div>
   </div>
-</div>
-
-<!--      CREATION D'UN PRODUIT-->
-<div id="myModal" class="modal fade" role="dialog" tabindex="-1"  > <!-- <div *ngIf="produitForm" class="card mt-3">-->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-danger mt-3 conteneurArrondi policeChampagneEspaceCenter">
-        <h2>Création d'un Produit</h2>
-      </div>
-
-      <div class="modal-body">
-        <div class="modal-group">
-          <label for="nom">Nom du Produit :</label>
-          <input type="text" class="modal-control" id="nomProduit" [(ngModel)]="produitForm.nom">
+  <!--      CREATION D'UN PRODUIT-->
+  <div id="myModal" class="modal fade " data-backdrop="false"> <!-- <div *ngIf="produitForm" class="card mt-3">-->
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-danger mt-3 conteneurArrondi policeChampagneEspaceCenter">
+          <h2>Création d'un Produit</h2>
         </div>
-        <div class="modal-group">
-          <label for="typeProduit">Choix du type de produit :</label> <select
-          id="typeProduit" class="modal-control" [(ngModel)]="produitForm.type">
-          <option value="">Choisir un type</option>
-          <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
-        </select>
-        </div>
-      </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <div class="col text-center">
-          <button type="button"
-                  class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" (click)="saveProduit();">Ajouter
-            le produit
-          </button>
-          <button type="button" class="btn btn-warning" btn-float-left (click)="cancelProduit()">
-            <i class="fa fa-undo"></i>
-          </button>
+        <div class="modal-body">
+          <div class="modal-group">
+            <label for="nom">Nom du Produit :</label>
+            <input type="text" class="modal-control" id="nomProduit" [(ngModel)]="produitForm.nom">
+          </div>
+          <div class="modal-group">
+            <label for="typeProduit">Choix du type de produit :</label> <select
+            id="typeProduit" class="modal-control" [(ngModel)]="produitForm.type">
+            <option value="">Choisir un type</option>
+            <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
+          </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <div class="col text-center">
+            <button type="button"
+                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" (click)="saveProduit();">Ajouter
+              le produit
+            </button>
+            <button type="button" class="btn btn-warning" btn-float-left (click)="cancelProduit()">
+              <i class="fa fa-undo"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
