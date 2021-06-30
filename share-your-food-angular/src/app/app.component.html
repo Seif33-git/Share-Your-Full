@@ -46,20 +46,20 @@
           <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/information']">Informations</a>
         </li>
 
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="recupPivot()=='true'">
           <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/donner']">Faire un don</a>
         </li>
 
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="recupPivot()=='false'">
           <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/beneficier']">Choisir un lot</a>
         </li>
 
-        <li class="nav-item" routerLinkActive="active" *ngIf="areYouBeneficiaire()">
-          <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/tableauDeBordBeneficiaire']">Tableau de bord B</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="areYouDonneur()">
-          <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/tableauDeBordDonneur']">Tableau de bord D</a>
-        </li>
+<!--        <li class="nav-item" routerLinkActive="active" *ngIf="areYouBeneficiaire()">-->
+<!--          <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/tableauDeBordBeneficiaire']">Tableau de bord B</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item" routerLinkActive="active" *ngIf="areYouDonneur()">-->
+<!--          <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/tableauDeBordDonneur']">Tableau de bord D</a>-->
+<!--        </li>-->
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-item nav-link policeImpact text-info" [routerLink]="['/messagerie']">Messagerie</a>
         </li>

@@ -1,4 +1,4 @@
-<div *ngIf="recupBeneficiaire()">
+<div *ngIf="recupPivot()=='false'">
 <div class="container-fluid policeChampagne25">
 
 <!--  COLONNE 1 A GAUCHE-->
@@ -15,12 +15,12 @@
       </div>
 
 
-        <div class="switch-field mt-4 policeChampagne25">
-          <input type="radio" id="radio-one" name="switch-one" [defaultChecked]="recupDonneur()" disabled/>
-          <label for="radio-one">Donneur</label>
-          <input type="radio" id="radio-two" name="switch-one" [defaultChecked]="recupBeneficiaire()" disabled/>
-          <label for="radio-two">Bénéficiaire</label>
-        </div>
+<!--        <div class="switch-field mt-4 policeChampagne25">-->
+<!--          <input type="radio" id="radio-one" name="switch-one" [defaultChecked]="recupDonneur" disabled/>-->
+<!--          <label for="radio-one">Donneur</label>-->
+<!--          <input type="radio" id="radio-two" name="switch-one" [defaultChecked]="recupBeneficiaire" disabled/>-->
+<!--          <label for="radio-two">Bénéficiaire</label>-->
+<!--        </div>-->
 
 
       <div>
@@ -28,7 +28,7 @@
       <p class="mt-3 policeImpact mr-3">EMAIL :</p><p>{{recupMail()}}</p>
 
         <button type="button" class="btn btn-lg btn-danger container-fluid">
-          <a class="text-white lien" (click)="ifBeneficiaire()"><i class="fas fa-sync-alt"></i> Donneur</a></button>
+          <a class="text-white lien" (click)="changePivot()"><i class="fas fa-sync-alt"></i> Donneur</a></button>
 
       <button type="button" class="btn btn-lg btn-warning container-fluid mt-4">
         <a class="text-white lien" [routerLink]="['/profil']"><i class="fas fa-user-edit"></i> Modifier mon profil</a></button>
@@ -49,7 +49,7 @@
         <img class="card-img-top imgSmall mx-auto d-block" src="assets/panierDessin2.png" alt="Card image">
         <div class="card-body">
           <p class="card-text">Je peux choisir un don</p>
-          <a href="#" class="btn btn-info">JE RECOIS</a>
+          <a class="btn btn-lg btn-info" [routerLink]="['/beneficier']">JE CHOISIS</a>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
         <img class="card-img-top imgSmall mx-auto d-block" src="assets/graph.jpg" alt="Card image">
         <div class="card-body">
           <p class="card-text">Mon tableau de bord</p>
-          <a href="#" class="btn btn-secondary">ACCEDER</a>
+          <a class="btn btn-lg btn-secondary" (click)="tableauDeBordB()">AFFICHER</a>
         </div>
       </div>
 
@@ -73,28 +73,30 @@
 <!--    COLONNE 3 DROITE-->
 
     <div class="col-6 text-center bg-info">
+<div *ngIf="changeB">
+<!--      <div class="bg-light mt-3 conteneurArrondi policeChampagne25">-->
+<!--        <p>EN ATTENTE</p>-->
+<!--      </div>-->
+<!--  <div class="container-fluid">-->
+<!--        <table class="table text-center">-->
+<!--          <thead>-->
+<!--          <tr class="table-info policeChampagneCenter">-->
+<!--            <th>LOT</th>-->
+<!--            <th></th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let lot of listLotDispoEnAttenteByEntite">-->
+<!--            <td>{{lot.nom}}</td>-->
+<!--            <td><a class="btn btn-info btn-m"><i class="fas fa-edit"></i></a>-->
+<!--              <a class="btn btn-secondary btn-m"><i class="far fa-trash-alt"></i></a></td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
 
-      <div class="bg-light mt-3 conteneurArrondi policeChampagneEspaceCenter">
-        <p>NOTIFICATIONS</p>
-      </div>
-  <div class="container-fluid">
-        <table class="table text-center">
-          <thead>
-          <tr class="table-info policeChampagneCenter">
-            <th>LOT</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let lot of listLotDispoEnAttenteByEntite">
-            <td>{{lot.nom}}</td>
-            <td><a class="btn btn-info btn-m"><i class="fas fa-edit"></i></a>
-              <a class="btn btn-secondary btn-m"><i class="far fa-trash-alt"></i></a></td>
-          </tr>
-          </tbody>
-        </table>
-
-  </div>
+<!--  </div>-->
+      <app-tableau-de-bord-beneficiaire></app-tableau-de-bord-beneficiaire>
+</div>
     </div>
 
 <!--FOOTER-->
@@ -110,7 +112,7 @@
 </div>
 
 
-<div *ngIf="recupDonneur()">
+<div *ngIf="recupPivot()=='true'">
   <div class="container-fluid policeChampagne25">
 
     <!--  COLONNE 1 A GAUCHE-->
@@ -127,12 +129,12 @@
         </div>
 
 
-        <div class="switch-field mt-4 policeChampagne25">
-          <input type="radio" id="radio-one" name="switch-one" [defaultChecked]="recupDonneur()" disabled/>
-          <label for="radio-one">Donneur</label>
-          <input type="radio" id="radio-two" name="switch-one" [defaultChecked]="recupBeneficiaire()" disabled/>
-          <label for="radio-two">Bénéficiaire</label>
-        </div>
+<!--        <div class="switch-field mt-4 policeChampagne25">-->
+<!--          <input type="radio" id="radio-one2" name="switch-one2" [defaultChecked]="recupDonneur()" disabled/>-->
+<!--          <label for="radio-one2">Donneur</label>-->
+<!--          <input type="radio" id="radio-two2" name="switch-one2" [defaultChecked]="recupBeneficiaire()" disabled/>-->
+<!--          <label for="radio-two2">Bénéficiaire</label>-->
+<!--        </div>-->
 
 
         <div>
@@ -140,7 +142,7 @@
           <p class="mt-3 policeImpact mr-3">EMAIL :</p><p>{{recupMail()}}</p>
 
           <button type="button" class="btn btn-lg btn-info container-fluid">
-            <a class="text-white lien" (click)="ifBeneficiaire()"><i class="fas fa-sync-alt"></i> Bénéficiaire</a></button>
+            <a class="text-white lien" (click)="changePivot()"><i class="fas fa-sync-alt"></i> Bénéficiaire</a></button>
 
           <button type="button" class="btn btn-lg btn-info container-fluid mt-4">
             <a class="text-white lien" [routerLink]="['/profil']"><i class="fas fa-user-edit"></i> Modifier mon profil</a></button>
@@ -161,7 +163,7 @@
           <img class="card-img-top imgSmall mx-auto d-block" src="assets/panierDessin.png" alt="Card image">
           <div class="card-body">
             <p class="card-text">Je peux créer des lots</p>
-            <a href="#" class="btn btn-danger">JE DONNE</a>
+            <a class="btn btn-lg btn-danger" [routerLink]="['/donner']">JE DONNE</a>
           </div>
         </div>
 
@@ -169,7 +171,7 @@
           <img class="card-img-top imgSmall mx-auto d-block" src="assets/graph.jpg" alt="Card image">
           <div class="card-body">
             <p class="card-text">Mon tableau de bord</p>
-            <a href="#" class="btn btn-secondary">ACCEDER</a>
+            <a class="btn btn-lg btn-secondary" (click)="tableauDeBordD()">AFFICHER</a>
           </div>
         </div>
 
@@ -186,30 +188,32 @@
 
       <div class="col-6 text-center bg-danger">
 
-        <div class="bg-light mt-3 conteneurArrondi policeChampagneEspaceCenter">
-          <p>NOTIFICATIONS</p>
-        </div>
+        <div *ngIf="changeD">
+<!--          <div class="bg-light mt-3 conteneurArrondi policeChampagne25">-->
+<!--            <p>Mes notifications en cours</p>-->
+<!--          </div>-->
         <div class="container-fluid">
-          <table class="table text-center">
-            <thead>
-            <tr class="table-warning policeChampagneCenter">
-              <th>LOT</th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let lot of listLotDispoEnAttenteByEntite">
-              <td>{{lot.nom}}</td>
-              <td><a class="btn btn-info btn-m"><i class="fas fa-edit"></i></a>
-                <a class="btn btn-secondary btn-m"><i class="far fa-trash-alt"></i></a></td>
-            </tr>
-            </tbody>
-          </table>
+<!--          <table class="table text-center">-->
+<!--            <thead>-->
+<!--            <tr class="table-warning policeChampagneCenter">-->
+<!--              <th>LOT</th>-->
+<!--              <th></th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let lot of listLotDispoEnAttenteByEntite">-->
+<!--              <td>{{lot.nom}}</td>-->
+<!--              <td><a class="btn btn-info btn-m"><i class="fas fa-edit"></i></a>-->
+<!--                <a class="btn btn-secondary btn-m"><i class="far fa-trash-alt"></i></a></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
 
         </div>
+          <app-tableau-de-bord-donneur></app-tableau-de-bord-donneur>
       </div>
 
-      <!--FOOTER-->
+      </div>
 
     </div>
 
