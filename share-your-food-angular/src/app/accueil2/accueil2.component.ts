@@ -17,6 +17,7 @@ export class Accueil2Component implements OnInit {
   listLotDispoEnAttenteByEntite: Array<Lot>;
   changeB : boolean = false;
   changeD : boolean = false;
+  homme : boolean=true;
 
 
   constructor(private lotService: LotHttpService, private particulierService: ParticulierHttpService, private utilisateurService: UtilisateurHttpService) { }
@@ -97,6 +98,10 @@ export class Accueil2Component implements OnInit {
   } else {
       sessionStorage.setItem("pivot","true");
     }
+  }
+
+  changeSexe() {
+  this.homme=!this.homme;
   }
 
 }

@@ -133,6 +133,7 @@ export class InscriptionComponent implements OnInit {
     if (!this.particulierForm.id&&this.particulierForm.nom) {
       this.isActiveBool=true;
       this.particulierService.createID(this.particulierForm)
+      console.log("DONNEUR : "+this.particulierForm.donneur+"BENEF : "+this.particulierForm.beneficiaire)
       this.adresseParticulier= new Adresse();
     } else {
       console.error("Veuillez indiquer un nom svp");
@@ -266,5 +267,37 @@ export class InscriptionComponent implements OnInit {
 
     this.associationService.deleteById(id);
     this.associationSelect=null;
+  }
+
+  changeBeneficiaire() {
+    if (this.particulierForm) {
+      this.particulierForm.beneficiaire = true;
+      console.log(" DONNEUR : "+this.particulierForm.donneur+"BENEF : "+this.particulierForm.beneficiaire);
+    }
+   else if (this.nouvelleEntreprise) {
+      this.nouvelleEntreprise.beneficiaire=true;
+      console.log(" DONNEUR : "+this.nouvelleEntreprise.donneur+"BENEF : "+this.nouvelleEntreprise.beneficiaire);
+    }
+  }
+
+  changeDonneur() {
+    if (this.particulierForm) {
+      this.particulierForm.beneficiaire = false;
+      console.log(" DONNEUR : "+this.particulierForm.donneur+"BENEF : "+this.particulierForm.beneficiaire);
+    }
+    else if (this.nouvelleEntreprise) {
+      this.nouvelleEntreprise.beneficiaire=false;
+      console.log(" DONNEUR : "+this.nouvelleEntreprise.donneur+"BENEF : "+this.nouvelleEntreprise.beneficiaire);
+    }
+  }
+
+  changeBeneficiaireAsso() {
+    this.nouvelleAssociation.beneficiaire=true;
+    console.log(" DONNEUR : "+this.nouvelleAssociation.donneur+"BENEF : "+this.nouvelleAssociation.beneficiaire);
+  }
+
+  changeDonneurAsso() {
+    this.nouvelleAssociation.beneficiaire=false;
+    console.log(" DONNEUR : "+this.nouvelleAssociation.donneur+"BENEF : "+this.nouvelleAssociation.beneficiaire);
   }
 }
