@@ -16,13 +16,16 @@ export class TableauDeBordDonneurComponent implements OnInit {
   constructor(private lotservice: LotHttpService, private demandeService: DemandeHttpService) { }
 
   listDashboardDonneur: Array<dashboardGiverDTO>;
+  listDashboardDonneurReserve: Array<dashboardGiverDTO>;
+  listDashboardDonneurDonne: Array<dashboardGiverDTO>;
   lotCourant: Lot;
   demandeCourante: Demande;
   historique: Don = null;
 
   ngOnInit(): void {
     this.ListLotDashboard();
-    console.log(this.listDashboardDonneur);
+    this.ListLotDashboardDonne();
+    this.ListLotDashboardReserve();
   }
 
   ListLotDashboard(){
@@ -31,12 +34,52 @@ export class TableauDeBordDonneurComponent implements OnInit {
     );
   }
 
+  ListLotDashboardReserve(){
+    this.lotservice.listLotDashboardDonneurReserve(Number(sessionStorage.getItem("idEntite"))).subscribe(
+      resp=> {this.listDashboardDonneurReserve = resp}
+    );
+  }
+
+  ListLotDashboardDonne(){
+    this.lotservice.listLotDashboardDonneurDonne(Number(sessionStorage.getItem("idEntite"))).subscribe(
+      resp=> {this.listDashboardDonneurDonne = resp}
+    );
+  }
+
+  // Accepter(idLot: number){
+  //   this.demandeService.accepterDemandeByLotId(idLot);
+  // }
+
   Accepter(idLot: number){
-    this.demandeService.accepterDemandeByLotId(idLot);
+    this.demandeService.accepterDemandeByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+      }, error => console.log(error));
   }
 
   Refuser(idLot: number){
-    this.demandeService.refuserDemandeByLotId(idLot);
+    this.demandeService.refuserDemandeByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+    }, error => console.log(error));
+  }
+
+  Annuler(idLot: number){
+    this.demandeService.annulerDemandeByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+    }, error => console.log(error));
+  }
+
+  Donner(idLot: number){
+    this.demandeService.donnerLotByLotId(idLot).subscribe(resp => {
+      this.ListLotDashboard();
+      this.ListLotDashboardDonne();
+      this.ListLotDashboardReserve();
+    }, error => console.log(error));
   }
 
 

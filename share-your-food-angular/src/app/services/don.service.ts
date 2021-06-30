@@ -3,6 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Don} from "../model/don";
 import {AppConfigService} from "../app-config.service";
+import {Lot} from "../model/lot";
+import {dashboardGiverDTO} from "../model/dashboardGiverDTO";
+import {pageDonneurDTO} from "../model/pageDonneurDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +24,10 @@ export class DonHttpService {
 
   findById(id: number): Observable<Don> {
     return this.http.get<Don>(this.appConfig.backEndUrl + "don/" + id);
+  }
+
+  listDonPageDonneur(idEntite: number): Observable<Array<pageDonneurDTO>>{
+    return this.http.get<Array<pageDonneurDTO>>(this.appConfig.backEndUrl + "don/page-mes-dons/"+idEntite)
   }
 
   create(don: Don) {

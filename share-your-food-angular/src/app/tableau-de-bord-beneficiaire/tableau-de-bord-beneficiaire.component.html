@@ -1,67 +1,54 @@
-
-<div class="container">
-
-  <div class="card">
-
-    <div class="card-header bg-info text-white text-center"><h2>Tableau de bord</h2></div>
-
-    <div class="card-body">
-
-      <span>Mes notifications:</span>
-
+<div class="bg-light mt-3 conteneurArrondi policeChampagne25">
+  <p>Demandes acceptées</p>
+</div>
       <div class="pt-3">
-        <table class="table table-striped">
+        <table class="table">
           <thead>
-          <tr>
-            <th>Numéro:</th>
-            <th>Nom lot:</th>
-            <th>Quantité:</th>
-            <th>Statut:</th>
-            <th>Nom Entite:</th>
+          <tr class="table-info policeImpact">
+            <th>N°</th>
+            <th>nom</th>
+            <th>quantité</th>
+            <th>statut</th>
+            <th>donneur</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let demande of demandeAccByEntite">
-            <td>{{demande.id}}</td>
-            <td>{{demande.lot.nom}}</td>
-            <td>{{demande.lot.volume}}</td>
-            <td>{{demande.statutNotif}}</td>
-            <td></td>
+          <tr *ngFor="let demandedto of demandeAccByEntite">
+            <td>{{demandedto.id}}</td>
+            <td>{{demandedto.nomLot}}</td>
+            <td>{{demandedto.quantiteLot}}</td>
+            <td>{{demandedto.statut}}</td>
+            <td>{{demandedto.nomEntite}}</td>
           </tr>
           </tbody>
         </table>
       </div>
 
-    </div>
 
-    <div class="card-footer">
-
-      <span>Historique:</span>
+<div class="bg-light mt-3 conteneurArrondi policeChampagne25">
+  <p>Historique des mes demandes</p>
+</div>
 
       <div class="pt-3">
-        <table class="table table-striped">
+        <table class="table">
           <thead>
-          <tr >
-            <th>Numéro:</th>
-            <th>Nom lot:</th>
-            <th>Quantité:</th>
-            <th>Donneur:</th>
+          <tr class="table-info policeImpact">
+            <th>N°</th>
+            <th>nom</th>
+            <th>quantité</th>
+            <th>donneur</th>
 
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let demande of demandeHist">
             <td>{{demande.id}}</td>
-            <td>{{demande.lot.nom}}</td>
-            <td>{{demande.lot.volume}}</td>
-            <td>{{demande.statutNotif}}</td>
-            <td>{{trouverDonneur(demande.id)}}</td>
+            <td>{{demande.nomLot}}</td>
+            <td>{{demande.quantiteLot}}</td>
+            <td>{{demande.nomEntite}}</td>
           </tr>
           </tbody>
         </table>
       </div>
 
-    </div>
 
-  </div>
-</div>
