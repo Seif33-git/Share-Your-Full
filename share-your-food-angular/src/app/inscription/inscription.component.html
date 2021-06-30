@@ -25,19 +25,10 @@
   </div>
 
   <div class="switch-field mt-4 policeChampagne25">
-    <span class="mr-3">Donneur: </span>
-    <input type="radio" id="radio-one" name="switch-one" value="true"[(ngModel)]="particulierForm.donneur" [attr.disabled]="particulierForm.id"/>
-    <label for="radio-one">Oui</label>
-    <input type="radio" id="radio-two" name="switch-one" value="false" [(ngModel)]="particulierForm.donneur" [attr.disabled]="particulierForm.id"/>
-    <label for="radio-two">Non</label>
-  </div>
-
-  <div class="switch-field mt-4 policeChampagne25">
-    <span class="mr-3">Bénéficiaire: </span>
-    <input type="radio" id="radio-one2" name="switch-one2" value="true"[(ngModel)]="particulierForm.beneficiaire" [attr.disabled]="particulierForm.id"/>
-    <label for="radio-one2">Oui</label>
-    <input type="radio" id="radio-two2" name="switch-one2" value="false" [(ngModel)]="particulierForm.beneficiaire" [attr.disabled]="particulierForm.id"/>
-    <label for="radio-two2">Non</label>
+    <input type="radio" id="donneur" name="switch-one" value="true" [(ngModel)]="particulierForm.donneur" (ngModelChange)="changeDonneur()" [attr.disabled]="particulierForm.id"/>
+    <label for="donneur">Donneur</label>
+    <input type="radio" id="beneficiaire" name="switch-one" value="false" [(ngModel)]="particulierForm.donneur" (ngModelChange)="changeBeneficiaire()" [attr.disabled]="particulierForm.id"/>
+    <label for="beneficiaire">Bénéficiaire</label>
   </div>
 
   <fieldset [disabled]="isActiveBool">
@@ -156,20 +147,12 @@
       </div>
 
       <div class="switch-field mt-4 policeChampagne25">
-        <span class="mr-3">Donneur: </span>
-        <input type="radio" id="radio-one3" name="switch-one3" value="true" [(ngModel)]="nouvelleEntreprise.donneur" [attr.disabled]="nouvelleEntreprise.id"/>
-        <label for="radio-one3">Oui</label>
-        <input type="radio" id="radio-two3" name="switch-one3" value="false" [(ngModel)]="nouvelleEntreprise.donneur" [attr.disabled]="nouvelleEntreprise.id"/>
-        <label for="radio-two3">Non</label>
+        <input type="radio" id="donneur1" name="switch-one" value="true" [(ngModel)]="nouvelleEntreprise.donneur" (ngModelChange)="changeDonneur()" [attr.disabled]="nouvelleEntreprise.id"/>
+        <label for="donneur1">Donneur</label>
+        <input type="radio" id="beneficiaire1" name="switch-one" value="false" [(ngModel)]="nouvelleEntreprise.donneur" (ngModelChange)="changeBeneficiaire()" [attr.disabled]="nouvelleEntreprise.id"/>
+        <label for="beneficiaire1">Bénéficiaire</label>
       </div>
 
-      <div class="switch-field mt-4 policeChampagne25">
-        <span class="mr-3">Bénéficiaire: </span>
-        <input type="radio" id="radio-one4" name="switch-one4" value="true" [(ngModel)]="nouvelleEntreprise.beneficiaire" [attr.disabled]="nouvelleEntreprise.id"/>
-        <label for="radio-one4">Oui</label>
-        <input type="radio" id="radio-two4" name="switch-one4" value="false" [(ngModel)]="nouvelleEntreprise.beneficiaire" [attr.disabled]="nouvelleEntreprise.id"/>
-        <label for="radio-two4">Non</label>
-      </div>
 
       <fieldset [disabled]="isActiveBool3">
       <a class="btn btn-lg btn-outline-warning mt-3" (click)="saveEntiteEntreprise()"><i class="fas fa-plus-circle"></i> Ajouter une adresse</a>
@@ -281,19 +264,10 @@
       </div>
 
       <div class="switch-field mt-4 policeChampagne25">
-        <span class="mr-3">Donneur: </span>
-        <input type="radio" id="radio-one5" name="switch-one5" value="true" [(ngModel)]="nouvelleAssociation.donneur" [attr.disabled]="nouvelleAssociation.id"/>
-        <label for="radio-one5">Oui</label>
-        <input type="radio" id="radio-two5" name="switch-one5" value="false" [(ngModel)]="nouvelleAssociation.donneur" [attr.disabled]="nouvelleAssociation.id"/>
-        <label for="radio-two5">Non</label>
-      </div>
-
-      <div class="switch-field mt-4 policeChampagne25">
-        <span class="mr-3">Bénéficiaire: </span>
-        <input type="radio" id="radio-one6" name="switch-one6" value="true" [(ngModel)]="nouvelleAssociation.beneficiaire" [attr.disabled]="nouvelleAssociation.id"/>
-        <label for="radio-one6">Oui</label>
-        <input type="radio" id="radio-two6" name="switch-one6" value="false" [(ngModel)]="nouvelleAssociation.beneficiaire" [attr.disabled]="nouvelleAssociation.id"/>
-        <label for="radio-two6">Non</label>
+        <input type="radio" id="donneur2" name="switch-one" value="true" [(ngModel)]="nouvelleAssociation.donneur" (ngModelChange)="changeDonneurAsso()" [attr.disabled]="nouvelleAssociation.id"/>
+        <label for="donneur2">Donneur</label>
+        <input type="radio" id="beneficiaire2" name="switch-one" value="false" [(ngModel)]="nouvelleAssociation.donneur" (ngModelChange)="changeBeneficiaireAsso()" [attr.disabled]="nouvelleAssociation.id"/>
+        <label for="beneficiaire2">Bénéficiaire</label>
       </div>
 
       <fieldset [disabled]="isActiveBool4">

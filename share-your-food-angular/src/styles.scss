@@ -1,3 +1,19 @@
+$teal: #20c997 !default;
+$info: $teal !default;
+
+$orange: #fba919 !default;
+$warning: $orange !default;
+
+$jaune: #f4d03f !default;
+$danger: $jaune !default;
+
+$rose: #e83e8c !default;
+$secondary: $rose !default;
+
+$vert:  #bbf568  !default;
+$success: $vert !default;
+
+
 @import "~bootstrap/scss/bootstrap.scss";
 
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
@@ -5,7 +21,18 @@
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
 
+
 //*******POLICES*******
+
+@font-face {
+  font-family: "Champagne & Limousines";
+  src: url("assets/champagne.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Impact";
+  src: url("assets/impact.ttf") format("truetype");
+}
 
 .policeChampagneCenter {
   font-size: 30px;
@@ -44,6 +71,8 @@
   text-align: center;
 }
 
+//*******BOUTON*******
+
 .btnImpact {
   font-family: Impact;
   font-size: 25px;
@@ -56,9 +85,7 @@
   color: white;
 }
 
-.aBouton {
-
-}
+//*******LIEN*******
 
 .lien {
   font-size: 25px;
@@ -73,6 +100,9 @@
   color:#fba919;
   text-decoration: none;
 }
+
+
+//*******CONTENEUR*******
 
 .conteneurTexteGris {
   background: #f8f9fa;
