@@ -5,7 +5,6 @@ import {ProduitHttpService} from "../services/produit.service";
 import {LotHttpService} from "../services/lot.service";
 import {ProduitLot} from "../model/produitLot";
 import {ProduitLotHttpService} from "../services/produit-lot.service";
-import {endWith} from "rxjs/operators";
 
 
 @Component({
@@ -29,20 +28,11 @@ export class CreationLotComponent implements OnInit {
     this.produitLotForms.push(this.produitLotForm);
   }
 
-  listLot(): Array<Lot> {
-    return this.lotService.findAll();
-  }
-
- listProduitLot(): Array<ProduitLot> {
-    return this.produitLotService.findAll();
-  }
-
-  listStatut(): Array<string> {
-    return this.lotService.statuts;
-  }
-
   listType(): Array<string> {
     return this.produitService.types;
+  }
+  listStatut(): Array<string> {
+    return this.lotService.statuts;
   }
 
   listProduit(): Array<Produit> {
@@ -51,19 +41,11 @@ export class CreationLotComponent implements OnInit {
 
    addProduitLot() {
     this.produitLotForms.push (new ProduitLot());
+
    }
 
   deleteProduitLot(){
-    this.produitLotForms.splice(1,1);
-  }
-
-  editLot(id: number) {
-    this.lotService.findById(id).subscribe(resp=> {
-      this.lotForm = resp;
-    }, err => console.log(err));
-    this.produitLotService.findById(id).subscribe(resp=> {
-      this.produitLotForm = resp;
-    }, err => console.log(err));
+    this.produitLotForms.splice(-1,1);
   }
 
   saveLot() {
@@ -74,25 +56,15 @@ export class CreationLotComponent implements OnInit {
         this.lotService.load();
       }, error => console.log(error));
     }
-    this.lotForm = null;
+    this.produitService.create(this.produitForm);
 
-    if (!this.produitLotForm.id) {
-      this.produitLotService.create(this.produitLotForm);
-    } else {
-      this.produitLotService.modify(this.produitLotForm).subscribe(resp => {
-        this.produitLotService.load();
-      }, error => console.log(error));
-    }
-    this.produitLotForm = null;
+    this.lotForm = null;
   }
   cancelLot() {
     this.lotForm = null;
     this.produitLotForm = null;
   }
-  deleteLot(id: number) {
-    this.lotService.deleteById(id);
-    this.produitLotService.deleteById(id);
-  }
+
 
   addProduit() {
     this.produitForm = new Produit();
@@ -101,15 +73,8 @@ export class CreationLotComponent implements OnInit {
     this.produitService.create(this.produitForm);
     this.produitForm = null;
   }
-  editProduit(nom: string) {
-    this.produitService.findById(nom).subscribe(resp=> {
-      this.produitForm = resp;
-    }, err => console.log(err));
-  }
 
   cancelProduit() {
     this.produitForm = null;
   }
-
-
 }

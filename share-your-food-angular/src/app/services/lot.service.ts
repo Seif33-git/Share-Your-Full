@@ -23,7 +23,15 @@ export class LotHttpService {
   }
 
   listLotDashboardDonneur(idEntite: number): Observable<Array<dashboardGiverDTO>>{
-    return this.http.get<Array<dashboardGiverDTO>>(this.appConfig.backEndUrl + "lot/dashboard-donneur-non-donne/"+idEntite)
+    return this.http.get<Array<dashboardGiverDTO>>(this.appConfig.backEndUrl + "lot/dashboard-donneur-disponible/"+idEntite)
+  }
+
+  listLotDashboardDonneurReserve(idEntite: number): Observable<Array<dashboardGiverDTO>>{
+    return this.http.get<Array<dashboardGiverDTO>>(this.appConfig.backEndUrl + "lot/dashboard-donneur-reserve/"+idEntite)
+  }
+
+  listLotDashboardDonneurDonne(idEntite: number): Observable<Array<dashboardGiverDTO>>{
+    return this.http.get<Array<dashboardGiverDTO>>(this.appConfig.backEndUrl + "lot/dashboard-donneur-donne/"+idEntite)
   }
 
   listLotAccByEntite(idEntite: number): Observable<Array<dashboardBeneficiaireDTO>>{
@@ -32,6 +40,16 @@ export class LotHttpService {
 
   listLotNonDonneByEntite(idEntite: number): Observable<Array<Lot>>{
     return this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/non-donne-by-entite/"+idEntite)
+  }
+
+
+
+  listLotByDonId(idDon: number): Observable<Array<Lot>>{
+    return this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/lot-by-don/"+idDon)
+  }
+
+  listLotDispoEnAttenteByEntite(idEntite: number): Observable<Array<Lot>>{
+    return this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/attente-by-entite/"+idEntite)
   }
 
   compteurLot(): Observable<number> {

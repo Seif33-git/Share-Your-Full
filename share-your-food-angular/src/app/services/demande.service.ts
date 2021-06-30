@@ -42,8 +42,20 @@ export class DemandeHttpService {
     }, error => console.log(error));
   }
 
+  annulerDemandeByLotId(idLot: number){
+    this.http.get<Demande>(this.appConfig.backEndUrl + "demande/demande-annulee/" + idLot).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
   refuserDemandeByLotId(idLot: number){
     this.http.get<Demande>(this.appConfig.backEndUrl + "demande/demande-refusee/" + idLot).subscribe(resp => {
+      this.load();
+    }, error => console.log(error));
+  }
+
+  donnerLotByLotId(idLot: number){
+    this.http.get<Demande>(this.appConfig.backEndUrl + "demande/lot-donne/" + idLot).subscribe(resp => {
       this.load();
     }, error => console.log(error));
   }

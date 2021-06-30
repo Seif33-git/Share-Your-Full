@@ -6,7 +6,10 @@ import sopra.ShareYourFood.model.Statut;
 import sopra.ShareYourFood.model.Type;
 
 public class CreationLotDTO {
-	private Long id;
+	
+	
+	
+	private Long idLot;
 	private String nomLot;
 	private Long volumeLot;
 	private Date dtPeremptionLot;
@@ -24,11 +27,11 @@ public class CreationLotDTO {
 	}
 
 	public Long getId() {
-		return id;
+		return idLot;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.idLot = idLot;
 	}
 
 	public String getNomLot() {
