@@ -56,7 +56,10 @@ export class PageDonneurComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.donService.deleteById(id);
+    this.donService.deleteById(id).subscribe(resp => {
+      this.listLotNonDonne()
+      this.listDons()
+    }, error => console.log(error));
   }
 
   afficheHistorique() {

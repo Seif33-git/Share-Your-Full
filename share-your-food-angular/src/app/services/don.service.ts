@@ -43,10 +43,8 @@ export class DonHttpService {
 
   }
 
-  deleteById(id: number) {
-    this.http.delete(this.appConfig.backEndUrl + "don/" + id).subscribe(resp => {
-      this.load();
-    }, error => console.log(error));
+  deleteById(id: number): Observable<Don> {
+    return this.http.delete<Don>(this.appConfig.backEndUrl + "don/" + id);
   }
 
   load() {
