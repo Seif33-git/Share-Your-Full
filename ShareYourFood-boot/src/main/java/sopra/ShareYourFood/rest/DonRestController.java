@@ -24,9 +24,11 @@ import sopra.ShareYourFood.dto.DashboardGiverDTO;
 import sopra.ShareYourFood.dto.PageDonneurDTO;
 import sopra.ShareYourFood.model.Don;
 import sopra.ShareYourFood.model.Lot;
+import sopra.ShareYourFood.model.ProduitLot;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.IDonRepository;
 import sopra.ShareYourFood.repository.ILotRepository;
+import sopra.ShareYourFood.repository.IProduitLotRepository;
 
 @RestController
 @RequestMapping("/don")
@@ -38,6 +40,9 @@ public class DonRestController {
 	
 	@Autowired
 	private ILotRepository lotRepo;
+	
+	@Autowired
+	private IProduitLotRepository produitLotRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewDon.class)
@@ -112,8 +117,21 @@ public class DonRestController {
 
 	@PostMapping("")
 	public Don create(@RequestBody Don don) {
-		don = donRepo.save(don);
-
+		
+		donRepo.save(don);	
+		
+		for(Lot lot : don.getLot()) {		
+				
+			lot.setDon(don);			
+			lot= lotRepo.save(lot);	
+			
+			for(ProduitLot produitLot :lot.getProduitLots() ) {
+				
+				ProduitLot produitLot1 = produitLot;
+				produitLot1.setLot(lot);
+				produitLot1 = produitLotRepo.save(produitLot1);				
+			}
+		}		
 		return don;
 	}
 

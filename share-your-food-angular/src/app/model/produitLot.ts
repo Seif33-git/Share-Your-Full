@@ -15,6 +15,7 @@ export class ProduitLot{
     this.dtPeremption=dtPeremption!;
     this.quantite = quantite;
     this.produit = new Produit();
+    this.lot = new Lot();
   }
 
 }

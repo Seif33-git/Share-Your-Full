@@ -18,10 +18,12 @@ export class CreationDonComponent implements OnInit {
 
   donForm: Don = new Don();
   lotForm: Lot = null;
-  lotForms:  Array<Lot> = new Array<Lot>();
+  lotDonsEnCours:  Array<Lot> = new Array<Lot>();
   produitLotForm: ProduitLot = new ProduitLot();
   produitLotForms: Array<ProduitLot> = new Array<ProduitLot>();
   produitForm: Produit = new Produit();
+  categorieProduit: string = "FRAIS" ;
+  produitByCategorie: Array<Produit> ;
 
   /* Enumérations :*/
   types: Array<String> = new Array<String>();
@@ -31,8 +33,9 @@ export class CreationDonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.lotForms.push(this.lotForm);
+ /*   this.lotDonsEnCours.push(this.lotForm);*/
     this.produitLotForms.push(this.produitLotForm);
+    this.listProduit(this.categorieProduit);
   }
 
   listType(): Array<string> {
@@ -43,8 +46,10 @@ export class CreationDonComponent implements OnInit {
     return this.lotService.findAll();
   }
 
-  listProduit(): Array<Produit> {
-    return this.produitService.findAll();
+  listProduit(categorieProduit : string){
+   this.produitService.findAllByCategorie(categorieProduit).subscribe(resp => {
+     this.produitByCategorie=resp;
+    }, error => console.log(error));
   }
 
   /*Relatif à un Don */
@@ -57,7 +62,9 @@ export class CreationDonComponent implements OnInit {
         this.donService.load();
       }, error => console.log(error));
     }
-    this.donForm = null;
+
+
+    this.donForm = new Don();
   }
 
   cancelDon() {
@@ -78,39 +85,20 @@ export class CreationDonComponent implements OnInit {
     this.lotForm = new Lot();
   }
 
-  ajouterLot(){
-    if (!this.donForm.id) {
-      this.donService.create(this.donForm);
-    } else {
-      this.donService.modify(this.donForm).subscribe(resp => {
-        this.donService.load();
-      }, error => console.log(error));
-    }
-  }
-
-  newLot(){
-   this.route.navigate(['/lot']);
-  }
-
   saveLot() {
-    if (!this.lotForm.id) {
-      this.lotService.create(this.lotForm);
-    } else {
-      this.lotService.modify(this.lotForm).subscribe(resp => {
-        this.lotService.load();
-      }, error => console.log(error));
-    }
-    this.produitService.create(this.produitForm);
+    this.lotForm.produitLots = this.produitLotForms;
+    this.lotDonsEnCours.push(this.lotForm);
+    this.produitLotForms = new Array<ProduitLot>();
+    this.produitLotForms.push (new ProduitLot());
+    this.donForm.lot = this.lotDonsEnCours;
+
     this.lotForm = null;
   }
 
-  editLot(id: number) {
-    this.lotService.findById(id).subscribe(resp=> {
-      this.lotForm = resp;
-    }, err => console.log(err));
-    this.produitLotService.findById(id).subscribe(resp=> {
-      this.produitLotForm = resp      ;
-    }, err => console.log(err));
+  editLot(index: number) {
+    this.lotForm = this.lotDonsEnCours[index];
+    this.produitLotForms = this.lotForm.produitLots;
+    this.deleteLot(index);
   }
 
   cancelLot() {
@@ -118,8 +106,8 @@ export class CreationDonComponent implements OnInit {
     this.produitLotForm = null;
   }
 
-  deleteLot(id: number){
-    this.lotService.deleteById(id);
+  deleteLot(index: number){
+   this.lotDonsEnCours.splice(index,1);
   }
 
   /*Relatif à un Produit */
@@ -129,8 +117,14 @@ export class CreationDonComponent implements OnInit {
   }
 
   saveProduit(){
-    this.produitService.create(this.produitForm);
-    this.produitForm = null;
+    this.produitService.create(this.produitForm).subscribe(resp => {
+      this.listProduit(this.categorieProduit);
+    }, error => console.log(error));
+    this.produitForm = new Produit();
+  }
+
+  actualisationProduit(){
+    this.listProduit(this.categorieProduit);
   }
 
   cancelProduit() {
