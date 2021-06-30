@@ -1,7 +1,7 @@
 <div class="container policeChampagne25">
   <div>
     <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter">
-      <p>MES LOTS EN COURS</p>
+      <p>MES DONS EN COURS</p>
     </div>
 
     <table class="table">
@@ -32,7 +32,7 @@
 
     <div *ngIf="listLotByDonId">
       <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
-        <p>MES DONS</p>
+        <p>DÉTAIL DU DON</p>
       </div>
 
       <table class="table">
@@ -89,19 +89,57 @@
   <table class="table">
     <thead>
     <tr class="table-info policeImpact">
-      <th>lot</th>
-      <th>quantité</th>
+      <th>N°</th>
+      <th>Mise en ligne</th>
+      <th>Créneau</th>
+      <th>Commentaire</th>
+      <th>Destinataire</th>
       <th></th>
-      </tr>
+      <th></th>
       </thead>
 
+    <tbody>
+    <tr *ngFor="let donDtoH of listDonPageDonneurHistorique">
+      <td>{{donDtoH.id}}</td>
+      <td>{{donDtoH.dtMiseEnLigne | date:'dd/MM/yyyy'}}</td>
+      <td>{{donDtoH.creneau}}</td>
+      <td>{{donDtoH.commentaire}}</td>
+      <td>{{donDtoH.destinataire}}</td>
+      <td><td><a class="btn btn-info btn-m" (click) = listLotByDonHistorique(donDtoH.id)><i class="fas fa-edit"></i> DÉTAIL</a></td>
+    </tr>
+    </tbody>
+    </table>
+
+  <div *ngIf="listLotByDonIdHistorique">
+    <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+      <p>DÉTAIL DU DON</p>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr class="table-info policeChampagne25">
+        <th>Photo</th>
+        <th>Nom</th>
+        <th>Date de péremption</th>
+        <th>Statut</th>
+        <th>Volume</th>
+        <th></th>
+      </tr>
+      </thead>
       <tbody>
-      <tr>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let lot of listLotByDonIdHistorique">
+        <td>{{lot.photo}}</td>
+        <td>{{lot.nom}}</td>
+        <td>{{lot.dtPeremptionLot | date:'dd/MM/yyyy'}}</td>
+        <td>{{lot.statut}}</td>
+        <td>{{lot.volume}}</td>
+        <!--          <td><a class="btn btn-info btn-m" (click) = listLotByDon(donDto.id)><i class="fas fa-edit"></i> DÉTAIL</a>-->
+        <!--            <a class="btn btn-secondary btn-m" (click)="delete(donDto.id)"><i class="far fa-trash-alt"></i></a></td>-->
       </tr>
       </tbody>
     </table>
+    <a class="btn btn-sm btn-secondary float-right" (click)="fermerDetailHistorique()"><i class="fas fa-times"></i> FERMER</a>
+  </div>
 
 
 </div>

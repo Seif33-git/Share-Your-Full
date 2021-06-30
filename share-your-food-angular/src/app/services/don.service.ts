@@ -30,6 +30,10 @@ export class DonHttpService {
     return this.http.get<Array<pageDonneurDTO>>(this.appConfig.backEndUrl + "don/page-mes-dons/"+idEntite)
   }
 
+  listDonPageDonneurHistorique(idEntite: number): Observable<Array<pageDonneurDTO>>{
+    return this.http.get<Array<pageDonneurDTO>>(this.appConfig.backEndUrl + "don/page-mes-dons-historique/"+idEntite)
+  }
+
   create(don: Don) {
 
     this.http.post<Don>(this.appConfig.backEndUrl + "don", don).subscribe(resp => {
