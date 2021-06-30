@@ -8,7 +8,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CreationDonComponent } from './creation-don/creation-don.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { CreationLotComponent } from './creation-lot/creation-lot.component';
 import { PageDonneurComponent } from './page-donneur/page-donneur.component';
 import {LotHttpService} from "./services/lot.service";
 import {DonHttpService} from "./services/don.service";
@@ -31,7 +30,6 @@ import { Accueil2Component } from './accueil2/accueil2.component';
     PageNotFoundComponent,
     Accueil1Component,
     AppComponent,
-    CreationLotComponent,
     CreationDonComponent,
     PageDonneurComponent,
     TableauDeBordBeneficiaireComponent,
