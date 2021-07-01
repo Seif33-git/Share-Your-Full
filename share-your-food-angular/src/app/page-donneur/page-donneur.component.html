@@ -38,7 +38,6 @@
       <table class="table">
         <thead>
         <tr class="table-info policeChampagne25">
-          <th>Photo</th>
           <th>Nom</th>
           <th>Date de péremption</th>
           <th>Statut</th>
@@ -48,7 +47,6 @@
         </thead>
         <tbody>
         <tr *ngFor="let lot of listLotByDonId">
-          <td>{{lot.photo}}</td>
           <td>{{lot.nom}}</td>
           <td>{{lot.dtPeremptionLot | date:'dd/MM/yyyy'}}</td>
           <td>{{lot.statut}}</td>
