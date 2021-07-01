@@ -70,6 +70,7 @@
 
     </div>
 
+
 <!--    COLONNE 3 DROITE-->
 
     <div class="col-6 text-center bg-info">
@@ -77,6 +78,15 @@
       <app-tableau-de-bord-beneficiaire></app-tableau-de-bord-beneficiaire>
 </div>
     </div>
+
+
+
+    <div class="col-9 text-center bg-info">
+      <div *ngIf="changeB">
+        <app-tableau-de-bord-beneficiaire></app-tableau-de-bord-beneficiaire>
+      </div>
+    </div>
+
 
 <!--FOOTER-->
 
@@ -167,9 +177,10 @@
       <div class="col-6 text-center bg-danger">
 
         <div *ngIf="changeD">
-        </div>
+
           <app-tableau-de-bord-donneur></app-tableau-de-bord-donneur>
         </div>
+      </div>
 
 
     </div>

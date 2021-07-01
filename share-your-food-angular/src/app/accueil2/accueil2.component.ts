@@ -20,6 +20,7 @@ export class Accueil2Component implements OnInit {
   homme : boolean=true;
 
 
+
   constructor(private lotService: LotHttpService, private particulierService: ParticulierHttpService, private utilisateurService: UtilisateurHttpService) { }
 
   ngOnInit(): void {
@@ -50,10 +51,12 @@ export class Accueil2Component implements OnInit {
   }
 
   tableauDeBordB() {
+
     this.changeB=true;
   }
 
   tableauDeBordD() {
+
     this.changeD=true;
   }
 
@@ -79,5 +82,6 @@ export class Accueil2Component implements OnInit {
   changeSexe() {
   this.homme=!this.homme;
   }
+
 
 }
