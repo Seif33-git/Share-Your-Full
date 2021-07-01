@@ -1,88 +1,126 @@
 <div class="container">
 
-  <div class="card-header bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+  <div class="card-header bg-info conteneurArrondi policeChampagneEspaceCenter">
     <h2>Création d'un Don</h2>
   </div>
 
+  <div>
+    <dl style="text-align: center"><i class="fas fa-exclamation-triangle"></i> Les champs contenants un '*' sont
+      obligatoires !
+    </dl>
+  </div>
+
   <div class="card-body">
-    <div class="pt-5">
-      <label for="nom">Créneau de reception / remise :</label>
-      <input type="text" class="form-control" id="nom" [(ngModel)]="donForm.creneau">
+    <div class="pt-1 row">
+      <div class="col ">
+        <label for="nom">Créneau de reception / remise : *</label>
+      </div>
+      <div class="col">
+        <label for="nom"> Date de mise en ligne:</label>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" id="nom" [(ngModel)]="donForm.creneau">
+      </div>
+      <div class="col">
+          <span type="date" class="form-control"
+                id="dateDeMiseEnLigne">{{donForm.dateDeMiseEnLigne | date:'dd-MM-yyyy'}}
+           </span>
+      </div>
+    </div>
+
+    <!--Choix du destinataire  et Lieu en Auto-->
+
+
+    <div class="pt-2 row">
+      <div class="col ">
+        <label for="destinataire">A qui est-ce destiné ?</label>
+      </div>
+      <div class="col ">
+        <label> Ville </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <select class="form-control" id="destinataire" [(ngModel)]="donForm.destinataire">
+          <option value="PARTICULIER">Particulier</option>
+          <option value="ASSOCIATION">Association</option>
+        </select>
+      </div>
+      <div class="col">
+        <label> </label>
+      </div>
+    </div>
+
+
     <div class="pt-3">
       <label for="nom">Commentaires / précision :</label>
       <input type="text" class="form-control" id="commentaire" [(ngModel)]="donForm.commentaire">
     </div>
+
+
+    <!--PARTIE AJOUT DE LOT : Avec Tableau vide et bouton ajout du formulaire-->
+
     <div class="pt-3">
-      <label for="nom"> Date de mise en ligne:</label>
-      <span type="date" class="form-control" id="dateDeMiseEnLigne">{{donForm.dateDeMiseEnLigne | date:'dd-MM-yyyy'}}
-       </span>
-    </div>
-  </div>
-
-  <!--Choix du destinataire -->
-
-  <div class="pt-3">
-    <label for="destinataire">A qui est-ce destiné ?</label>
-    <select class="form-control" id="destinataire" [(ngModel)]="donForm.destinataire">
-      <option selected>Choisir un destinataire ...</option>
-      <option value="PARTICULIER">Particulier</option>
-      <option value="ASSOCIATION">Association</option>
-    </select>
-  </div>
-
-  <!--PARTIE AJOUT DE LOT : Avec Tableau vide et bouton ajout du formulaire-->
-
-  <div class="pt-3">
-    <h3>Les Lots : </h3>
-  </div>
-
-  <div class=table>
-    <div class="pt-1 row">
-      <div class="col"><h4> Nom du Lot : </h4></div>
-      <div class="col"><h4> Quantité : </h4></div>
-      <div class="col"><h4></h4></div>
+      <h3 class="bg-info conteneurArrondi policeChampagneEspaceCenter">Les Lots : </h3>
     </div>
 
-    <div *ngFor="let lot of lotDonsEnCours; index as i" class="row">
-      <div class="col">{{lot.nom}}</div>
-      <div class="col">{{lot.volume}}</div>
-      <div class="col">
-        <div class="btn-group btn-group-sm">
-          <a class="btn btn-primary" (click)="editLot(i)"><i class="fa fa-edit"></i></a>
-          <a class="btn btn-danger" (click)="deleteLot(i)"><i class="fa fa-trash"></i></a>
+    <div class=table>
+      <div class="pt-1 row">
+        <div class="col "><h5> Nom du Lot : </h5></div>
+        <div class="col "><h5> Quantité : </h5></div>
+        <div class="col"><h5></h5></div>
+      </div>
+
+      <div *ngFor="let lot of lotDonsEnCours; index as i" class="row">
+        <div class="col">{{lot.nom}}</div>
+        <div class="col">{{lot.volume}}</div>
+        <div class="col">
+          <div class="btn-group btn-group-sm">
+            <a class="btn btn-primary" (click)="editLot(i)"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-danger" (click)="deleteLot(i)"><i class="fa fa-trash"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="pt-3">
-    <button type="button" class="btn btn-success btn-md" (click)="addLot();">Ajouter un lot</button>
+    <div class="pt-3">
+      <button type="button" class="btn btn-lg btn-outline-warning mt-3" (click)="addLot();"><i
+        class="fas fa-plus-circle"></i> Ajouter un lot
+      </button>
+    </div>
+    <div>
 
-  </div>
-  <div>
-    <button type="button"
-            class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto"
-            (click)="saveDon();"
-    >VALIDER
-    </button>
+      <div class="row pt-3">
+        <div class="col "></div>
+        <button type="button"
+                class="btn btn-float-middle btn-info btnImpact mr-auto col" (click)="saveDon();" [routerLink]="['/accueil2']"><i
+          class="fas fa-check"></i> VALIDER LE DON
+        </button>
+        <div class="col"></div>
+      </div>
+    </div>
+
   </div>
 
   <!-- FORMULAIRE CREATION DE LOT :-->
 
   <div class="card mt-3" *ngIf="lotForm">
 
-    <div class="card-header bg-warning mt-5 conteneurArrondi policeChampagneEspaceCenter">
+    <div class="card-header bg-warning  conteneurArrondi policeChampagneEspaceCenter">
       <h2>Création d'un Lot</h2>
     </div>
 
     <div class="card-body">
-      <div class="pt-5 row">
+      <div class="pt-2 row">
         <div class="col">
-          <label>Nom du Lot :</label>
+          <label>Nom du Lot : *</label>
         </div>
         <div class="col">
-          <label>Quantité de ce lot souhaité :</label>
+          <label>Quantité de ce lot souhaité : *</label>
         </div>
       </div>
       <div class="row">
@@ -94,107 +132,136 @@
         </div>
       </div>
 
-      <div class="pt-5">
-        <label for="type">Choix du type (Une catégorie à la fois) :</label>
-        <select class="form-control" id="type" [(ngModel)]="categorieProduit" (change)="actualisationProduit()">
-          <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
-        </select>
-      </div>
-      <div class="pt-5">
-        <label for="imageLot">Insérer une image (Format jpeg, png)
-          :</label> <input type="text" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
+      <div class="pt-2 row">
+        <div class="col">
+          <label for="type">Choix du type (Une catégorie à la fois) :</label>
+        </div>
+        <div class="col">
+          <label for="imageLot">Insérer une image (Format jpeg, png) :</label>
+        </div>
       </div>
 
-      <table id="lotSpe" class="table">
-        <tr class="row">
-          <th class="col-md-3">Date de Péremption Lot:</th>
-          <th class="col-md-3"><label id="dtPeremption"> ----- </label></th>
-          <th class="col-md-3">Volume Lot :</th>
-          <th class="col-md-3"><label id="volume"> ----- </label></th>
-        </tr>
-      </table>
+      <div class="row">
+        <div class="col">
+          <select class="form-control" id="type" [(ngModel)]="categorieProduit" (change)="actualisationProduit()">
+            <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
+        </div>
+      </div>
 
+      <div class="row pt-2">
+        <div class="col" style="background-color: #e4e4e4">Date de Péremption Lot:</div>
+        <div class="col" style="background-color: #e4e4e4"><label id="dtPeremption"> ----- </label></div>
+        <div class="col" style="background-color: #e4e4e4">Volume Lot :</div>
+        <div class="col" style="background-color: #e4e4e4"><label id="volume"> ----- </label></div>
+      </div>
+
+      <div class="pt-3">
+        <h3 class="bg-warning conteneurArrondi policeChampagneEspaceCenter">Les Produits : </h3>
+      </div>
 
       <table id="lotTable" class="table">
         <thead>
-        <tr class="row">
-          <th class="col-md-3">Nom du produit:</th>
-          <th class="col-md-3">Quantité :</th>
-          <th class="col-md-3">Date de péremption:</th>
-          <th class="col-md-3"></th>
-        </tr>
-
+        <div class="row">
+          <div class="col"><h5>Nom du produit:</h5></div>
+          <div class="col"><h5>Quantité : </h5></div>
+          <div class="col"><h5>Date de péremption:</h5></div>
+          <div class="col"><h5></h5></div>
+        </div>
         </thead>
 
         <tbody id="produitlot">
-        <tr class="row" *ngFor="let produitLForm of produitLotForms">
-          <td class="col-md-3">
+        <div class="row" *ngFor="let produitLForm of produitLotForms">
+          <div class="col">
             <select class="form-control" id="produit" [(ngModel)]="produitLForm.produit.nom">
               <option value="">Choisir un Produit :</option>
               <option *ngFor="let produit of produitByCategorie" [value]="produit.nom">{{produit.nom}}</option>
             </select>
-          </td>
-          <td class="col-md-3">
+          </div>
+          <div class="col">
             <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLForm.quantite">
-          </td>
-          <td class="col-md-3">
+          </div>
+          <div class="col">
             <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLForm.dtPeremption ">
-          </td>
-          <td class="col-md-3">
+          </div>
+          <div class="col">
             <button type="button" class="btn btn-success btn-md"
                     (click)="addProduitLot();">+
             </button>
             <a class="btn btn-danger" (click)="deleteProduitLot();"><i class="fa fa-trash"></i></a>
-          </td>
-        </tr>
+          </div>
+        </div>
         </tbody>
       </table>
 
-      <div class="card-footer">
+      <div class="card-footer pt-2">
         <div class="row">
           <div class="col text-center">
-            <button type="button" class="btn float-left btn-lg btn-outline-info fas fa-plus-square"
+            <button type="button" class="btn float-left btn-lg btn-outline-danger fas fa-plus-square"
                     data-toggle="modal"
                     data-target="#myModal" (click)="addProduit()"> Nouveau Produit
             </button>
-            <button type="button"
-                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto"
-                    (click)="saveLot();"
-            >VALIDER
-            </button>
           </div>
+        </div>
+
+        <div class="row pt-3">
+          <div class="col"></div>
+          <button type="button"
+                  class="btn btn-float-middle btn-warning btnImpact mr-auto col" (click)="saveLot();"><i
+            class="fas fa-check"></i> VALIDER LE LOT
+          </button>
+          <button type="button" class="btn btn-lg btn-info btnImpact mr-3 col" (click)="cancelLot();"><i
+            class="fas fa-undo-alt"></i> Retour
+          </button>
+          <div class="col"></div>
         </div>
       </div>
     </div>
   </div>
 
+
   <!--      CREATION D'UN PRODUIT-->
-  <div id="myModal" class="modal fade " data-backdrop="false"> <!-- <div *ngIf="produitForm" class="card mt-3">-->
+  <div id="myModal" class="modal fade " data-backdrop="false">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
+
         <div class="modal-header bg-danger mt-3 conteneurArrondi policeChampagneEspaceCenter">
           <h2>Création d'un Produit</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
 
         <div class="modal-body">
+
           <div class="modal-group">
-            <label for="nom">Nom du Produit :</label>
-            <input type="text" class="modal-control" id="nomProduit" [(ngModel)]="produitForm.nom">
-          </div>
-          <div class="modal-group">
-            <label for="typeProduit">Choix du type de produit :</label> <select
-            id="typeProduit" class="modal-control" [(ngModel)]="produitForm.type">
-            <option value="">Choisir un type</option>
-            <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
-          </select>
+            <div class="row">
+              <label class="col">Nom du Produit :</label>
+            </div>
+            <div class="row">
+              <input type="text" class="modal-control col" id="nomProduit" [(ngModel)]="produitForm.nom">
+            </div>
+            <div class="row">
+              <label class="col">Choix du type de produit :</label>
+            </div>
+            <div class="row">
+              <select
+                id="typeProduit" class="modal-control col" [(ngModel)]="produitForm.type">
+                <option value="">Choisir un type</option>
+                <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
+              </select>
+            </div>
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <div class="col text-center">
             <button type="button"
-                    class="btn btn-float-middle btn-success btn-lg ml-auto mr-auto" data-dismiss="modal"
+                    class="btn btn-float-middle btn-danger btnImpact mr-auto col" data-dismiss="modal"
                     (click)="saveProduit();">Ajouter
               le produit
             </button>
