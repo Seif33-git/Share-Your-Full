@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import sopra.ShareYourFood.model.Produit;
+import sopra.ShareYourFood.model.Type;
 import sopra.ShareYourFood.model.Views;
 import sopra.ShareYourFood.repository.IProduitRepository;
 
@@ -71,4 +72,12 @@ public class ProduitRestController {
 	public void delete(@PathVariable String id) {
 		produitRepo.deleteById(id);
 	}
+	
+	@GetMapping("/produitType/{typeProduit}")
+	@JsonView(Views.ViewCommon.class)
+	public List<Produit> findProduitByType(@PathVariable Type typeProduit){		
+		return produitRepo.findAllByType(typeProduit);				
+	}
+	
+	
 }

@@ -14,7 +14,9 @@ export class PageDonneurComponent implements OnInit {
 
   listLotNonDonneByEntite: Array<Lot>;
   listDonPageDonneur: Array<pageDonneurDTO>;
+  listDonPageDonneurHistorique: Array<pageDonneurDTO>;
   listLotByDonId: Array<Lot>;
+  listLotByDonIdHistorique: Array<Lot>;
   lot: Lot;
   historique: Don = null;
 
@@ -24,6 +26,7 @@ export class PageDonneurComponent implements OnInit {
   ngOnInit(): void {
     this.listLotNonDonne()
     this.listDons()
+    this.listDonsHistorique()
   }
 
   listLot(): Array<Lot> {
@@ -34,6 +37,14 @@ export class PageDonneurComponent implements OnInit {
     this.lotService.listLotByDonId(IdDon).subscribe(
       resp => {
         this.listLotByDonId = resp;
+      },
+      error => console.log(error));
+  }
+
+  listLotByDonHistorique(IdDon: number) {
+    this.lotService.listLotByDonId(IdDon).subscribe(
+      resp => {
+        this.listLotByDonIdHistorique = resp;
       },
       error => console.log(error));
   }
@@ -50,13 +61,23 @@ export class PageDonneurComponent implements OnInit {
     this.donService.listDonPageDonneur(Number(sessionStorage.getItem("idEntite"))).subscribe(
       resp => {
         this.listDonPageDonneur = resp;
-        console.log(this.listDonPageDonneur);
+      },
+      error => console.log(error));
+  }
+
+  listDonsHistorique() {
+    this.donService.listDonPageDonneurHistorique(Number(sessionStorage.getItem("idEntite"))).subscribe(
+      resp => {
+        this.listDonPageDonneurHistorique = resp;
       },
       error => console.log(error));
   }
 
   delete(id: number) {
-    this.donService.deleteById(id);
+    this.donService.deleteById(id).subscribe(resp => {
+      this.listLotNonDonne()
+      this.listDons()
+    }, error => console.log(error));
   }
 
   afficheHistorique() {
@@ -69,6 +90,10 @@ export class PageDonneurComponent implements OnInit {
 
   fermerDetail() {
     this.listLotByDonId=null;
+  }
+
+  fermerDetailHistorique() {
+    this.listLotByDonIdHistorique=null;
   }
 
 }

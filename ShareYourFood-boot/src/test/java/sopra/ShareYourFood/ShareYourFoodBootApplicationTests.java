@@ -322,7 +322,7 @@ class ShareYourFoodBootApplicationTests {
 		// LIEN UTILISATEUR ENTITE
 		aube.setEntite(aubeline);
 		sarahCze.setEntite(sarah);
-		toto65.setEntite(CroixRouge);
+		toto65.setEntite(regis);
 		cocoDu06.setEntite(Leclerc);
 		
 		utilisateurRepo.save(cocoDu06);

@@ -30,6 +30,10 @@ export class DonHttpService {
     return this.http.get<Array<pageDonneurDTO>>(this.appConfig.backEndUrl + "don/page-mes-dons/"+idEntite)
   }
 
+  listDonPageDonneurHistorique(idEntite: number): Observable<Array<pageDonneurDTO>>{
+    return this.http.get<Array<pageDonneurDTO>>(this.appConfig.backEndUrl + "don/page-mes-dons-historique/"+idEntite)
+  }
+
   create(don: Don) {
 
     this.http.post<Don>(this.appConfig.backEndUrl + "don", don).subscribe(resp => {
@@ -43,10 +47,8 @@ export class DonHttpService {
 
   }
 
-  deleteById(id: number) {
-    this.http.delete(this.appConfig.backEndUrl + "don/" + id).subscribe(resp => {
-      this.load();
-    }, error => console.log(error));
+  deleteById(id: number): Observable<Don> {
+    return this.http.delete<Don>(this.appConfig.backEndUrl + "don/" + id);
   }
 
   load() {
