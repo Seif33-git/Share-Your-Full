@@ -17,7 +17,6 @@ import sopra.ShareYourFood.model.Categorie;
 import sopra.ShareYourFood.model.Demande;
 import sopra.ShareYourFood.model.Destinataire;
 import sopra.ShareYourFood.model.Don;
-import sopra.ShareYourFood.model.Entite;
 import sopra.ShareYourFood.model.Entreprise;
 import sopra.ShareYourFood.model.Lot;
 import sopra.ShareYourFood.model.Message;
@@ -115,8 +114,8 @@ class ShareYourFoodBootApplicationTests {
 		// ENTITES
 		Particulier aubeline = new Particulier("aubeline", 28);
 		aubeline.setNom("PECQUE");
-		aubeline.setDonneur(true);
-		aubeline.setBeneficiaire(false);
+		aubeline.setDonneur(false);
+		aubeline.setBeneficiaire(true);
 		
 		Particulier sarah = new Particulier("sarah", 25);
 		sarah.setNom("CAZE");
@@ -131,7 +130,7 @@ class ShareYourFoodBootApplicationTests {
 		Association CroixRouge = new Association("FR123456789", "justificatif1");
 		CroixRouge.setNom("La Croix Rouge");
 		CroixRouge.setDonneur(true);
-		CroixRouge.setBeneficiaire(true);
+		CroixRouge.setBeneficiaire(false);
 		
 		Association DonPourTous = new Association("FR987654321", "justificatif2");
 		DonPourTous.setNom("Dons pour tous");
@@ -141,7 +140,7 @@ class ShareYourFoodBootApplicationTests {
 		Association RestoDuCoeur = new Association("FR45879002H", "justificatif3");
 		RestoDuCoeur.setNom("Resto du Coeur");
 		RestoDuCoeur.setDonneur(true);
-		RestoDuCoeur.setBeneficiaire(true);
+		RestoDuCoeur.setBeneficiaire(false);
 		
 		Association AideSolidaire = new Association("FR7854922458T", "justificatif4");
 		AideSolidaire.setNom("Aide Solidaire");
@@ -199,6 +198,46 @@ class ShareYourFoodBootApplicationTests {
 		donLeclerc.setCommentaire("DLC à peine passée, mais encore en bon état");
 		donLeclerc.setDestinataire(Destinataire.ASSOCIATION);
 		
+		Don don1 = new Don();
+		try {
+			don1.setDateDeMiseEnLigne(sdf.parse("30/06/2020"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		don1.setCreneau("12h à 13h");
+		don1.setCommentaire("DLC au 30/06/2020");
+		don1.setDestinataire(Destinataire.PARTICULIER);
+		
+		Don don2 = new Don();
+		try {
+			don2.setDateDeMiseEnLigne(sdf.parse("30/06/2020"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		don2.setCreneau("19h à 20h");
+		don2.setCommentaire("DLC au 30/06/2020");
+		don2.setDestinataire(Destinataire.PARTICULIER);
+		
+		Don don3 = new Don();
+		try {
+			don3.setDateDeMiseEnLigne(sdf.parse("30/06/2020"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		don3.setCreneau("12h à 13h");
+		don3.setCommentaire("DLC au 30/06/2020");
+		don3.setDestinataire(Destinataire.ASSOCIATION);
+		
+		Don don4 = new Don();
+		try {
+			don4.setDateDeMiseEnLigne(sdf.parse("30/06/2020"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		don4.setCreneau("20h à 20h30");
+		don4.setCommentaire("DLC au 30/06/2020");
+		don4.setDestinataire(Destinataire.ASSOCIATION);
+		
 		
 		// LOT
 		Lot chocolat = new Lot();
@@ -224,6 +263,50 @@ class ShareYourFoodBootApplicationTests {
 		pain.setVolume((long) 25);
 		pain.setStatut(Statut.DISPONIBLE);
 		
+		Lot pates = new Lot();
+		pates.setNom("Pates");
+		try {
+			pates.setDtPeremptionLot(sdf.parse("01/01/2025"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		pates.setPhoto("ouoio/ju/hh");
+		pates.setVolume((long) 3);
+		pates.setStatut(Statut.EN_PREPARATION);
+		
+		Lot riz = new Lot();
+		riz.setNom("Riz");
+		try {
+			riz.setDtPeremptionLot(sdf.parse("01/01/2025"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		riz.setPhoto("ouoio/ju/hh");
+		riz.setVolume((long) 5);
+		riz.setStatut(Statut.RESERVE);
+		
+		Lot cereales = new Lot();
+		cereales.setNom("Céréales");
+		try {
+			riz.setDtPeremptionLot(sdf.parse("01/01/2024"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		cereales.setPhoto("ouoio/ju/hh");
+		cereales.setVolume((long) 1);
+		cereales.setStatut(Statut.DISPONIBLE);
+		
+		Lot jus = new Lot();
+		jus.setNom("Boissons sucrées");
+		try {
+			riz.setDtPeremptionLot(sdf.parse("01/07/2021"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		jus.setPhoto("ouoio/ju/hh");
+		jus.setVolume((long) 2);
+		jus.setStatut(Statut.DISPONIBLE);
+		
 		
 		// DEMANDE
 		Demande demandeDonPourTous = new Demande();
@@ -242,7 +325,23 @@ class ShareYourFoodBootApplicationTests {
 		}
 		demandeRegis.setStatutNotif(StatutNotif.EN_ATTENTE);
 		
+		Demande demande1 = new Demande();
+		try {
+			demande1.setDtDemande(sdf.parse("30/06/2021"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		demande1.setStatutNotif(StatutNotif.ACCEPTER);
 		
+		Demande demande2 = new Demande();
+		try {
+			demande2.setDtDemande(sdf.parse("30/06/2021"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		demande2.setStatutNotif(StatutNotif.ACCEPTER);
+		
+
 		
 		// MESSAGES
 		sopra.ShareYourFood.model.Message messageDonPourTousLeclerc = new sopra.ShareYourFood.model.Message();
@@ -266,6 +365,18 @@ class ShareYourFoodBootApplicationTests {
 		messageLeclercRegis.setDonneur(true);
 		messageLeclercRegis.setDtEnvoi(sdf.parse("03/06/2021"));
 		
+		Message messageDonneur1 = new Message("Urgent", true);
+		Message messageDonneur2 = new Message("Très urgent", true);
+		
+		Message messageBene1 = new Message("Je le veux svp", false);
+		Message messageBene2 = new Message("Intéressé !", false);
+		
+		Message messageDonneur3 = new Message("Ok", true);
+		Message messageDonneur4 = new Message("Super !", true);
+		
+		Message messageBene3 = new Message("Merci !!", false);
+		Message messageBene4 = new Message("Ok, je viens ce soir à 20h", false);
+		
 		// PRODUITLOT
 		ProduitLot chocolatNoirLot1 = new ProduitLot();
 		chocolatNoirLot1.setQuantite(1000L);
@@ -275,6 +386,22 @@ class ShareYourFoodBootApplicationTests {
 		croissantLot4.setQuantite(200L);
 		croissantLot4.setDtPeremption(sdf.parse("30/08/2021"));
 		
+		ProduitLot pateLotPate = new ProduitLot();
+		pateLotPate.setQuantite(10L);
+		pateLotPate.setDtPeremption(sdf.parse("02/02/2022"));
+		
+		ProduitLot rizLotRiz = new ProduitLot();
+		rizLotRiz.setQuantite(20L);
+		rizLotRiz.setDtPeremption(sdf.parse("30/08/2021"));
+		
+		ProduitLot cerealeLotCereale = new ProduitLot();
+		cerealeLotCereale.setQuantite(5L);
+		cerealeLotCereale.setDtPeremption(sdf.parse("30/08/2021"));
+		
+		ProduitLot jusLotJus = new ProduitLot();
+		jusLotJus.setQuantite(10L);
+		jusLotJus.setDtPeremption(sdf.parse("30/08/2021"));
+		
 		//PRODUIT
 		Produit chocolatNoir = new Produit();
 		chocolatNoir.setNom("chocolat noir");
@@ -283,6 +410,34 @@ class ShareYourFoodBootApplicationTests {
 		Produit croissant = new Produit();
 		croissant.setNom("croissant");
 		croissant.setType(Type.PAIN_PATISSERIE);
+		
+		Produit pateProduit = new Produit();
+		pateProduit.setNom("Pates");
+		pateProduit.setType(Type.EPICERIE_SALE);
+		
+		Produit rizProduit = new Produit();
+		rizProduit.setNom("Riz");
+		rizProduit.setType(Type.EPICERIE_SALE);
+		
+		Produit jusOrange = new Produit();
+		jusOrange.setNom("Jus d'orange");
+		jusOrange.setType(Type.BOISSON);
+		
+		Produit papierQQ = new Produit();
+		papierQQ.setNom("Papier toilette");
+		papierQQ.setType(Type.HYGIENE);
+		
+		Produit cerealesProduit = new Produit();
+		cerealesProduit.setNom("Céréales Nesquik");
+		cerealesProduit.setType(Type.EPICERIE_SUCREE);
+		
+		Produit chips = new Produit();
+		chips.setNom("Chips");
+		chips.setType(Type.EPICERIE_SALE);
+		
+		Produit bonbon = new Produit();
+		bonbon.setNom("Dragibus");
+		bonbon.setType(Type.EPICERIE_SUCREE);
 		
 		
 		
@@ -321,7 +476,7 @@ class ShareYourFoodBootApplicationTests {
 		
 		// LIEN UTILISATEUR ENTITE
 		aube.setEntite(aubeline);
-		sarahCze.setEntite(sarah);
+		sarahCze.setEntite(DonPourTous);
 		toto65.setEntite(regis);
 		cocoDu06.setEntite(Leclerc);
 		
@@ -369,46 +524,100 @@ class ShareYourFoodBootApplicationTests {
 		
 		// DON
 		donRepo.save(donLeclerc);
+		donRepo.save(don1);
+		donRepo.save(don2);
+		donRepo.save(don3);
+		donRepo.save(don4);
+	
 		
 		// LIEN DON ADRESSE + ENTITE
 		donLeclerc.setAdresse(adrLeclerc);
-
 		donLeclerc.setEntite(Leclerc);
-		
 		donRepo.save(donLeclerc);
 		
+		
+		don1.setAdresse(adrBioCbon);
+		don1.setEntite(bioCbon);
+		donRepo.save(don1);
+		
+		don2.setAdresse(adrLeclerc);
+		don2.setEntite(Leclerc);
+		donRepo.save(don2);
+		
+		don2.setAdresse(adrRestoDuCoeur);
+		don2.setEntite(RestoDuCoeur);
+		donRepo.save(don2);
+		
+		don3.setAdresse(adrAuGrandBonheur);
+		don3.setEntite(auGrandBonheur);
+		donRepo.save(don3);
+		
+		don4.setAdresse(adrAuGrandBonheur);
+		don4.setEntite(auGrandBonheur);
+		donRepo.save(don4);
 		
 		// LOTS
 		lotRepo.save(chocolat);
 		lotRepo.save(pain);
+		lotRepo.save(pates);
+		lotRepo.save(riz);
+		lotRepo.save(cereales);
+		lotRepo.save(jus);
 		
 		
 		// LIEN LOT DON
 		chocolat.setDon(donLeclerc);
 		pain.setDon(donLeclerc);
+		pates.setDon(don1);
+		riz.setDon(don2);
+		cereales.setDon(don3);
+		jus.setDon(don4);
 		
 		lotRepo.save(chocolat);
 		lotRepo.save(pain);
+		lotRepo.save(pates);
+		lotRepo.save(riz);
+		lotRepo.save(cereales);
+		lotRepo.save(jus);
+		
 		
 		// DEMANDE
 		demandeRepo.save(demandeRegis);
 		demandeRepo.save(demandeDonPourTous);
-		
+		demandeRepo.save(demande1);
+		demandeRepo.save(demande2);
+
 		//LIEN DEMANDE ENTITE + LOT
 		demandeDonPourTous.setEntite(DonPourTous);
-		demandeRegis.setEntite(regis);
-		
 		demandeDonPourTous.setLot(pain);
+		
+		demandeRegis.setEntite(regis);
 		demandeRegis.setLot(chocolat);
+		
+		demande1.setEntite(aubeline);
+		demande1.setLot(cereales);
+		
+		demande2.setEntite(regis);
+		demande2.setLot(riz);
 		
 		demandeRepo.save(demandeRegis);
 		demandeRepo.save(demandeDonPourTous);
+		demandeRepo.save(demande1);
+		demandeRepo.save(demande2);
 		
 		// MESSAGES
 		messageRepo.save(messageDonPourTousLeclerc);
 		messageRepo.save(messageLeclercDonPourTous);
 		messageRepo.save(messageRegis);
 		messageRepo.save(messageLeclercRegis);
+		messageRepo.save(messageDonneur1);
+		messageRepo.save(messageDonneur2);
+		messageRepo.save(messageBene1);
+		messageRepo.save(messageBene2);
+		messageRepo.save(messageDonneur3);
+		messageRepo.save(messageDonneur4);
+		messageRepo.save(messageBene3);
+		messageRepo.save(messageBene4);
 		
 		// LIEN MESSAGE DEMANDE
 		messageDonPourTousLeclerc.setDemande(demandeDonPourTous);
@@ -416,18 +625,50 @@ class ShareYourFoodBootApplicationTests {
 		messageRegis.setDemande(demandeRegis);
 		messageLeclercRegis.setDemande(demandeRegis);
 		
+		messageDonneur1.setDemande(demande1);
+		messageBene1.setDemande(demande1);
+		messageDonneur3.setDemande(demande1);
+		messageBene3.setDemande(demande1);
+		
+		messageDonneur2.setDemande(demande1);
+		messageBene2.setDemande(demande1);
+		messageDonneur4.setDemande(demande1);
+		messageBene4.setDemande(demande1);
+		
 		messageRepo.save(messageDonPourTousLeclerc);
 		messageRepo.save(messageLeclercDonPourTous);
 		messageRepo.save(messageRegis);
 		messageRepo.save(messageLeclercRegis);
+		messageRepo.save(messageDonneur1);
+		messageRepo.save(messageDonneur2);
+		messageRepo.save(messageBene1);
+		messageRepo.save(messageBene2);
+		messageRepo.save(messageDonneur3);
+		messageRepo.save(messageDonneur4);
+		messageRepo.save(messageBene3);
+		messageRepo.save(messageBene4);
+		
 		
 		//PRODUITLOT
 		produitLotRepo.save(chocolatNoirLot1);
 		produitLotRepo.save(croissantLot4);
+		produitLotRepo.save(pateLotPate);
+		produitLotRepo.save(rizLotRiz);
+		produitLotRepo.save(cerealeLotCereale);
+		produitLotRepo.save(jusLotJus);
+		
 				
 		//PRODUIT
 		produitRepo.save(chocolatNoir);
 		produitRepo.save(croissant);
+		produitRepo.save(pateProduit);
+		produitRepo.save(rizProduit);
+		produitRepo.save(jusOrange);
+		produitRepo.save(papierQQ);
+		produitRepo.save(cerealesProduit);
+		produitRepo.save(chips);
+		produitRepo.save(bonbon);
+		
 				
 		//LIEN PRODUITLOT PRODUIT + LOT
 		chocolatNoirLot1.setProduit(chocolatNoir);
@@ -435,9 +676,25 @@ class ShareYourFoodBootApplicationTests {
 				
 		croissantLot4.setProduit(croissant);
 		croissantLot4.setLot(pain);
+		
+		pateLotPate.setProduit(pateProduit);
+		pateLotPate.setLot(pates);
+		
+		rizLotRiz.setProduit(rizProduit);
+		rizLotRiz.setLot(riz);
+		
+		cerealeLotCereale.setProduit(cerealesProduit);
+		cerealeLotCereale.setLot(cereales);
+		
+		jusLotJus.setProduit(jusOrange);
+		jusLotJus.setLot(jus);
 				
 		produitLotRepo.save(chocolatNoirLot1);
 		produitLotRepo.save(croissantLot4);
+		produitLotRepo.save(pateLotPate);
+		produitLotRepo.save(rizLotRiz);
+		produitLotRepo.save(cerealeLotCereale);
+		produitLotRepo.save(jusLotJus);
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
