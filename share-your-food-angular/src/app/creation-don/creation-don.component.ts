@@ -140,7 +140,6 @@ export class CreationDonComponent implements OnInit {
     for(let pl of this.produitLotForms){
       this.Volume = this.Volume + pl.quantite
     }
-
   }
 }
 
