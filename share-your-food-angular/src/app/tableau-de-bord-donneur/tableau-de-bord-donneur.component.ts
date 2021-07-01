@@ -13,6 +13,10 @@ import {Demande} from "../model/demande";
 })
 export class TableauDeBordDonneurComponent implements OnInit {
 
+  demandeEnCours: Demande=null;
+  lotEnPreparation: Lot=null;
+  donArchive: Don=null;
+
   constructor(private lotservice: LotHttpService, private demandeService: DemandeHttpService) { }
 
   listDashboardDonneur: Array<dashboardGiverDTO>;
@@ -82,9 +86,23 @@ export class TableauDeBordDonneurComponent implements OnInit {
     }, error => console.log(error));
   }
 
-
-  afficheHistorique() {
-    this.historique = new Don();
+  ouvrirDemandeEnCours() {
+    this.demandeEnCours=new Demande();
+  }
+  fermerDemandeEnCours() {
+    this.demandeEnCours=null;
+  }
+  ouvrirLotPreparation() {
+    this.lotEnPreparation=new Lot();
+  }
+  fermerLotPreparation() {
+    this.lotEnPreparation=null;
+  }
+  ouvrirDonArchive(){
+    this.donArchive=new Don();
+  }
+  fermerDonArchive() {
+    this.donArchive=null;
   }
 
 

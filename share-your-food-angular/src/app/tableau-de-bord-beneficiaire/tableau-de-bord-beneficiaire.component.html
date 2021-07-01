@@ -1,6 +1,9 @@
-<div class="bg-light mt-3 conteneurArrondi policeChampagne25">
-  <p>Demandes acceptées</p>
-</div>
+<div class="mt-3 policeChampagne25">
+
+  <div class="card">
+    <div class="card-header">Demandes acceptées <i (click)="ouvrirDemandeAcceptee()" class="fas fa-plus-circle text-info"></i></div>
+    <div *ngIf="demandeAccepte">
+    <div class="card-body">
       <div class="pt-3">
         <table class="table">
           <thead>
@@ -23,12 +26,16 @@
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="card-footer">Fermer <i (click)="fermerDemandeAcceptee()" class="far fa-times-circle text-secondary"></i></div>
+  </div>
+  </div>
 
 
-<div class="bg-light mt-3 conteneurArrondi policeChampagne25">
-  <p>Historique des mes demandes</p>
-</div>
-
+  <div class="card mt-3">
+    <div class="card-header">Historique des mes demandes <i (click)="ouvrirHistorique()" class="fas fa-plus-circle text-info"></i></div>
+    <div *ngIf="historique">
+    <div class="card-body">
       <div class="pt-3">
         <table class="table">
           <thead>
@@ -37,7 +44,6 @@
             <th>nom</th>
             <th>quantité</th>
             <th>donneur</th>
-
           </tr>
           </thead>
           <tbody>
@@ -50,5 +56,12 @@
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="card-footer">Fermer <i (click)="fermerHistorique()" class="far fa-times-circle text-secondary"></i></div>
+    </div>
+  </div>
+
+</div>
+
 
 

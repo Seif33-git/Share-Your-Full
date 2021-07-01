@@ -12,6 +12,9 @@ import {dashboardBeneficiaireDTO} from "../model/dashboardBeneficiaireDTO";
 })
 export class TableauDeBordBeneficiaireComponent implements OnInit {
 
+  demandeAccepte: Demande=null;
+  historique: Demande=null;
+
   constructor(private lotservice: LotHttpService, private demandeService: DemandeHttpService) { }
   demandeAccByEntite: Array<dashboardBeneficiaireDTO>;
   demandeHist: Array<dashboardBeneficiaireDTO>;
@@ -34,6 +37,22 @@ export class TableauDeBordBeneficiaireComponent implements OnInit {
   trouverDonneur(id : number):string{
     this.demandeService.trouverNomEntite(id);
     return this.demandeService.NomEntiteByDemandeId;
+  }
+
+  ouvrirDemandeAcceptee() {
+    this.demandeAccepte= new Demande();
+  }
+
+  fermerDemandeAcceptee() {
+    this.demandeAccepte=null;
+  }
+
+  ouvrirHistorique() {
+    this.historique= new Demande();
+  }
+
+  fermerHistorique() {
+    this.historique= null;
   }
 
 }

@@ -105,9 +105,12 @@ public class DonRestController {
 			e.setCommentaire(don.getCommentaire());
 			e.setDestinataire(don.getDestinataire());
 			
-			Long nombreLot = lotRepo.findNombreLotDonneByDonId(e.getId());
+			Long nombreLot = lotRepo.findNombreLotByDonId(e.getId());
 			e.setNombreLot(nombreLot);
-			listDonDto.add(e);
+			if(nombreLot == 0) {
+				listDonDto.add(e);
+			}
+			
 			
 		}
 		return listDonDto;
