@@ -24,7 +24,7 @@ export class CreationDonComponent implements OnInit {
   produitForm: Produit = new Produit();
   categorieProduit: string = "FRAIS" ;
   produitByCategorie: Array<Produit> ;
-
+  Volume:number;
   /* Enumérations :*/
   types: Array<String> = new Array<String>();
   statuts: Array<String> = new Array<String>();
@@ -134,6 +134,13 @@ export class CreationDonComponent implements OnInit {
 
   cancelProduit() {
     this.produitForm = null;
+  }
+  calculVolume(){
+    this.Volume = 0;
+    for(let pl of this.produitLotForms){
+      this.Volume = this.Volume + pl.quantite
+    }
+
   }
 }
 

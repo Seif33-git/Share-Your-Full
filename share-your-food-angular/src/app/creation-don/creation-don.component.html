@@ -110,7 +110,7 @@
           <th class="col-md-3">Date de Péremption Lot:</th>
           <th class="col-md-3"><label id="dtPeremption"> ----- </label></th>
           <th class="col-md-3">Volume Lot :</th>
-          <th class="col-md-3"><label id="volume"> ----- </label></th>
+          <th class="col-md-3"><label id="volume"> {{Volume}} </label></th>
         </tr>
       </table>
 
@@ -135,7 +135,7 @@
             </select>
           </td>
           <td class="col-md-3">
-            <input type="number" class="form-control" id="quantite" [(ngModel)]="produitLForm.quantite">
+            <input type="number" class="form-control" id="quantite" (change)="calculVolume()" [(ngModel)]="produitLForm.quantite">
           </td>
           <td class="col-md-3">
             <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLForm.dtPeremption ">
