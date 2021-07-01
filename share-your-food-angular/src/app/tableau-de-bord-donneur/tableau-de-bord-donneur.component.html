@@ -1,99 +1,100 @@
-<div class="bg-light mt-3 conteneurArrondi policeChampagne25">
-  <p>Mes demandes en cours</p>
-</div>
-<div class="pt-3">
-    <table class="table">
-      <thead>
-      <tr class="table-danger policeImpactCenter">
-        <th>N°</th>
-        <th>nom</th>
-        <th>quantité</th>
-        <th>demandeur</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let lotDto of listDashboardDonneur">
-        <td>{{lotDto.id}}</td>
-        <td>{{lotDto.nomLot}}</td>
-        <td>{{lotDto.quantiteLot}}</td>
-        <td>{{lotDto.nomEntite}}</td>
-        <td><div class="btn-group-vertical"><a class="btn btn-info btn-m" (click)="Accepter(lotDto.id)"><i class="fas fa-check"></i> Accepter</a>
-          <a class="btn btn-secondary btn-m" (click)="Refuser(lotDto.id)"><i class="fas fa-trash-alt"></i> Refuser</a></div></td>
-      </tr>
-      </tbody>
-    </table>
+<div class="mt-3 policeChampagne25">
 
-  <div class="bg-light mt-3 conteneurArrondi policeChampagne25">
-    <p>Mes lots en préparation</p>
-  </div>
-
-    <table class="table">
-<!--      <thead>-->
-<!--      <tr class="table-info policeImpact">-->
-<!--        <th>N°</th>-->
-<!--        <th>nom</th>-->
-<!--        <th>quantité</th>-->
-<!--        <th>demandeur</th>-->
-<!--        <th></th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-      <tbody>
-      <tr *ngFor="let lotDto of listDashboardDonneurReserve">
-        <td>{{lotDto.id}}</td>
-        <td>{{lotDto.nomLot}}</td>
-        <td>{{lotDto.quantiteLot}}</td>
-        <td>{{lotDto.nomEntite}}</td>
-        <td><div class="btn-group-vertical"><a class="btn btn-info btn-m" (click)="Donner(lotDto.id)"><i class="fas fa-check"></i> Donné</a>
-          <a class="btn btn-secondary btn-m" (click)="Annuler(lotDto.id)"><i class="fas fa-trash-alt"></i> Annuler</a></div></td>
-      </tr>
-      </tbody>
-    </table>
-
-    <!--  </div>-->
-
-
-    <!--    <div class="row">-->
-    <!--          <button type="button"-->
-    <!--                 class="btn btn-success btn-lg ml-auto mr-auto" routerLinkActive="active" [routerLink]="['/don']">+ NOUVEAU DON</button>-->
-
-<!--    <div class="row justify-content-center align-items-center text-center">-->
-<!--      <div class="col">-->
-<!--        <a class="btn btn-lg btn-warning btnImpact" [routerLink]="['/don']"><i class="fas fa-hand-holding-heart"></i> NOUVEAU DON</a>-->
-<!--      </div>-->
-<!--      <div class="col">-->
-<!--        <img src="assets/panierDessin.png" class="mx-auto d-block">-->
-<!--      </div>-->
-<!--      <div class="col">-->
-<!--        <a class="btn btn-lg btn-danger btnImpact mx-auto" (click)="afficheHistorique()"><i class="fas fa-history"></i> VOIR L'HISTORIQUE</a>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div *ngIf="historique">-->
-  <div class="bg-light mt-3 conteneurArrondi policeChampagne25">
-    <p>Mes dons archivés</p>
+  <div class="card">
+    <div class="card-header">Mes demandes en cours <i (click)="ouvrirDemandeEnCours()" class="fas fa-plus-circle text-info"></i></div>
+    <div *ngIf="demandeEnCours">
+      <div class="card-body">
+        <div class="pt-3">
+          <table class="table">
+            <thead>
+            <tr class="table-danger policeImpactCenter">
+              <th>N°</th>
+              <th>nom</th>
+              <th>quantité</th>
+              <th>demandeur</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lotDto of listDashboardDonneur">
+              <td>{{lotDto.id}}</td>
+              <td>{{lotDto.nomLot}}</td>
+              <td>{{lotDto.quantiteLot}}</td>
+              <td>{{lotDto.nomEntite}}</td>
+              <td><div class="btn-group-vertical"><a class="btn btn-info btn-m" (click)="Accepter(lotDto.id)"><i class="fas fa-check"></i> Accepter</a>
+                <a class="btn btn-secondary btn-m" (click)="Refuser(lotDto.id)"><i class="fas fa-trash-alt"></i> Refuser</a></div></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">Fermer <i (click)="fermerDemandeEnCours()" class="far fa-times-circle text-secondary"></i></div>
+    </div>
   </div>
 
 
-      <table class="table">
-<!--        <thead>-->
-<!--        <tr class="table-info policeImpact">-->
-<!--          <th>N°</th>-->
-<!--          <th>nom</th>-->
-<!--          <th>quantité</th>-->
-<!--          <th>demandeur</th>-->
-<!--          <th></th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-        <tbody>
-        <tr *ngFor="let lotDto of listDashboardDonneurDonne">
-          <td>{{lotDto.id}}</td>
-          <td>{{lotDto.nomLot}}</td>
-          <td>{{lotDto.quantiteLot}}</td>
-          <td>{{lotDto.nomEntite}}</td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="card mt-3">
+    <div class="card-header">Mes lots en préparation <i (click)="ouvrirLotPreparation()" class="fas fa-plus-circle text-info"></i></div>
+    <div *ngIf="lotEnPreparation">
+      <div class="card-body">
+        <div class="pt-3">
+          <table class="table">
+            <thead>
+            <tr class="table-danger policeImpact">
+              <th>N°</th>
+              <th>nom</th>
+              <th>quantité</th>
+              <th>demandeur</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lotDto of listDashboardDonneurReserve">
+              <td>{{lotDto.id}}</td>
+              <td>{{lotDto.nomLot}}</td>
+              <td>{{lotDto.quantiteLot}}</td>
+              <td>{{lotDto.nomEntite}}</td>
+              <td><div class="btn-group-vertical"><a class="btn btn-info btn-m" (click)="Donner(lotDto.id)"><i class="fas fa-check"></i> Donné</a>
+                <a class="btn btn-secondary btn-m" (click)="Annuler(lotDto.id)"><i class="fas fa-trash-alt"></i> Annuler</a></div></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">Fermer <i (click)="fermerLotPreparation()" class="far fa-times-circle text-secondary"></i></div>
+    </div>
+  </div>
+
+
+  <div class="card mt-3">
+    <div class="card-header">Mes dons archivés <i (click)="ouvrirDonArchive()" class="fas fa-plus-circle text-info"></i></div>
+    <div *ngIf="donArchive">
+      <div class="card-body">
+        <div class="pt-3">
+          <table class="table">
+            <thead>
+            <tr class="table-danger policeImpact">
+              <th>N°</th>
+              <th>nom</th>
+              <th>quantité</th>
+              <th>demandeur</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lotDto of listDashboardDonneurDonne">
+              <td>{{lotDto.id}}</td>
+              <td>{{lotDto.nomLot}}</td>
+              <td>{{lotDto.quantiteLot}}</td>
+              <td>{{lotDto.nomEntite}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">Fermer <i (click)="fermerDonArchive()" class="far fa-times-circle text-secondary"></i></div>
+    </div>
+  </div>
 
 </div>
-<!--</div>-->
+
