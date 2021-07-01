@@ -1,13 +1,9 @@
-<div class="container">
+<div class="container policeChampagne25">
 
-  <div class="card-header bg-info conteneurArrondi policeChampagneEspaceCenter">
-    <h2>Création d'un Don</h2>
-  </div>
+  <div *ngIf="!lotForm">
 
-  <div>
-    <dl style="text-align: center"><i class="fas fa-exclamation-triangle"></i> Les champs contenants un '*' sont
-      obligatoires !
-    </dl>
+  <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+    <h2>CREATION D'UN DON</h2>
   </div>
 
   <div class="card-body">
@@ -20,7 +16,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="pt-1 row">
       <div class="col">
         <input type="text" class="form-control" id="nom" [(ngModel)]="donForm.creneau">
       </div>
@@ -34,16 +30,16 @@
     <!--Choix du destinataire  et Lieu en Auto-->
 
 
-    <div class="pt-2 row">
+    <div class="pt-1 row">
       <div class="col ">
         <label for="destinataire">A qui est-ce destiné ?</label>
       </div>
       <div class="col ">
-        <label> Ville </label>
+<!--        <label> Ville </label>-->
       </div>
     </div>
 
-    <div class="row">
+    <div class="pt-1 row">
       <div class="col">
         <select class="form-control" id="destinataire" [(ngModel)]="donForm.destinataire">
           <option value="PARTICULIER">Particulier</option>
@@ -56,23 +52,28 @@
     </div>
 
 
-    <div class="pt-3">
-      <label for="nom">Commentaires / précision :</label>
+    <div class="pt-1">
+      <label for="nom">Commentaires / précisions :</label>
       <input type="text" class="form-control" id="commentaire" [(ngModel)]="donForm.commentaire">
+    </div>
+
+    <div class="mt-3 text-warning">
+      <i class="fas fa-exclamation-circle text-warning"></i> Les champs * sont
+        obligatoires
     </div>
 
 
     <!--PARTIE AJOUT DE LOT : Avec Tableau vide et bouton ajout du formulaire-->
 
-    <div class="pt-3">
-      <h3 class="bg-info conteneurArrondi policeChampagneEspaceCenter">Les Lots : </h3>
-    </div>
+      <div class="bg-info mt-5 conteneurArrondi policeChampagneEspaceCenter">
+        <h2>LES LOTS</h2>
+      </div>
 
-    <div class=table>
+    <div class="table">
       <div class="pt-1 row">
-        <div class="col "><h5> Nom du Lot : </h5></div>
-        <div class="col "><h5> Quantité : </h5></div>
-        <div class="col"><h5></h5></div>
+        <div class="col">Nom du Lot :</div>
+        <div class="col">Quantité :</div>
+        <div class="col"></div>
       </div>
 
       <div *ngFor="let lot of lotDonsEnCours; index as i" class="row">
@@ -88,34 +89,35 @@
     </div>
 
     <div class="pt-3">
-      <button type="button" class="btn btn-lg btn-outline-warning mt-3" (click)="addLot();"><i
+      <button type="button" class="btn btn-lg btn-outline-info mt-3" (click)="addLot();"><i
         class="fas fa-plus-circle"></i> Ajouter un lot
       </button>
     </div>
-    <div>
 
-      <div class="row pt-3">
-        <div class="col "></div>
-        <button type="button"
-                class="btn btn-float-middle btn-info btnImpact mr-auto col" (click)="saveDon();" [routerLink]="['/accueil2']"><i
-          class="fas fa-check"></i> VALIDER LE DON
-        </button>
-        <div class="col"></div>
-      </div>
-    </div>
 
+<!--      <div class="row pt-3">-->
+<!--        <div class="col "></div>-->
+<!--        <button type="button"-->
+<!--                class="btn btn-float-middle btn-info btnImpact mr-auto col" (click)="saveDon();" [routerLink]="['/accueil2']"><i-->
+<!--          class="fas fa-check"></i> VALIDER LE DON-->
+<!--        </button>-->
+<!--        <div class="col"></div>-->
+<!--      </div>-->
+
+
+  </div>
   </div>
 
   <!-- FORMULAIRE CREATION DE LOT :-->
 
-  <div class="card mt-3" *ngIf="lotForm">
+  <div class="mt-3" *ngIf="lotForm">
 
-    <div class="card-header bg-warning  conteneurArrondi policeChampagneEspaceCenter">
-      <h2>Création d'un Lot</h2>
+    <div class="bg-warning mt-5 conteneurArrondi policeChampagneEspaceCenter pt-1">
+      <h2>CREATION D'UN LOT</h2>
     </div>
 
     <div class="card-body">
-      <div class="pt-2 row">
+      <div class="pt-1 row">
         <div class="col">
           <label>Nom du Lot : *</label>
         </div>
@@ -123,7 +125,7 @@
           <label>Quantité de ce lot souhaité : *</label>
         </div>
       </div>
-      <div class="row">
+      <div class="pt-1 row">
         <div class="col">
           <input type="text" class="form-control" id="nomLot" [(ngModel)]="lotForm.nom">
         </div>
@@ -132,7 +134,7 @@
         </div>
       </div>
 
-      <div class="pt-2 row">
+      <div class="pt-1 row">
         <div class="col">
           <label for="type">Choix du type (Une catégorie à la fois) :</label>
         </div>
@@ -141,7 +143,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="pt-1 row">
         <div class="col">
           <select class="form-control" id="type" [(ngModel)]="categorieProduit" (change)="actualisationProduit()">
             <option *ngFor="let type of listType()" value="{{type}}">{{type}}</option>
@@ -152,24 +154,24 @@
         </div>
       </div>
 
-      <div class="row pt-2">
-        <div class="col" style="background-color: #e4e4e4">Date de Péremption Lot:</div>
-        <div class="col" style="background-color: #e4e4e4"><label id="dtPeremption"> ----- </label></div>
-        <div class="col" style="background-color: #e4e4e4">Volume Lot :</div>
-        <div class="col" style="background-color: #e4e4e4"><label id="volume"> ----- </label></div>
+      <div class="row pt-1 mt-3 bg-light">
+        <div class="col">Date de Péremption Lot:</div>
+        <div class="col"><label id="dtPeremption"> ----- </label></div>
+        <div class="col">Volume Lot :</div>
+        <div class="col"><label id="volume"> ----- </label></div>
       </div>
 
-      <div class="pt-3">
-        <h3 class="bg-warning conteneurArrondi policeChampagneEspaceCenter">Les Produits : </h3>
+      <div class="bg-danger mt-5 conteneurArrondi policeChampagneEspaceCenter pt-1">
+        <h2>AJOUTER DES PRODUITS</h2>
       </div>
 
-      <table id="lotTable" class="table">
+      <table id="lotTable" class="table mt-5">
         <thead>
-        <div class="row">
-          <div class="col"><h5>Nom du produit:</h5></div>
-          <div class="col"><h5>Quantité : </h5></div>
-          <div class="col"><h5>Date de péremption:</h5></div>
-          <div class="col"><h5></h5></div>
+        <div class="row pt-1">
+          <div class="col">Nom du produit:</div>
+          <div class="col">Quantité : </div>
+          <div class="col">Date de péremption:</div>
+          <div class="col"></div>
         </div>
         </thead>
 
@@ -188,33 +190,35 @@
             <input type="date" class="form-control" id="peremption" [(ngModel)]="produitLForm.dtPeremption ">
           </div>
           <div class="col">
-            <button type="button" class="btn btn-success btn-md"
-                    (click)="addProduitLot();">+
-            </button>
-            <a class="btn btn-danger" (click)="deleteProduitLot();"><i class="fa fa-trash"></i></a>
+            <a class="btn btn-info btn-m mr-3 text-light" (click)="addProduitLot()"><i class="fas fa-plus"></i></a>
+
+            <a class="btn btn-secondary btn-m" (click)="deleteProduitLot()"><i class="far fa-trash-alt"></i></a>
           </div>
         </div>
         </tbody>
       </table>
 
-      <div class="card-footer pt-2">
+      <div class="pt-2">
         <div class="row">
           <div class="col text-center">
-            <button type="button" class="btn float-left btn-lg btn-outline-danger fas fa-plus-square"
+            <button type="button" class="btn btn-lg btn-danger mt-3 float-left text-light"
                     data-toggle="modal"
-                    data-target="#myModal" (click)="addProduit()"> Nouveau Produit
+                    data-target="#myModal" (click)="addProduit()"><i
+              class="fas fa-plus-circle"></i> Nouveau Produit
             </button>
+
           </div>
         </div>
 
         <div class="row pt-3">
           <div class="col"></div>
-          <button type="button"
-                  class="btn btn-float-middle btn-warning btnImpact mr-auto col" (click)="saveLot();"><i
-            class="fas fa-check"></i> VALIDER LE LOT
+          <button type="button" class="btn btn-lg btn-warning btnImpact mr-3 col" (click)="cancelLot();"><i
+            class="fas fa-undo-alt"></i> ANNULER
           </button>
-          <button type="button" class="btn btn-lg btn-info btnImpact mr-3 col" (click)="cancelLot();"><i
-            class="fas fa-undo-alt"></i> Retour
+
+          <button type="button"
+                  class="btn btn-float-middle btn-info btnImpact mr-auto col" (click)="saveLot();"><i
+            class="fas fa-check"></i> VALIDER LE LOT
           </button>
           <div class="col"></div>
         </div>
@@ -224,15 +228,14 @@
 
 
   <!--      CREATION D'UN PRODUIT-->
-  <div id="myModal" class="modal fade " data-backdrop="false">
+  <div id="myModal" class="modal fade policeChampagne25" data-backdrop="false">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
-        <div class="modal-header bg-danger mt-3 conteneurArrondi policeChampagneEspaceCenter">
-          <h2>Création d'un Produit</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="bg-success conteneurArrondi policeChampagneEspaceCenter">AJOUTER UN PRODUIT
+<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--          </button>-->
         </div>
 
         <div class="modal-body">
@@ -258,12 +261,11 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal"><i class="far fa-times-circle text-light"></i></button>
           <div class="col text-center">
             <button type="button"
-                    class="btn btn-float-middle btn-danger btnImpact mr-auto col" data-dismiss="modal"
-                    (click)="saveProduit();">Ajouter
-              le produit
+                    class="btn btn-float-middle btn-success btnImpact mr-auto col" data-dismiss="modal"
+                    (click)="saveProduit()">AJOUTER CE PRODUIT
             </button>
           </div>
         </div>
