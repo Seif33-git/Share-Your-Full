@@ -30,7 +30,9 @@ export class CreationDonComponent implements OnInit {
   types: Array<String> = new Array<String>();
   statuts: Array<String> = new Array<String>();
 
-  constructor(private donService: DonHttpService, private lotService: LotHttpService, private produitLotService: ProduitLotHttpService, private produitService: ProduitHttpService, private route: Router) {
+  ceBoutonApparait:boolean=false;
+
+  constructor(private donService: DonHttpService, private lotService: LotHttpService,  private produitLotService: ProduitLotHttpService,private produitService: ProduitHttpService, private route: Router ) {
   }
 
   ngOnInit(): void {
@@ -91,6 +93,7 @@ export class CreationDonComponent implements OnInit {
   }
 
   saveLot() {
+    this.ceBoutonApparait=true;
     this.lotForm.statut = "DISPONIBLE"
     this.lotForm.produitLots = this.produitLotForms;
     this.lotDonsEnCours.push(this.lotForm);
