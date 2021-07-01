@@ -55,7 +55,7 @@ export class CreationDonComponent implements OnInit {
   /*Relatif à un Don */
 
   saveDon() {
-    if (!this.donForm.id) {
+    if (!this.donForm.id && this.donForm.creneau) {
       this.donService.create(this.donForm);
     } else {
       this.donService.modify(this.donForm).subscribe(resp => {
@@ -86,13 +86,17 @@ export class CreationDonComponent implements OnInit {
   }
 
   saveLot() {
-    this.lotForm.produitLots = this.produitLotForms;
-    this.lotDonsEnCours.push(this.lotForm);
-    this.produitLotForms = new Array<ProduitLot>();
-    this.produitLotForms.push (new ProduitLot());
-    this.donForm.lot = this.lotDonsEnCours;
+   /* if (!this.lotForm.nom && this.lotForm.volume) {*/
+      this.lotForm.produitLots = this.produitLotForms;
+      this.lotDonsEnCours.push(this.lotForm);
+      this.produitLotForms = new Array<ProduitLot>();
+      this.produitLotForms.push(new ProduitLot());
+      this.donForm.lot = this.lotDonsEnCours;
 
-    this.lotForm = null;
+      this.lotForm = null;
+  /*  }else {
+      console.error("Veuillez indiquer le nom et la qte du lot");
+    }*/
   }
 
   editLot(index: number) {
