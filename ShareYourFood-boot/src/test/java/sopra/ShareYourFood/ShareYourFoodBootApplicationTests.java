@@ -763,7 +763,7 @@ class ShareYourFoodBootApplicationTests {
 		Optional<Lot> lotFind = lotRepo.findById(pain.getId());
 		assertEquals("Pain", lotFind.get().getNom());
 		assertEquals(sdf.parse("20/05/2023"), lotFind.get().getDtPeremptionLot());
-		assertEquals("ouoio/ju/hh", lotFind.get().getPhoto());
+		assertEquals("assets\\pain.jpg", lotFind.get().getPhoto());
 		assertEquals((long) 25, lotFind.get().getVolume());
 		assertEquals(Statut.DISPONIBLE, lotFind.get().getStatut());
 		assertEquals(donLeclerc.getId(), lotFind.get().getDon().getId());
