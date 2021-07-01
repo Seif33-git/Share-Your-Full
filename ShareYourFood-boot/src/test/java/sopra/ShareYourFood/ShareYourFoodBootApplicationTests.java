@@ -544,9 +544,9 @@ class ShareYourFoodBootApplicationTests {
 		don2.setEntite(Leclerc);
 		donRepo.save(don2);
 		
-		don2.setAdresse(adrRestoDuCoeur);
-		don2.setEntite(RestoDuCoeur);
-		donRepo.save(don2);
+//		don2.setAdresse(adrRestoDuCoeur);
+//		don2.setEntite(RestoDuCoeur);
+//		donRepo.save(don2);
 		
 		don3.setAdresse(adrAuGrandBonheur);
 		don3.setEntite(auGrandBonheur);
@@ -725,7 +725,7 @@ class ShareYourFoodBootApplicationTests {
 		Optional<Association> entiteFind2 = entiteRepo.findAssociationById(CroixRouge.getId());
 		assertEquals("La Croix Rouge", entiteFind2.get().getNom());
 		assertEquals(true, entiteFind2.get().isDonneur());
-		assertEquals(true, entiteFind2.get().isBeneficiaire());
+		assertEquals(false, entiteFind2.get().isBeneficiaire());
 		assertEquals("FR123456789", entiteFind2.get().getNumeroAssociation());
 		assertEquals("justificatif1", entiteFind2.get().getJustificatif());
 		
@@ -740,12 +740,12 @@ class ShareYourFoodBootApplicationTests {
 
 		
 		//ADRESSE
-		Optional<Adresse> adrfind = adresseRepo.findById(adrLeclerc.getId());
-		assertEquals("50 avenue Gutemberg", adrfind.get().getRue());
-		assertEquals("Zone commerciale Soleil", adrfind.get().getComplement());
-		assertEquals("33700", adrfind.get().getCodePostal());
-		assertEquals("Mérignac", adrfind.get().getVille());
-		assertEquals(Leclerc.getId(), adrfind.get().getEntite().getId());
+		Optional<Adresse> adrfind = adresseRepo.findById(adrDonPourTous.getId());
+		assertEquals("277 boulevard Leon Blum", adrfind.get().getRue());
+		assertEquals("Bâtiment C", adrfind.get().getComplement());
+		assertEquals("75004", adrfind.get().getCodePostal());
+		assertEquals("Paris", adrfind.get().getVille());
+		assertEquals(DonPourTous.getId(), adrfind.get().getEntite().getId());
 		
 
 		
