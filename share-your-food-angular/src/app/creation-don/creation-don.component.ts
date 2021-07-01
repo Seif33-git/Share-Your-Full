@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Don} from "../model/don";
 import {DonHttpService} from "../services/don.service";
 import {Lot} from "../model/lot";
@@ -18,13 +18,14 @@ export class CreationDonComponent implements OnInit {
 
   donForm: Don = new Don();
   lotForm: Lot = null;
-  lotDonsEnCours:  Array<Lot> = new Array<Lot>();
+  lotDonsEnCours: Array<Lot> = new Array<Lot>();
   produitLotForm: ProduitLot = new ProduitLot();
   produitLotForms: Array<ProduitLot> = new Array<ProduitLot>();
   produitForm: Produit = new Produit();
-  categorieProduit: string = "FRAIS" ;
-  produitByCategorie: Array<Produit> ;
-  Volume:number;
+  categorieProduit: string = "FRAIS";
+  produitByCategorie: Array<Produit>;
+  Volume: number;
+  DateP: Date;
   /* Enumérations :*/
   types: Array<String> = new Array<String>();
   statuts: Array<String> = new Array<String>();
@@ -35,7 +36,7 @@ export class CreationDonComponent implements OnInit {
   }
 
   ngOnInit(): void {
- /*   this.lotDonsEnCours.push(this.lotForm);*/
+    /*   this.lotDonsEnCours.push(this.lotForm);*/
     this.produitLotForms.push(this.produitLotForm);
     this.listProduit(this.categorieProduit);
   }
@@ -48,9 +49,9 @@ export class CreationDonComponent implements OnInit {
     return this.lotService.findAll();
   }
 
-  listProduit(categorieProduit : string){
-   this.produitService.findAllByCategorie(categorieProduit).subscribe(resp => {
-     this.produitByCategorie=resp;
+  listProduit(categorieProduit: string) {
+    this.produitService.findAllByCategorie(categorieProduit).subscribe(resp => {
+      this.produitByCategorie = resp;
     }, error => console.log(error));
   }
 
@@ -79,12 +80,12 @@ export class CreationDonComponent implements OnInit {
   /*Relatif à un Lot */
 
   addProduitLot() {
-    this.produitLotForms.push (new ProduitLot());
+    this.produitLotForms.push(new ProduitLot());
     console.log(this.produitLotForms)
   }
 
-  deleteProduitLot(){
-    this.produitLotForms.splice(-1,1);
+  deleteProduitLot() {
+    this.produitLotForms.splice(-1, 1);
   }
 
   addLot() {
@@ -97,13 +98,13 @@ export class CreationDonComponent implements OnInit {
     this.lotForm.produitLots = this.produitLotForms;
     this.lotDonsEnCours.push(this.lotForm);
     this.produitLotForms = new Array<ProduitLot>();
-    this.produitLotForms.push (new ProduitLot());
+    this.produitLotForms.push(new ProduitLot());
     this.donForm.lot = this.lotDonsEnCours;
 
-      this.lotForm = null;
-  /*  }else {
-      console.error("Veuillez indiquer le nom et la qte du lot");
-    }*/
+    this.lotForm = null;
+    /*  }else {
+        console.error("Veuillez indiquer le nom et la qte du lot");
+      }*/
   }
 
   editLot(index: number) {
@@ -117,8 +118,8 @@ export class CreationDonComponent implements OnInit {
     this.produitLotForm = null;
   }
 
-  deleteLot(index: number){
-   this.lotDonsEnCours.splice(index,1);
+  deleteLot(index: number) {
+    this.lotDonsEnCours.splice(index, 1);
   }
 
   /*Relatif à un Produit */
@@ -127,26 +128,39 @@ export class CreationDonComponent implements OnInit {
     this.produitForm = new Produit();
   }
 
-  saveProduit(){
+  saveProduit() {
     this.produitService.create(this.produitForm).subscribe(resp => {
       this.listProduit(this.categorieProduit);
     }, error => console.log(error));
     this.produitForm = new Produit();
   }
 
-  actualisationProduit(){
+  actualisationProduit() {
     this.listProduit(this.categorieProduit);
   }
 
   cancelProduit() {
     this.produitForm = null;
   }
-  calculVolume(){
+
+  calculVolume() {
     this.Volume = 0;
-    for(let pl of this.produitLotForms){
+    for (let pl of this.produitLotForms) {
       this.Volume = this.Volume + pl.quantite
     }
+  }
 
+  calculDateP() {
+    this.DateP = null;
+    if (this.DateP == null){
+      this.DateP = new Date (this.produitLotForm.dtPeremption);
+    }
+
+    for (let pl of this.produitLotForms) {
+      if (this.DateP > new Date(pl.dtPeremption)) {
+        this.DateP = new Date(pl.dtPeremption)
+      }
+    }
   }
 
 }
