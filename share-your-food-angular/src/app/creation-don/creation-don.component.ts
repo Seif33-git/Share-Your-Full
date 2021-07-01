@@ -92,12 +92,15 @@ export class CreationDonComponent implements OnInit {
 
   saveLot() {
     this.lotForm.statut = "DISPONIBLE"
+    this.lotForm.dtPeremptionLot = this.DateP.toISOString().substr(0,10);
     this.lotForm.produitLots = this.produitLotForms;
     this.lotDonsEnCours.push(this.lotForm);
     this.produitLotForms = new Array<ProduitLot>();
     this.produitLotForms.push(new ProduitLot());
     this.donForm.lot = this.lotDonsEnCours;
 
+    this.Volume= 0;
+    this.DateP= null;
     this.lotForm = null;
     /*  }else {
         console.error("Veuillez indiquer le nom et la qte du lot");
