@@ -116,20 +116,22 @@ public class DonRestController {
 	
 
 	@PostMapping("")
+	@JsonView(Views.ViewCommon.class)
 	public Don create(@RequestBody Don don) {
 		
 		donRepo.save(don);	
 		
-		for(Lot lot : don.getLot()) {		
-				
-			lot.setDon(don);			
-			lot= lotRepo.save(lot);	
+		for(Lot lot : don.getLot()) {	
 			
-			for(ProduitLot produitLot :lot.getProduitLots() ) {
+			List<ProduitLot> produitLots = new ArrayList<ProduitLot>();
+			produitLots.addAll(lot.getProduitLots());
+			
+			lot.setDon(don);			
+			lotRepo.save(lot);	
+			for(ProduitLot produitLot :produitLots) {
 				
-				ProduitLot produitLot1 = produitLot;
-				produitLot1.setLot(lot);
-				produitLot1 = produitLotRepo.save(produitLot1);				
+				produitLot.setLot(lot);
+				produitLot = produitLotRepo.save(produitLot);				
 			}
 		}		
 		return don;
