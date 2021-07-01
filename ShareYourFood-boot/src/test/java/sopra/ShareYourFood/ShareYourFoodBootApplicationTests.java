@@ -247,7 +247,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		chocolat.setPhoto("djvbv/didz/yugi");
+		chocolat.setPhoto("assets\\chocolat.jpg");
 		chocolat.setVolume((long) 50);
 		chocolat.setStatut(Statut.DISPONIBLE);
 		
@@ -259,7 +259,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		pain.setPhoto("ouoio/ju/hh");
+		pain.setPhoto("assets\\pain.jpg");
 		pain.setVolume((long) 25);
 		pain.setStatut(Statut.DISPONIBLE);
 		
@@ -270,7 +270,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		pates.setPhoto("ouoio/ju/hh");
+		pates.setPhoto("assets\\pates.jpg");
 		pates.setVolume((long) 3);
 		pates.setStatut(Statut.EN_PREPARATION);
 		
@@ -281,7 +281,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		riz.setPhoto("ouoio/ju/hh");
+		riz.setPhoto("assets\\riz.jpg");
 		riz.setVolume((long) 5);
 		riz.setStatut(Statut.RESERVE);
 		
@@ -292,7 +292,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		cereales.setPhoto("ouoio/ju/hh");
+		cereales.setPhoto("assets\\cereales.jpg");
 		cereales.setVolume((long) 1);
 		cereales.setStatut(Statut.DISPONIBLE);
 		
@@ -303,7 +303,7 @@ class ShareYourFoodBootApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		jus.setPhoto("ouoio/ju/hh");
+		jus.setPhoto("assets\\boissons.jpg");
 		jus.setVolume((long) 2);
 		jus.setStatut(Statut.DISPONIBLE);
 		
