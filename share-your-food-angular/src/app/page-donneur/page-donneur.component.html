@@ -42,7 +42,7 @@
           <th>Nom</th>
           <th>Date de péremption</th>
           <th>Statut</th>
-          <th>Volume</th>
+          <th>Quantité</th>
           <th></th>
         </tr>
         </thead>
@@ -117,18 +117,16 @@
 
     <table class="table">
       <thead>
-      <tr class="table-warning policeChampagne25">
-        <th>Photo</th>
+      <tr class="table-info policeChampagne25">
         <th>Nom</th>
         <th>Date de péremption</th>
         <th>Statut</th>
-        <th>Volume</th>
+        <th>Quantité</th>
         <th></th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let lot of listLotByDonIdHistorique">
-        <td>{{lot.photo}}</td>
         <td>{{lot.nom}}</td>
         <td>{{lot.dtPeremptionLot | date:'dd/MM/yyyy'}}</td>
         <td>{{lot.statut}}</td>
