@@ -107,7 +107,7 @@ export class LotHttpService {
       this.lotsDispo = resp;
     }, error => console.log(error))
   }
-  findAllDispo(): Array<Lot>{
-    return this.lotsDispo;
+  findAllDispo(): Observable<Array<Lot>>{
+    return this.http.get<Array<Lot>>(this.appConfig.backEndUrl + "lot/lot-dispo");
   }
 }
