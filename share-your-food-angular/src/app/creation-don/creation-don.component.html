@@ -147,14 +147,14 @@
           </select>
         </div>
         <div class="col">
-          <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
+          <input type="text" id="avatar" name="avatar" accept="image/png, image/jpeg" class="form-control" id="imageLot" [(ngModel)]="lotForm.photo">
         </div>
       </div>
 
       <div class="row pt-1 mt-3 bg-light">
-        <div class="col">Date de Péremption Lot:</div>
+        <div class="col">Date de Péremption:</div>
         <div class="col"><label id="dtPeremption" [(ngModel)]="lotForm.dtPeremptionLot" > {{DateP | date:'dd-MM-yyyy'}} </label></div>
-        <div class="col">Volume Lot :</div>
+        <div class="col">Volume Lot:</div>
         <div class="col"><label id="volume">{{Volume}}</label></div>
       </div>
 
