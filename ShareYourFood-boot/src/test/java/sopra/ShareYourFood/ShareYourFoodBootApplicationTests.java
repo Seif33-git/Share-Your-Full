@@ -93,9 +93,9 @@ class ShareYourFoodBootApplicationTests {
 		Utilisateur cocoDu06 = new Utilisateur("Coco_du_06", "cocodu06@gmail.com","azerty", true);
 		
 		Utilisateur toto65 = new Utilisateur();
-		toto65.setPseudo("Toto65");
+		toto65.setPseudo("E.Sultan");
 		toto65.setMotDePasse("azerty123");
-		toto65.setMail("toto65@gmail.com");
+		toto65.setMail("eric.sultan@gmail.com");
 		toto65.setMessagerieActivation(true);
 		
 		Utilisateur aube = new Utilisateur();
@@ -122,8 +122,8 @@ class ShareYourFoodBootApplicationTests {
 		sarah.setDonneur(true);
 		sarah.setBeneficiaire(false);
 		
-		Particulier regis = new Particulier("regis", 25);
-		regis.setNom("SIMON");
+		Particulier regis = new Particulier("éric", 25);
+		regis.setNom("SULTAN");
 		regis.setDonneur(false);
 		regis.setBeneficiaire(true);
 		
@@ -731,10 +731,10 @@ class ShareYourFoodBootApplicationTests {
 		
 		//ENTITE PARTICULIER
 		Optional<Particulier> entiteFind3 = entiteRepo.findParticulierById(regis.getId());
-		assertEquals("SIMON", entiteFind3.get().getNom());
+		assertEquals("SULTAN", entiteFind3.get().getNom());
 		assertEquals(false, entiteFind3.get().isDonneur());
 		assertEquals(true, entiteFind3.get().isBeneficiaire());
-		assertEquals("regis", entiteFind3.get().getPrenom());
+		assertEquals("éric", entiteFind3.get().getPrenom());
 		assertEquals(25, entiteFind3.get().getAge());
 
 
