@@ -413,11 +413,11 @@ class ShareYourFoodBootApplicationTests {
 		
 		Produit pateProduit = new Produit();
 		pateProduit.setNom("Pates");
-		pateProduit.setType(Type.EPICERIE_SALE);
+		pateProduit.setType(Type.EPICERIE_SALEE);
 		
 		Produit rizProduit = new Produit();
 		rizProduit.setNom("Riz");
-		rizProduit.setType(Type.EPICERIE_SALE);
+		rizProduit.setType(Type.EPICERIE_SALEE);
 		
 		Produit jusOrange = new Produit();
 		jusOrange.setNom("Jus d'orange");
@@ -433,7 +433,7 @@ class ShareYourFoodBootApplicationTests {
 		
 		Produit chips = new Produit();
 		chips.setNom("Chips");
-		chips.setType(Type.EPICERIE_SALE);
+		chips.setType(Type.EPICERIE_SALEE);
 		
 		Produit bonbon = new Produit();
 		bonbon.setNom("Dragibus");
