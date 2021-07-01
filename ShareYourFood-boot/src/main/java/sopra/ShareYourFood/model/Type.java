@@ -2,7 +2,7 @@ package sopra.ShareYourFood.model;
 
 
 public enum Type {
-FRAIS("Produit frais"),FRUIT_LEGUME("Fruits et légumes"),PAIN_PATISSERIE("Pain / patisserie"),EPICERIE_SALE("Epicerie salé"),EPICERIE_SUCREE("Epicerie sucrée"),BOISSON("Boissons"),NOURRITURE_ANIMAL("Animaux"),HYGIENE("Hygiène");
+FRAIS("Produit frais"),FRUIT_LEGUME("Fruits et légumes"),PAIN_PATISSERIE("Pain / patisserie"),EPICERIE_SALEE("Epicerie salée"),EPICERIE_SUCREE("Epicerie sucrée"),BOISSON("Boissons"),NOURRITURE_ANIMAL("Animaux"),HYGIENE("Hygiène");
 
 private final String label;
 
