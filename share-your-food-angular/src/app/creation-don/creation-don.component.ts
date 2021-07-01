@@ -56,6 +56,7 @@ export class CreationDonComponent implements OnInit {
 
   saveDon() {
     if (!this.donForm.id && this.donForm.creneau) {
+      this.donForm.entite = JSON.parse(sessionStorage.getItem("utilisateur")).entite;
       this.donService.create(this.donForm);
     } else {
       this.donService.modify(this.donForm).subscribe(resp => {
@@ -65,6 +66,8 @@ export class CreationDonComponent implements OnInit {
 
 
     this.donForm = new Don();
+    this.lotDonsEnCours = new Array<Lot>();
+
   }
 
   cancelDon() {
@@ -75,6 +78,7 @@ export class CreationDonComponent implements OnInit {
 
   addProduitLot() {
     this.produitLotForms.push (new ProduitLot());
+    console.log(this.produitLotForms)
   }
 
   deleteProduitLot(){
@@ -86,12 +90,12 @@ export class CreationDonComponent implements OnInit {
   }
 
   saveLot() {
-   /* if (!this.lotForm.nom && this.lotForm.volume) {*/
-      this.lotForm.produitLots = this.produitLotForms;
-      this.lotDonsEnCours.push(this.lotForm);
-      this.produitLotForms = new Array<ProduitLot>();
-      this.produitLotForms.push(new ProduitLot());
-      this.donForm.lot = this.lotDonsEnCours;
+    this.lotForm.statut = "DISPONIBLE"
+    this.lotForm.produitLots = this.produitLotForms;
+    this.lotDonsEnCours.push(this.lotForm);
+    this.produitLotForms = new Array<ProduitLot>();
+    this.produitLotForms.push (new ProduitLot());
+    this.donForm.lot = this.lotDonsEnCours;
 
       this.lotForm = null;
   /*  }else {
